@@ -1,0 +1,17 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.operator-task-grid-control-container {
+  overflow: hidden;
+
+  @media screen and (max-width: 991px) {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  @media screen and (min-width: 992px) {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    height: 100%;
+  }
+}

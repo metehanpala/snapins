@@ -1,0 +1,863 @@
+<div #infoContainer>
+  <ng-container *ngIf="isNullOrUndefined(selectedTask)">
+    <si-empty-state content="" [heading]="noTaskHeading" icon="element-plus">
+      <ng-container *ngIf="countRows > 0">
+        <p [innerText]="selectTaskToShowDetails"></p>
+      </ng-container>
+    </si-empty-state>
+  </ng-container>
+
+  <ng-container *ngIf="!isNullOrUndefined(selectedTask)">
+    <!-- General Settings -->
+    <div contentCssClasses="p-6" id="GeneralSettings"
+         style="margin-top: 10px; margin-bottom: -10px">
+      <div *ngIf="!isEditing()">                                    
+        <div class="task-info">
+          <div class="row task-info-background-color">
+            <div class="task-info-row-flex">
+            <div class="task-info-flex">              
+              <p class="si-caption text-secondary">{{ nameTitle }}</p>
+              <label
+                class="si-caption text-wrap longText">{{ selectedTask?.taskNameLocalized }}</label>               
+              
+            </div>
+            <button type="button" class="btn btn-circle btn-sm btn-tertiary element-copy me-6 target-id-copy"
+                  aria-label="badge" [siTooltip]="taskIdCopyTooltip" [gmsTaskIdToClipboard]="selectedTask.id"></button>
+            </div>            
+          </div>
+        </div>
+
+        <div class="task-info">
+          <div class="row task-info-background-color">
+            <div class="task-info-flex">
+              <p class="si-caption text-secondary">{{ descriptionTitle }}</p>
+              <label
+                class="si-caption text-wrap longText">{{ selectedTask?.taskDescriptionLocalized }}</label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="gray-divider"/>
+
+        <div class="task-info" id="StatusInfo">
+          <div class="row task-info-background-color">
+            <div class="column left">
+              <div style="margin-top: 5px">
+                <i>
+                  <si-icon [color]="utility.getIconColor(selectedTask?.status)"
+                           [icon]="utility.getIcon(selectedTask?.status)" />
+                </i>
+              </div>
+            </div>
+
+            <div [style.width]="containerWidth - 45" class="status-text">              
+              <div [ngClass]="
+                  taskListVm?.getStatusClasssFontColor(selectedTask?.status)
+                ">
+                <p class="si-caption">{{ selectedTask?.statusAndTimeValue }}</p>
+              </div>
+            </div>            
+          </div>
+        </div>
+
+        <hr class="gray-divider"/>
+
+        <div class="task-info" id="StartEndDate">
+          <div class="row task-info-background-color">
+            <div class="column left">
+              <div style="margin-top: 5px"></div>
+            </div>
+
+            <div [style.width]="containerWidth - 45" class="column center">
+              <p class="si-caption text-secondary">{{ startDateTitle }}</p>
+              <!--              <p class="si-caption">{{selectedTask?.startDateDisplay}}</p>-->
+              <p *ngIf="
+                  selectedTask?.status !== operatorTaskStatuses.Idle &&
+                    selectedTask?.status !== operatorTaskStatuses.Failed;
+                  else elseBlockStart
+                " class="si-caption">
+                {{ selectedTask?.deferTimeRun | date : "longDate" :
+                  utility.formatLang }} - {{ selectedTask?.deferTimeRun | date :
+                  "shortTime" : utility.formatLang }}
+              </p>
+              <ng-template #elseBlockStart>
+                <p class="si-caption">{{ selectedTask?.startDateDisplay }}</p>
+              </ng-template>
+            </div>
+
+            <div class="column right">
+              <p class="si-caption text-secondary">{{ endDateTitle }}</p>
+              <!--              <p class="si-caption">{{selectedTask?.endDateDisplay}}</p>-->
+              <p *ngIf="
+                  selectedTask?.status !== operatorTaskStatuses.Idle &&
+                    selectedTask?.status !== operatorTaskStatuses.Failed;
+                  else elseBlockEnd
+                " class="si-caption">
+                {{ selectedTask?.expirationTimeDisplay | date : "longDate" :
+                  utility.formatLang }} - {{ selectedTask?.expirationTimeDisplay | date :
+                  "shortTime" : utility.formatLang }}
+              </p>
+              <ng-template #elseBlockEnd>
+                <p class="si-caption">{{ selectedTask?.endDateDisplay }}</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <hr class="gray-divider" style="margin-bottom: 30px"/>
+      </div>
+
+      <div *ngIf="isEditing()"
+           class="container-fluid p-5" si-form-container-content>
+        <form [formGroup]="form">
+          <si-form-container #formContainer
+                             [controlNameTranslateKeyMap]="controlNameTranslateKeyMap"
+                             [errorCodeTranslateKeyMap]="errorCodeTranslateKeyMap" [form]="form"
+                             [disableErrorPrinting]="true">
+            <div si-form-container-content>
+              <!--Task Name -->
+              <si-form-item [labelWidth]="labelWidth" [label]="nameTitle" [required]="true">
+                <div class="form-control-has-icon w-100 overflow-ellipsis">
+                  <input class="form-control" formControlName="name" id="name" type="text"/>
+                  <!--Task Name Validation -->
+                  <div class="invalid-feedback">
+                    <span *ngFor="
+                        let error of formContainer?.getValidationErrors('name');
+                        trackBy: trackByIndex
+                      ">
+                      {{ error.errorCodeTranslationKey ?
+                        (error.errorCodeTranslationKey | translate :
+                            error.errorParams) : error.errorCode }}
+                    </span>
+                  </div>
+
+                  <div [class.d-block]="nameErrors?.length > 0" class="invalid-feedback">
+                    <span *ngFor="let error of nameErrors; trackBy: trackByIndex">
+                      {{ error.errorCodeTranslationKey ?
+                        (error.errorCodeTranslationKey | translate :
+                            error.errorParams) : error.errorCode }}
+                    </span>
+                  </div>
+                </div>
+              </si-form-item>
+
+              <!--Description -->
+              <si-form-item [labelWidth]="labelWidth" [label]="descriptionTitle" [required]="true">
+                <div class="form-control-has-icon w-100 overflow-ellipsis">
+                  <textarea class="form-control" formControlName="description" id="description"
+                            type="text" required></textarea>
+                  <!--Task description Validation -->
+                  <div class="invalid-feedback">
+                    <span *ngFor="
+                        let error of formContainer?.getValidationErrors(
+                          'description'
+                        );
+                        trackBy: trackByIndex
+                      ">
+                      {{ error.errorCodeTranslationKey ?
+                        (error.errorCodeTranslationKey | translate :
+                            error.errorParams) : error.errorCode }}
+                    </span>
+                  </div>
+                </div>
+              </si-form-item>
+
+              <hr class="gray-divider"/>
+              <!-- Status -->
+              <si-form-item [labelWidth]="labelWidth" [label]="statusHeading">
+                <div class="column left" style="align-items: center">
+                  <div>
+                    <i>
+                      <si-icon [color]="utility.getIconColor(selectedTask?.status)"
+                               [icon]="utility.getIcon(selectedTask?.status)" />
+                    </i>
+                  </div>
+                </div>
+
+                <div class="column center" style="align-items: center">
+                  <div [ngClass]="
+                      taskListVm?.getStatusClasssFontColor(selectedTask?.status)
+                    ">
+                    <label>{{ selectedTask?.statusAndTimeValue }}</label>
+                  </div>                  
+                </div>                
+              </si-form-item>
+              <hr class="gray-divider"/>
+
+              <!-- START DATE -->
+              <div class="row">
+                <si-form-item [labelWidth]="labelWidth" [required]="true"
+                              [label]="startDateTitle">                  
+                  <div class="form-check-inline">
+                    <input [(ngModel)]="selectedStartDateOption"
+                           [ngModelOptions]="{ standalone: true }" [value]="dateOptions.Immediate"
+                           class="form-check-input" id="startImmediate" name="startDateOption"
+                           required type="radio" [disabled]="startDueRadioReadOnly"/>
+                    <label class="form-check-label"
+                           for="startImmediate">{{ startImmediateTitle }}</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <input [(ngModel)]="selectedStartDateOption"
+                           [ngModelOptions]="{ standalone: true }" [value]="dateOptions.DateTime"
+                           class="form-check-input" id="startAt" name="startDateOption" type="radio"
+                           [disabled]="startDueRadioReadOnly"/>
+                    <label class="form-check-label" for="startAt">{{ startAtTitle }}</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <input [(ngModel)]="selectedStartDateOption"
+                           [ngModelOptions]="{ standalone: true }" [value]="dateOptions.Duration"
+                           class="form-check-input" id="startIn" name="startDateOption" type="radio"
+                           [disabled]="startDueRadioReadOnly"/>
+                    <label class="form-check-label" for="startIn">{{ startInTitle }}</label>
+                  </div>
+                </si-form-item>
+              </div>
+
+              <div class="row">
+                <div *ngIf="selectedStartDateOption === dateOptions.DateTime" >
+                  <ng-template #start1Template>
+                    <si-form-item [labelWidth]="labelWidth" label="" >
+                      <input [siDatepickerConfig]="startDateAt.dateConfig" class="form-control"
+                             formControlName="startDateAtControlName" id="startDateAt" required="true"
+                             siDatepicker type="text" (change)="dateSubmit('startDateAt')"/>
+                        <div class="invalid-feedback">
+                            @for (error of formContainer.getValidationErrors(startDateAtControlName);track $index) {
+                                <span>
+                                    {{
+                                        error.errorCodeTranslationKey
+                                            ? (error.errorCodeTranslationKey | translate: error.errorParams)
+                                            : error.errorCode
+                                    }}
+                                </span>
+<!--                                <i> Debug: {{ error | json }}</i>-->
+                            }
+                        </div>
+                    </si-form-item>
+                  </ng-template>
+
+                  <ng-container *ngTemplateOutlet="start1Template" />
+                </div>
+                <div *ngIf="selectedStartDateOption === dateOptions.Duration" class="durationDisplay">
+                  <ng-template #start2Template >
+                    <si-form-item [labelWidth]="labelWidth" label="">
+                      <si-timeduration-property (submitted)="durationSubmit($event, 'startDateIn')"
+                                                ngDefaultControl
+                                                formControlName="startDateInControlName"
+                                                [property]="startDateIn.timeDurationConfig"
+                                                id="startDateIn" required
+                                                style="width: 100% !important" />
+                      <div [class.d-block]="getControlErrorsForDuration('startDateInControlName')?.length > 0" class="invalid-feedback">
+                        <span *ngFor="
+                            let error of getControlErrorsForDuration(
+                              'startDateInControlName'
+                            );
+                            trackBy: trackByIndex
+                          ">
+                          {{ error.errorCodeTranslationKey ?
+                            (error.errorCodeTranslationKey | translate :
+                                error.errorParams) : error.errorCode }}
+                        </span>
+                      </div>
+                    </si-form-item>
+                  </ng-template>
+
+                  <ng-container *ngTemplateOutlet="start2Template" />
+                </div>
+              </div>
+
+              <!-- END DATE -->
+              <div class="row">
+                <si-form-item [labelWidth]="labelWidth" [required]="true"
+                              [label]="endDateTitle">
+                  <div class="form-check-inline">
+                    <input [(ngModel)]="selectedEndDateOption"
+                           [ngModelOptions]="{ standalone: true }" [value]="dateOptions.DateTime"
+                           class="form-check-input" id="endAt" name="endDateOption" required
+                           type="radio" [disabled]="startDueRadioReadOnly"/>
+                    <label class="form-check-label" for="endAt">{{ startAtTitle }}</label>                    
+                  </div>
+                  <div class="form-check-inline">
+                    <input [(ngModel)]="selectedEndDateOption"
+                           [ngModelOptions]="{ standalone: true }" [value]="dateOptions.Duration"
+                           class="form-check-input" id="endIn" name="endDateOption" type="radio"
+                           [disabled]="startDueRadioReadOnly"/>
+                    <label class="form-check-label" for="endIn">{{ startInTitle }}</label>
+                  </div>
+                </si-form-item>
+              </div>
+
+              <div class="row">
+                <div *ngIf="selectedEndDateOption === dateOptions.DateTime">
+                  <ng-template #end1Template>
+                    <si-form-item [labelWidth]="labelWidth" label="" >
+                      <input [siDatepickerConfig]="endDateAt.dateConfig" class="form-control"
+                             formControlName="endDateAtControlName" id="endDateAt" required="true"
+                             siDatepicker type="text" (change)="dateSubmit('endDateAt')"/>
+                        <div class="invalid-feedback">
+                            @for (error of formContainer.getValidationErrors(endDateAtControlName);track $index) {
+                                <span>
+                                    {{
+                                        error.errorCodeTranslationKey
+                                            ? (error.errorCodeTranslationKey | translate: error.errorParams)
+                                            : error.errorCode
+                                    }}
+                                </span>
+<!--                                <i> Debug: {{ error | json }}</i>-->
+                            }
+                        </div>
+                    </si-form-item>
+                  </ng-template>
+
+                  <ng-container *ngTemplateOutlet="end1Template" />
+                </div>
+
+                <div *ngIf="selectedEndDateOption === dateOptions.Duration" class="durationDisplay">
+                  <ng-template #end2Template>
+                    <si-form-item [labelWidth]="labelWidth" label="">
+                      <si-timeduration-property
+                        ngDefaultControl
+                          (submitted)="durationSubmit($event, 'endDateIn')"
+                                                formControlName="endDateInControlName"
+                                                [property]="endDateIn.timeDurationConfig"
+                                                id="endDateIn" required
+                                                style="width: 100% !important" />
+                      <div [class.d-block]="
+                          getControlErrorsForDuration('endDateInControlName')
+                            ?.length > 0
+                        " class="invalid-feedback">
+                        <span *ngFor="
+                            let error of getControlErrorsForDuration(
+                              'endDateInControlName'
+                            );
+                            trackBy: trackByIndex
+                          ">
+                          {{ error.errorCodeTranslationKey ?
+                            (error.errorCodeTranslationKey | translate :
+                                error.errorParams) : error.errorCode }}
+                        </span>
+                      </div>
+                    </si-form-item>
+                  </ng-template>
+
+                  <ng-container *ngTemplateOutlet="end2Template" />
+                </div>
+              </div>
+            </div>
+          </si-form-container>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="!isEditing()" class="task-info-button-container"
+         style="margin-bottom: 10px; margin-top: -20px">
+      <div class="row task-info-background-color">
+        <div class="column center">
+          <div [ngClass]="[
+              containerWidth < 450
+                ? 'button-stack-col'
+                : 'button-stack-col-double'
+            ]" class="button-stack">
+            <button (click)="onSelectCommand(commandNames.Start)"
+                    [attr.disabled]="startCommandEnabled === true ? null : true" [ngClass]="{
+                'btn-primary': startCommandEnabled,
+                'btn-secondary': !startCommandEnabled
+              }" [ngStyle]="!startCommandEnabled && { 'pointer-events': 'none' }" class="btn"
+                    type="button">
+              <span>
+                <em class="element-play btn-icon"></em>
+                <span class="btn-text">{{ startCommandText }}</span>
+              </span>
+            </button>
+            <button (click)="onSelectCommand(commandNames.Revert)"
+                    [attr.disabled]="revertCommandEnabled === true ? null : true" [ngClass]="{
+                'btn-primary': revertCommandPrimary,
+                'btn-secondary': !revertCommandPrimary
+              }" [ngStyle]="!revertCommandEnabled && { 'pointer-events': 'none' }" class="btn"
+                    type="button">
+              <span>
+                <em class="element-undo btn-icon"></em>
+                <span class="btn-text">{{ revertCommandText }}</span>
+              </span>
+            </button>
+            <button (click)="onSelectCommand(commandNames.Close)"
+                    [attr.disabled]="closeCommandEnabled === true ? null : true" [ngClass]="{
+                'btn-primary': closeCommandPrimary,
+                'btn-secondary': !closeCommandPrimary
+              }" [ngStyle]="!closeCommandEnabled && { 'pointer-events': 'none' }" class="btn"
+                    type="button">
+              <span>
+                <em class="element-cancel btn-icon"></em>
+                <span class="btn-text">{{ closeCommandText }}</span>
+              </span>
+            </button>
+            <button (click)="onSelectCommand(commandNames.Abort)"
+                    [attr.disabled]="abortCommandEnabled === true ? null : true" [ngClass]="{
+                'btn-primary': abortCommandPrimary,
+                'btn-secondary': !abortCommandPrimary
+              }" [ngStyle]="!abortCommandEnabled && { 'pointer-events': 'none' }"
+                    class="btn btn-default" type="button">
+              <span>
+                <em class="element-stop btn-icon"></em>
+                <span class="btn-text">{{ abortCommandText }}</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <si-collapsible-panel [heading]="headingTarget" [opened]="isTargetsAccordionOpen"
+                          contentCssClasses="p-6">
+      <div class="row">
+        <div class="col">
+          <label class="col-form-label revert-label">{{ revertModeTitle }}</label>
+          <div class="form-check-inline">
+            <input [(ngModel)]="selectedRevertMode" [ngModelOptions]="{ standalone: true }"
+                   [value]="operatorTaskRevertActionMode.Manual" class="form-check-input"
+                   id="manual" type="radio" [disabled]="revertModeDisabled" />
+            <label class="form-check-label" for="manual">{{ manualModeLabel }}</label>
+          </div>
+          <div class="form-check-inline">
+            <input [(ngModel)]="selectedRevertMode" [ngModelOptions]="{ standalone: true }"
+                   [value]="operatorTaskRevertActionMode.Automatic" class="form-check-input"
+                   id="automatic" type="radio" [disabled]="revertModeDisabled" />
+            <label class="form-check-label" for="automatic">{{ automaticModeLabel }}</label>
+          </div>
+
+          <!-- Special case for Revert Mode based on template: forced manual or No revert -->
+          <div class="form-check-inline">
+            <label class="revert-text">{{ revertModeText }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div [class.d-block]="targetErrors()?.length > 0" class="invalid-feedback">
+            <span *ngFor="let error of targetErrors(); trackBy: trackByIndex">
+              {{ error.errorCodeTranslationKey ? (error.errorCodeTranslationKey
+                | translate : error.errorParams) : error.errorCode }}
+            </span>
+          </div>
+        </div>
+        <div class="col">
+          <si-content-action-bar [primaryActions]="targetContentActions" [viewType]="tableViewType" />
+        </div>
+      </div>
+
+      <div class="row">
+        <ngx-datatable #table (select)="datatableOnSelect($event.selected)"
+                       (siResizeObserver)="resizeTable()"
+                       [count]="rows.length"
+                       [cssClasses]="tableConfig.cssClasses"
+                       [footerHeight]="0"
+                       [headerHeight]="tableConfig.headerHeight"
+                       reorderable="false"
+                       [rows]="rows"
+                       [virtualization]="false"
+                       [scrollbarVDynamic]="true"
+                       [scrollbarV]="true"
+                       [scrollbarH]="true"
+                       [selectionType]="selectionType"
+                       class="table-element elevation-1 si-layout-fixed-height mt-1"
+                       [columnMode]="ColumnMode.force"
+                       siDatatableInteraction
+                       style="height: 500px !important;"
+                      [ghostLoadingIndicator]="isLoadingTargets">
+          <si-empty-state empty-content [heading]="emptyHeading" icon="element-plus" />
+
+          <ngx-datatable-column [name]="targetColumnTitle" [sortable]="false">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <div class="datapoint-column">
+                  <gms-about-popover *ngIf="row?.model?.bo"
+                    [clientId]="snapInId.snapInId"
+                    [objectList]="contextObjectList"
+                    (openStateChanged)="isObjInfoOpen = $event">
+                    <div role="button" class="btn-circle btn-flat-ovrd icon" tabindex="0">
+                      <i class="element-info"></i>
+                    </div>
+                  </gms-about-popover>
+                  <div *ngIf="!isEditing() && row?.model?.bo" role="button"
+                       class="btn-circle btn-flat-ovrd icon"
+                       (click)="goToSystemCommand(row?.model?.bo)" tabindex="0">
+                    <i class="element-send-to"></i>
+                  </div>
+                <span [ngClass]="'text-ellipsis ' + (row?.model.datapointDoesNotExist ?'text-danger' : '')">{{row?.displayName }}</span>
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ng-container *ngIf="selectedTask?.hasOverridableParameters">
+            <!-- Parameters Column -->
+            <ngx-datatable-column [name]="commandParameterColumnTitle" [sortable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <ng-container *ngIf="row?.paramaterActionModel">
+                  <ng-container *ngFor="let controlType of [row?.paramaterActionModel.control]">
+                    <ng-container *ngIf="controlType === parameterControl.TextBox">
+                      <ng-container *ngTemplateOutlet="textBoxTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.Spinner">
+                      <ng-container *ngTemplateOutlet="spinnerTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.ComboBox">
+                      <ng-container *ngTemplateOutlet="comboBoxTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.DatePicker">
+                      <ng-container *ngTemplateOutlet="datePickerTemplate"/>
+                    </ng-container>
+                  </ng-container>
+
+                  <ng-template #spinnerTemplate>
+                    <div [ngClass]="classStyleForControls(row, false)">
+                    <si-big-number-property
+                      [ngClass]="'numeric-property '
+                      + (row?.alignedToDefaultValue === false ? 'original-text-weight' : '')"
+                      [property]="row?.paramaterActionModel.numberPropertyConfig"
+                      [valueState]="row?.paramaterActionModel.valueState" (submitted)="row?.paramaterActionModel.submitNumericValue($event)"
+                       />
+                    </div>
+                  </ng-template>
+
+                  <ng-template #textBoxTemplate>
+                    <div [ngClass]="classStyleForControls(row, false)">
+                      <input type="text"
+                           [ngClass]="classStyleForParameterFont(row, false)"
+                           [(ngModel)]="row?.paramaterActionModel.editableValue"
+                           [style.font-weight]="row?.alignedToDefaultValue ? 'normal' : 'bold'"/>
+                    </div>
+                  </ng-template>
+
+                  <ng-template #comboBoxTemplate>
+                    <ng-container *ngIf="row?.paramaterActionModel.isMultiSelection; else single">
+                      <div [ngClass]="classStyleForControls(row, false)">
+                        <si-select labelledby="multi-select" multi
+                                   [disabled]="row?.paramaterActionModel.disableComboBox"
+                                   [ngClass]="classStyleForParameterFont(row, false)"
+                                   [options]="row?.paramaterActionModel.optionsList"
+                                   (valueChange)="row?.paramaterActionModel.selectionChanged($event)"
+                                   [(value)]="row?.paramaterActionModel.editableValue"
+                                   [placeholder]="noneStringPlaceholder"
+                                   [readonly]="!addEnabled()"/>
+                      </div>
+                    </ng-container>
+
+                    <ng-template #single>
+                      <div [ngClass]="classStyleForControls(row, false)">
+                        <si-select [ngClass]="classStyleForParameterFont(row, false)"
+                                   [disabled]="row?.paramaterActionModel.disableComboBox"
+                                   [options]="row?.paramaterActionModel.optionsList"
+                                   (valueChange)="row?.paramaterActionModel.selectionChanged($event)"
+                                   [(value)]="row?.paramaterActionModel.editableValue"
+                                   [readonly]="!addEnabled()"/>
+                      </div>
+                    </ng-template>
+                  </ng-template>
+
+                  <ng-template #datePickerTemplate>
+                    <div [ngClass]="classStyleForControls(row, false)">
+                    <input placeholder="" [siDatepickerConfig]="row.paramaterActionModel.dateTimePropertyConfig" [(ngModel)]="row.paramaterActionModel.DateTimeDisplayValue"
+                      [ngClass]="'form-control ' + (row?.alignedToDefaultValue === false ? 'original-text-weight' : '')"
+                       required="true"  siDatepicker type="text"/>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <!-- Revert Parameters Column -->
+            <ngx-datatable-column *ngIf="selectedTask?.hasOverridableParameters && showRevertColumn===true"
+                                  [name]="revertParameterColumnTitle"
+                                  [sortable]="false" [canAutoResize]="true">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <ng-container *ngIf="row?.parameterRevertModel">
+                  <ng-container *ngFor="let controlType of [row?.parameterRevertModel.control]">
+                    <ng-container *ngIf="controlType === parameterControl.TextBox">
+                      <ng-container *ngTemplateOutlet="textBoxTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.Spinner">
+                      <ng-container *ngTemplateOutlet="spinnerTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.ComboBox">
+                      <ng-container *ngTemplateOutlet="comboBoxTemplate"/>
+                    </ng-container>
+
+                    <ng-container *ngIf="controlType === parameterControl.DatePicker">
+                      <ng-container *ngTemplateOutlet="datePickerTemplate"/>
+                    </ng-container>
+                  </ng-container>
+
+                  <ng-template #showOriginalValue>
+                    <ng-container *ngTemplateOutlet="useOriginalValueTemplate; context: {row: row }"/>
+                  </ng-template>
+
+                  <ng-template #spinnerTemplate>                    
+                    <div [ngClass]="classStyleForControls(row, true)"
+                         *ngIf="showOriginalValueCalc(row); else showOriginalValue">
+                      <div class="revert-column">
+                        <si-big-number-property
+                          [ngClass]="'numeric-property '+ (row?.parameterRevertModel.useOriginalValue === true ? 'original-text-color ' :'')
+                      + (row?.alignedToDefaultValue === false ? 'original-text-weight' : '')"
+                          [property]="row?.parameterRevertModel.numberPropertyConfig"
+                          [valueState]="row?.parameterRevertModel.valueState" (submitted)="row?.parameterRevertModel.submitNumericValue($event)"
+                        />
+                          <ng-container *ngTemplateOutlet="removeRevertIcon; context: {row: row }"/>
+                      </div>
+                    </div>
+                  </ng-template>
+
+                  <ng-template #textBoxTemplate>
+                    <div [ngClass]="classStyleForControls(row, true)"
+                         *ngIf="showOriginalValueCalc(row); else showOriginalValue">
+                      <div class="revert-column">
+                        <input type="text"
+                               [ngClass]="classStyleForParameterFont(row, true)"
+                               [(ngModel)]="row?.parameterRevertModel.editableValue"
+                        />
+                          <ng-container *ngTemplateOutlet="removeRevertIcon; context: {row: row }"/>
+                      </div>
+                    </div>
+                  </ng-template>
+
+                  <ng-template #comboBoxTemplate>
+                    <ng-container *ngIf="row?.parameterRevertModel.isMultiSelection === true">
+                      <div [ngClass]="classStyleForControls(row, true)"
+                           *ngIf="showOriginalValueCalc(row); else showOriginalValue">
+                        <div class="revert-column">
+                          <si-select multi labelledby="multi-select"
+                                     [disabled]="row?.parameterRevertModel.disableComboBox"
+                                     [ngClass]="classStyleForParameterFont(row, true)"
+                                     [options]="row?.parameterRevertModel.optionsList"
+                                     (valueChange)="row?.parameterRevertModel.selectionChanged($event)"
+                                     [placeholder]="noneStringPlaceholder"
+                                     [(value)]="row?.parameterRevertModel.editableValue"
+                                     [readonly]="!addEnabled()"/>
+
+                            <ng-container  *ngTemplateOutlet="removeRevertIcon; context: {row:
+                            row }"/>
+
+                        </div>
+                      </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="row?.parameterRevertModel.isMultiSelection === false">
+                      <div [ngClass]="classStyleForControls(row, true)"
+                           *ngIf="showOriginalValueCalc(row); else showOriginalValue">
+                        <div class="revert-column">
+                          <si-select
+                            [disabled]="row?.parameterRevertModel.disableComboBox"
+                            [ngClass]="classStyleForParameterFont(row, true)"
+                            [options]="row?.parameterRevertModel.optionsList"
+                            (valueChange)="row?.parameterRevertModel.selectionChanged($event)"
+                            [(value)]="row?.parameterRevertModel.editableValue"
+                            [readonly]="!addEnabled()"/>
+
+                            <ng-container *ngTemplateOutlet="removeRevertIcon; context: {row: row
+                             }"/>
+
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-template>
+
+                  <ng-template #datePickerTemplate>
+                    <div [ngClass]="classStyleForControls(row, true)"
+                         *ngIf="showOriginalValueCalc(row); else showOriginalValue">
+                      <div class="revert-column">
+                        <input placeholder="siDatepicker"
+                               [siDatepickerConfig]="row.parameterRevertModel.dateTimePropertyConfig"
+                               [(ngModel)]="row.parameterRevertModel.DateTimeDisplayValue"
+                               [ngClass]="classStyleForParameterFont(row, true)" required="true"
+                               siDatepicker type="text"/>
+
+                          <ng-container *ngTemplateOutlet="removeRevertIcon; context: {row: row }"/>
+
+                      </div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ng-container *ngIf="isEditing()">
+              <ngx-datatable-column [name]="defaultColumnTitle" [sortable]="false"
+                                    [canAutoResize]="false" [resizeable]="true"
+                                    [minWidth]="singleColumnWidth" [width]="singleColumnWidth">
+                <ng-template let-row="row" let-value="value"
+                             ngx-datatable-cell-template>
+                  <input type="checkbox" class="form-check-input" aria-label="selected"
+                         [(ngModel)]="row.isDefaultValue"
+                         [ngModelOptions]="{standalone: true}"
+                         [disabled]="!addEnabled()"
+                         (change)="onToggleDefault(row)"/>
+                </ng-template>
+              </ngx-datatable-column>
+
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="addEnabled()">
+            <ngx-datatable-column [name]="deleteTargetTitle" [sortable]="false"
+                                  [canAutoResize]="false" [resizeable]="true"
+                                  [minWidth]="singleColumnWidth" [width]="singleColumnWidth">
+              <ng-template let-row="row" let-value="value"
+                           ngx-datatable-cell-template>
+                <button type="button"
+                        class="btn btn-circle btn-lg btn-ghost element-delete"
+                        aria-label="delete" (click)="onDeleteTarget(row)"></button>
+              </ng-template>
+
+            </ngx-datatable-column>
+          </ng-container>
+
+          <!-- Results Column -->
+          <ng-container *ngIf="!isEditing()">
+            <ngx-datatable-column [name]="resultsColumnTitle" >
+              <ng-template #resultsCellTempl let-row="row" let-value="value"
+                           ngx-datatable-cell-template>
+                <div style="display: flex;">
+                  <div>
+                    <si-icon icon="element-redo" [color]="row?.commandStatusIcon"
+                    />
+                  </div>
+
+                  <div *ngIf="row?.showRevertIconResult">
+                    <si-icon icon="element-undo"
+                             [color]="row?.commandRevertStatusIcon" />
+                  </div>
+                  <div *ngIf="row?.showAlarmBellResult">
+                    <si-icon color="status-danger" icon="element-alarm-filled" />
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ng-container>
+
+        </ngx-datatable>
+      </div>
+    </si-collapsible-panel>
+
+    <si-collapsible-panel [heading]="headingNotes" [opened]="isNotesAccordionOpen"
+                          contentCssClasses="p-6">
+      <ul class="list-group">
+        <li *ngFor="
+            let item of selectedTask?.operatorTaskNotes;
+            trackBy: trackByIndex
+          " class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="si-title-2 mb-4">{{ item?.actionDetailsText }}</div>
+            <small class="text-secondary">{{ item?.date }}</small>
+          </div>
+          <div class="si-body-2 mb-4">
+            <span>{{ item?.user }}</span>
+          </div>
+          <div class="si-body-2">
+            <p class="text-secondary">{{ item?.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </si-collapsible-panel>
+  </ng-container>
+</div>
+
+<ng-template #notesTemplate let-modalRef="modalRef">
+  <div class="modal-header">
+    <h4 class="modal-title" id="notesModal">
+      {{ textEnterYourNote }}
+    </h4>
+    <button (click)="modalRef.hide()" aria-label="Close modal"
+            class="btn btn-circle btn-sm btn-ghost element-cancel" type="button"></button>
+  </div>
+  <div class="modal-body">
+    <textarea [(ngModel)]="noteInput" class="w-100 form-control" id="notes"
+              [maxlength]="utility.MAX_NOTES_CHARS" type="text"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button (click)="onAddNote(0)" class="btn btn-secondary" type="button">
+      {{ cancelTitle }}
+    </button>
+    <button (click)="onAddNote(1)" [disabled]="addNoteDisabled" class="btn btn-primary"
+            type="button">
+      {{ addNoteTitle }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #modalWarningTemplate let-iconModalRef="modalRef">
+  <div class="si-modal-content-icon-wrapper">
+    <si-icon color="status-warning" icon="element-triangle-filled" size="si-h1"
+             stackedColor="status-warning-contrast"
+             stackedIcon="element-state-exclamation-mark" />
+    <div class="si-modal-content-icon-spacer">
+      <div class="modal-header">
+        <h4 class="modal-title" id="sample-modal-title">
+          {{ modalWarningTitle }}
+        </h4>
+        <button (click)="iconModalRef.hide()" aria-label="Close modal"
+                class="btn btn-circle btn-sm btn-ghost element-cancel" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <span>{{ modalWarningMessage }}</span>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onProceedCommand(0)" class="btn btn-secondary" type="button">
+          {{ noTitle }}
+        </button>
+        <button (click)="onProceedCommand(1)" class="btn btn-primary" type="button">
+          {{ yesTitle }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #alertModalWithIconTemplate let-iconModalRef="modalRef">
+  <div class="si-modal-content-icon-wrapper">
+    <si-icon [icon]="alertModalIcon" [color]="alertModalIconColor"
+             [stackedIcon]="alertStackedIcon" [stackedColor]="alertStackedColor"
+             size="si-h1"/>
+
+    <div class="si-modal-content-icon-spacer">
+      <div class="modal-header">
+        <h4 class="modal-title" id="alert-modal-title">
+          {{ modalWarningTitle }}
+        </h4>
+        <button type="button" class="btn btn-circle btn-sm btn-ghost element-cancel"
+                aria-label="Close modal" (click)="iconModalRef?.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <span>{{ modalWarningMessage }}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="iconModalRef?.hide()">
+          {{ close }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #useOriginalValueTemplate let-row="row">
+  <div [ngClass]="classStyleForControls(row, true)">
+    <input type="text" [id]="'useOriginalTemp_' + row.idForUseOriginalValue"
+           [ngClass]="classStyleForParameterFont(row, true)"
+           [(ngModel)]="originalValue"
+           [disabled]="!addEnabled()"
+           (click)="onClickedOriginalValue(row)"/>
+  </div>
+</ng-template>
+
+<ng-template #removeRevertIcon let-row="row">
+  <div *ngIf="isEditing() && canConfigureTaskData=== true">
+  <button type="button"
+          class="btn btn-circle btn-sm btn-ghost element-cancel"
+          aria-label="badge"
+          [disabled]="row.parameterRevertModel?.useOriginalValue === true"
+          (click)="onRemoveValueForRevert(row)"></button>
+  </div>
+</ng-template>

@@ -1,0 +1,3570 @@
+[
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 23,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint64",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint64",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": "18446744073709551615",
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "18446744073709551615",
+          "_originalType": 4784128
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "18446744073709551615",
+        "_originalType": 4784128
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 23,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint64",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint64",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": "0",
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "0",
+          "_originalType": 4784128
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "0",
+        "_originalType": 4784128
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_uint64_OriginalMinMax"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 23,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint64",
+          "DefaultValue": "18446744073709551615",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "18446",
+          "Min": "45",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint64",
+          "Usage": 23,
+          "Min": "45",
+          "Max": "18446",
+          "UnitDescriptor": "/min",
+          "UnitId": 100,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": "18446744073709551615",
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "18446744073709551615",
+          "_originalType": 4784128
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "18446744073709551615",
+        "_originalType": 4784128
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 23,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint64",
+          "DefaultValue": "18446744073709551615",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "18446",
+          "Min": "45",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint64",
+          "Usage": 23,
+          "Min": "45",
+          "Max": "18446",
+          "UnitDescriptor": "/min",
+          "UnitId": 100,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": "0",
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "0",
+          "_originalType": 4784128
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "0",
+        "_originalType": 4784128
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_uint64"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "45",
+          "Min": "9",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0,
+          "UnitDescriptor": "/min"
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint",
+          "Usage": 23,
+          "Min": "9",
+          "Max": "45",
+          "UnitDescriptor": "/min",
+          "UnitId": 100,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 1,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 1,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 1,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "45",
+          "Min": "9",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0,
+          "UnitDescriptor": "/min"
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint",
+          "Usage": 23,
+          "Min": "9",
+          "Max": "45",
+          "UnitDescriptor": "/min",
+          "UnitId": 100,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 22,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 22,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 22,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_uintW_MinMax"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 3,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedInt",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "21474",
+          "Min": "-21474",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedInt",
+          "Usage": 23,
+          "Min": "-21474",
+          "Max": "21474",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": -1,
+        "RuntimeValue": {
+          "_type": 327680,
+          "a": false,
+          "b": -1,
+          "_originalType": 327680
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 327680,
+        "a": false,
+        "b": -1,
+        "_originalType": 327680
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 3,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedInt",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "21474",
+          "Min": "-21474",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedInt",
+          "Usage": 23,
+          "Min": "-21474",
+          "Max": "21474",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_intwithminmax"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 3,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedInt",
+          "DefaultValue": "-1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedInt",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": -1,
+        "RuntimeValue": {
+          "_type": 327680,
+          "a": false,
+          "b": -1,
+          "_originalType": 327680
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 327680,
+        "a": false,
+        "b": -1,
+        "_originalType": 327680
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 3,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedInt",
+          "DefaultValue": "-1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedInt",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_int"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint",
+          "DefaultValue": "1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 1,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 1,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 1,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedUint",
+          "DefaultValue": "1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedUint",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 22,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 22,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 22,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_uint"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedDuration",
+          "DefaultValue": "5",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0,
+          "DurationDisplayFormat": 13,
+          "DurationValueUnits": 4
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedDuration",
+          "Usage": 23,
+          "UnitDescriptor": "s",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "DurationDisplayFormat": 13,
+          "DurationValueUnits": 4,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 2,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedDuration",
+          "DefaultValue": "5",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0,
+          "DurationDisplayFormat": 13,
+          "DurationValueUnits": 4
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedDuration",
+          "Usage": 23,
+          "UnitDescriptor": "s",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "DurationDisplayFormat": 13,
+          "DurationValueUnits": 4,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_duration"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 8,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "BasicTime",
+          "DefaultValue": "1970-01-01T00:00:00Z",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "BasicTime",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 8,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "BasicTime",
+          "DefaultValue": "1970-01-01T00:00:00Z",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "BasicTime",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_datetime"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 8,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "BasicTime",
+          "DefaultValue": "2024-05-24T01:25:38Z",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "BasicTime",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 8,
+        "ParamType": 0,
+        "Control": 3,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "BasicTime",
+          "DefaultValue": "2024-05-24T01:25:38Z",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "BasicTime",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_Date"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 17,
+        "ParamType": 0,
+        "Control": 2,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedBitString",
+          "DefaultValue": "16",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "7",
+          "Min": "4",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Bit 0",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Bit 1",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Bit 2",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Bit 3",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Bit 4",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Bit 5",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Bit 6",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Bit 7",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Bit 8",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Bit 9",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Bit 10",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Bit 11",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Bit 12",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Bit 13",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Bit 14",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Bit 15",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Bit 16",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Bit 17",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Bit 18",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Bit 19",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Bit 20",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Bit 21",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Bit 22",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Bit 23",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Bit 24",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Bit 25",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Bit 26",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Bit 27",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Bit 28",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Bit 29",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Bit 30",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Bit 31",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Bit 32",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Bit 33",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Bit 34",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Bit 35",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Bit 36",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Bit 37",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Bit 38",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Bit 39",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Bit 40",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Bit 41",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Bit 42",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Bit 43",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Bit 44",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Bit 45",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Bit 46",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Bit 47",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Bit 48",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Bit 49",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Bit 50",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Bit 51",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Bit 52",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Bit 53",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Bit 54",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Bit 55",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Bit 56",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Bit 57",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Bit 58",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Bit 59",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Bit 60",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Bit 61",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Bit 62",
+              "Value": 62
+            },
+            {
+              "Descriptor": "Bit 63",
+              "Value": 63
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedBitString",
+          "Usage": 23,
+          "Min": "4",
+          "Max": "7",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "BitStringLabels": [
+            "Bit 4",
+            "Bit 5",
+            "Bit 6",
+            "Bit 7"
+          ],
+          "TextTable": "TxG_VirtualBitstringValue",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_bitWithMinMax"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 17,
+        "ParamType": 0,
+        "Control": 2,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedBitString",
+          "DefaultValue": "21",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "31",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Bit 0",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Bit 1",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Bit 2",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Bit 3",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Bit 4",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Bit 5",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Bit 6",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Bit 7",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Bit 8",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Bit 9",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Bit 10",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Bit 11",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Bit 12",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Bit 13",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Bit 14",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Bit 15",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Bit 16",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Bit 17",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Bit 18",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Bit 19",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Bit 20",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Bit 21",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Bit 22",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Bit 23",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Bit 24",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Bit 25",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Bit 26",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Bit 27",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Bit 28",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Bit 29",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Bit 30",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Bit 31",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Bit 32",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Bit 33",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Bit 34",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Bit 35",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Bit 36",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Bit 37",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Bit 38",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Bit 39",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Bit 40",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Bit 41",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Bit 42",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Bit 43",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Bit 44",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Bit 45",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Bit 46",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Bit 47",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Bit 48",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Bit 49",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Bit 50",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Bit 51",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Bit 52",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Bit 53",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Bit 54",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Bit 55",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Bit 56",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Bit 57",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Bit 58",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Bit 59",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Bit 60",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Bit 61",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Bit 62",
+              "Value": 62
+            },
+            {
+              "Descriptor": "Bit 63",
+              "Value": 63
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedBitString",
+          "Usage": 23,
+          "Max": "31",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "BitStringLabels": [
+            "Bit 0",
+            "Bit 1",
+            "Bit 2",
+            "Bit 3",
+            "Bit 4",
+            "Bit 5",
+            "Bit 6",
+            "Bit 7",
+            "Bit 8",
+            "Bit 9",
+            "Bit 10",
+            "Bit 11",
+            "Bit 12",
+            "Bit 13",
+            "Bit 14",
+            "Bit 15",
+            "Bit 16",
+            "Bit 17",
+            "Bit 18",
+            "Bit 19",
+            "Bit 20",
+            "Bit 21",
+            "Bit 22",
+            "Bit 23",
+            "Bit 24",
+            "Bit 25",
+            "Bit 26",
+            "Bit 27",
+            "Bit 28",
+            "Bit 29",
+            "Bit 30",
+            "Bit 31"
+          ],
+          "TextTable": "TxG_VirtualBitstringValue",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_bit"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 29,
+        "ParamType": 0,
+        "Control": 2,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedBitString64",
+          "DefaultValue": "0",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "10",
+          "Min": "5",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Bit 0",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Bit 1",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Bit 2",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Bit 3",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Bit 4",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Bit 5",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Bit 6",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Bit 7",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Bit 8",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Bit 9",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Bit 10",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Bit 11",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Bit 12",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Bit 13",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Bit 14",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Bit 15",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Bit 16",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Bit 17",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Bit 18",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Bit 19",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Bit 20",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Bit 21",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Bit 22",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Bit 23",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Bit 24",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Bit 25",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Bit 26",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Bit 27",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Bit 28",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Bit 29",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Bit 30",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Bit 31",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Bit 32",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Bit 33",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Bit 34",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Bit 35",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Bit 36",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Bit 37",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Bit 38",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Bit 39",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Bit 40",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Bit 41",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Bit 42",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Bit 43",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Bit 44",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Bit 45",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Bit 46",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Bit 47",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Bit 48",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Bit 49",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Bit 50",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Bit 51",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Bit 52",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Bit 53",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Bit 54",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Bit 55",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Bit 56",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Bit 57",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Bit 58",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Bit 59",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Bit 60",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Bit 61",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Bit 62",
+              "Value": 62
+            },
+            {
+              "Descriptor": "Bit 63",
+              "Value": 63
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedBitString64",
+          "Usage": 23,
+          "Min": "5",
+          "Max": "10",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "BitStringLabels": [
+            "Bit 5",
+            "Bit 6",
+            "Bit 7",
+            "Bit 8",
+            "Bit 9",
+            "Bit 10"
+          ],
+          "TextTable": "TxG_VirtualBitstringValue",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 21845,
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "21845",
+          "_originalType": 4980736
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "21845",
+        "_originalType": 4980736
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_bit64WithMinMax"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 29,
+        "ParamType": 0,
+        "Control": 2,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedBitString64",
+          "DefaultValue": "21845",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "63",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Bit 0",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Bit 1",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Bit 2",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Bit 3",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Bit 4",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Bit 5",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Bit 6",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Bit 7",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Bit 8",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Bit 9",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Bit 10",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Bit 11",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Bit 12",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Bit 13",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Bit 14",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Bit 15",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Bit 16",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Bit 17",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Bit 18",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Bit 19",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Bit 20",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Bit 21",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Bit 22",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Bit 23",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Bit 24",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Bit 25",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Bit 26",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Bit 27",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Bit 28",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Bit 29",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Bit 30",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Bit 31",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Bit 32",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Bit 33",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Bit 34",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Bit 35",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Bit 36",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Bit 37",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Bit 38",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Bit 39",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Bit 40",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Bit 41",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Bit 42",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Bit 43",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Bit 44",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Bit 45",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Bit 46",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Bit 47",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Bit 48",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Bit 49",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Bit 50",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Bit 51",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Bit 52",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Bit 53",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Bit 54",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Bit 55",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Bit 56",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Bit 57",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Bit 58",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Bit 59",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Bit 60",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Bit 61",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Bit 62",
+              "Value": 62
+            },
+            {
+              "Descriptor": "Bit 63",
+              "Value": 63
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedBitString64",
+          "Usage": 23,
+          "Max": "63",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "BitStringLabels": [
+            "Bit 0",
+            "Bit 1",
+            "Bit 2",
+            "Bit 3",
+            "Bit 4",
+            "Bit 5",
+            "Bit 6",
+            "Bit 7",
+            "Bit 8",
+            "Bit 9",
+            "Bit 10",
+            "Bit 11",
+            "Bit 12",
+            "Bit 13",
+            "Bit 14",
+            "Bit 15",
+            "Bit 16",
+            "Bit 17",
+            "Bit 18",
+            "Bit 19",
+            "Bit 20",
+            "Bit 21",
+            "Bit 22",
+            "Bit 23",
+            "Bit 24",
+            "Bit 25",
+            "Bit 26",
+            "Bit 27",
+            "Bit 28",
+            "Bit 29",
+            "Bit 30",
+            "Bit 31",
+            "Bit 32",
+            "Bit 33",
+            "Bit 34",
+            "Bit 35",
+            "Bit 36",
+            "Bit 37",
+            "Bit 38",
+            "Bit 39",
+            "Bit 40",
+            "Bit 41",
+            "Bit 42",
+            "Bit 43",
+            "Bit 44",
+            "Bit 45",
+            "Bit 46",
+            "Bit 47",
+            "Bit 48",
+            "Bit 49",
+            "Bit 50",
+            "Bit 51",
+            "Bit 52",
+            "Bit 53",
+            "Bit 54",
+            "Bit 55",
+            "Bit 56",
+            "Bit 57",
+            "Bit 58",
+            "Bit 59",
+            "Bit 60",
+            "Bit 61",
+            "Bit 62",
+            "Bit 63"
+          ],
+          "TextTable": "TxG_VirtualBitstringValue",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 21845,
+        "RuntimeValue": {
+          "_type": 524288,
+          "a": false,
+          "b": "21845",
+          "_originalType": 4980736
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 524288,
+        "a": false,
+        "b": "21845",
+        "_originalType": 4980736
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_bit64"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 4,
+        "ParamType": 0,
+        "Control": 1,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedReal",
+          "DefaultValue": "10",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "9999",
+          "Min": "0",
+          "EnumerationTexts": [],
+          "Application": 0,
+          "ParameterType": 0,
+          "UnitDescriptor": "°C/h",
+          "Resolution": 4
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedReal",
+          "Usage": 23,
+          "Min": "0",
+          "Max": "9999",
+          "UnitDescriptor": "°C/h",
+          "UnitId": 91,
+          "Resolution": 4,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": null,
+        "RuntimeValue": null,
+        "UseOriginalValue": true,
+        "IsImplicitCns": false
+      },
+      "UseCurrentPropertyValue": true
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_analog"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 5,
+        "ParamType": 0,
+        "Control": 0,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedBool",
+          "DefaultValue": "True",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "True",
+          "Min": "False",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "False",
+              "Value": 0
+            },
+            {
+              "Descriptor": "True",
+              "Value": 1
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedBool",
+          "Usage": 23,
+          "Min": "False",
+          "Max": "True",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "TextTable": "TxG_BooleanValues",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": true,
+        "RuntimeValue": {
+          "_type": 262144,
+          "a": false,
+          "b": true,
+          "_originalType": 262144
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 262144,
+        "a": false,
+        "b": true,
+        "_originalType": 262144
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_binary"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 16,
+        "ParamType": 0,
+        "Control": 0,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedEnum",
+          "DefaultValue": "2",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "10",
+          "Min": "1",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Disabled",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Enabled",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Enabled for Access Denied",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Enabled for Access Granted",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Enabled for Activation",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Enabled for Alarm",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Enabled for Anomaly",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Enabled for Arm Disarm",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Enabled for Blocked",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Enabled for Buffer Full",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Enabled for Buffer Ready",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Enabled for Burglary",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Enabled for Code Violation",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Enabled for Command Failure",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Enabled for Configuration Error",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Enabled for Disabled",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Enabled for Door Alarm",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Enabled for Duress",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Enabled for Emergency",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Enabled for Escalation Started",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Enabled for Evacuation",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Enabled for Exclusion",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Enabled for Fault",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Enabled for Gas Alarm",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Enabled for General",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Enabled for Ground Fault",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Enabled for Guard Tour",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Enabled for High Priority Alarm",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Enabled for Holdup",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Enabled for Imminent Danger",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Enabled for In Command",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Enabled for Information",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Enabled for Life Safety",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Enabled for Life Safety Manual",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Enabled for Low Priority Alarm",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Enabled for Maintenance",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Enabled for Medical Alarm",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Enabled for Medium Priority Alarm",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Enabled for Motion Detection",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Enabled for Non Default Mode",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Enabled for Not Ready",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Enabled for Property Safety",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Enabled for Recipients Not Reached",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Enabled for Recording Active",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Enabled for Sabotage",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Enabled for Safety Position",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Enabled for Safety Position Fault",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Enabled for Seismic Alarm",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Enabled for Status",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Enabled for Streaming Fault",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Enabled for Supervisory",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Enabled for Tamper",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Enabled for Technical Message",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Enabled for Test Alarm",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Enabled for Test Mode",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Enabled for Trouble",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Enabled for Urgent Priority Alarm",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Enabled for Video Sensor Alarm",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Enabled for Wait Position",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Enabled for Water Flooding",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Enabled for PQ Event",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Enabled for PQ Info",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Enabled for PQ Violation",
+              "Value": 62
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedEnum",
+          "Usage": 23,
+          "Min": "1",
+          "Max": "10",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "TextTable": "TxG_AlarmSuppressionValues",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 1,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 1,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 1,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 16,
+        "ParamType": 0,
+        "Control": 0,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedEnum",
+          "DefaultValue": "2",
+          "Order": 0,
+          "Descriptor": "Value",
+          "Max": "10",
+          "Min": "1",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Disabled",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Enabled",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Enabled for Access Denied",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Enabled for Access Granted",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Enabled for Activation",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Enabled for Alarm",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Enabled for Anomaly",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Enabled for Arm Disarm",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Enabled for Blocked",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Enabled for Buffer Full",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Enabled for Buffer Ready",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Enabled for Burglary",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Enabled for Code Violation",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Enabled for Command Failure",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Enabled for Configuration Error",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Enabled for Disabled",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Enabled for Door Alarm",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Enabled for Duress",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Enabled for Emergency",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Enabled for Escalation Started",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Enabled for Evacuation",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Enabled for Exclusion",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Enabled for Fault",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Enabled for Gas Alarm",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Enabled for General",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Enabled for Ground Fault",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Enabled for Guard Tour",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Enabled for High Priority Alarm",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Enabled for Holdup",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Enabled for Imminent Danger",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Enabled for In Command",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Enabled for Information",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Enabled for Life Safety",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Enabled for Life Safety Manual",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Enabled for Low Priority Alarm",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Enabled for Maintenance",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Enabled for Medical Alarm",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Enabled for Medium Priority Alarm",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Enabled for Motion Detection",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Enabled for Non Default Mode",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Enabled for Not Ready",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Enabled for Property Safety",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Enabled for Recipients Not Reached",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Enabled for Recording Active",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Enabled for Sabotage",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Enabled for Safety Position",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Enabled for Safety Position Fault",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Enabled for Seismic Alarm",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Enabled for Status",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Enabled for Streaming Fault",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Enabled for Supervisory",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Enabled for Tamper",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Enabled for Technical Message",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Enabled for Test Alarm",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Enabled for Test Mode",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Enabled for Trouble",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Enabled for Urgent Priority Alarm",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Enabled for Video Sensor Alarm",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Enabled for Wait Position",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Enabled for Water Flooding",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Enabled for PQ Event",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Enabled for PQ Info",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Enabled for PQ Violation",
+              "Value": 62
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedEnum",
+          "Usage": 23,
+          "Min": "1",
+          "Max": "10",
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "TextTable": "TxG_AlarmSuppressionValues",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 2,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 2,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 2,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_multistate2"
+  },
+  {
+    "TemplateTaskActionMissConfigured": true,
+    "OverridableParameterAction": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 16,
+        "ParamType": 0,
+        "Control": 0,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedEnum",
+          "DefaultValue": "1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Disabled",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Enabled",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Enabled for Access Denied",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Enabled for Access Granted",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Enabled for Activation",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Enabled for Alarm",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Enabled for Anomaly",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Enabled for Arm Disarm",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Enabled for Blocked",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Enabled for Buffer Full",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Enabled for Buffer Ready",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Enabled for Burglary",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Enabled for Code Violation",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Enabled for Command Failure",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Enabled for Configuration Error",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Enabled for Disabled",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Enabled for Door Alarm",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Enabled for Duress",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Enabled for Emergency",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Enabled for Escalation Started",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Enabled for Evacuation",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Enabled for Exclusion",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Enabled for Fault",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Enabled for Gas Alarm",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Enabled for General",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Enabled for Ground Fault",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Enabled for Guard Tour",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Enabled for High Priority Alarm",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Enabled for Holdup",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Enabled for Imminent Danger",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Enabled for In Command",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Enabled for Information",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Enabled for Life Safety",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Enabled for Life Safety Manual",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Enabled for Low Priority Alarm",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Enabled for Maintenance",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Enabled for Medical Alarm",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Enabled for Medium Priority Alarm",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Enabled for Motion Detection",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Enabled for Non Default Mode",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Enabled for Not Ready",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Enabled for Property Safety",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Enabled for Recipients Not Reached",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Enabled for Recording Active",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Enabled for Sabotage",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Enabled for Safety Position",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Enabled for Safety Position Fault",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Enabled for Seismic Alarm",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Enabled for Status",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Enabled for Streaming Fault",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Enabled for Supervisory",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Enabled for Tamper",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Enabled for Technical Message",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Enabled for Test Alarm",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Enabled for Test Mode",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Enabled for Trouble",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Enabled for Urgent Priority Alarm",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Enabled for Video Sensor Alarm",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Enabled for Wait Position",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Enabled for Water Flooding",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Enabled for PQ Event",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Enabled for PQ Info",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Enabled for PQ Violation",
+              "Value": 62
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedEnum",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "TextTable": "TxG_AlarmSuppressionValues",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 1,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 1,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 1,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "OverridableParameterRevert": {
+      "ParamInfo": {
+        "Name": "Value",
+        "Description": "Value",
+        "GmsDataType": 16,
+        "ParamType": 0,
+        "Control": 0,
+        "ParameterDecoration": {
+          "Name": "Value",
+          "DataType": "ExtendedEnum",
+          "DefaultValue": "1",
+          "Order": 0,
+          "Descriptor": "Value",
+          "EnumerationTexts": [
+            {
+              "Descriptor": "Disabled",
+              "Value": 0
+            },
+            {
+              "Descriptor": "Enabled",
+              "Value": 1
+            },
+            {
+              "Descriptor": "Enabled for Access Denied",
+              "Value": 2
+            },
+            {
+              "Descriptor": "Enabled for Access Granted",
+              "Value": 3
+            },
+            {
+              "Descriptor": "Enabled for Activation",
+              "Value": 4
+            },
+            {
+              "Descriptor": "Enabled for Alarm",
+              "Value": 5
+            },
+            {
+              "Descriptor": "Enabled for Anomaly",
+              "Value": 6
+            },
+            {
+              "Descriptor": "Enabled for Arm Disarm",
+              "Value": 7
+            },
+            {
+              "Descriptor": "Enabled for Blocked",
+              "Value": 8
+            },
+            {
+              "Descriptor": "Enabled for Buffer Full",
+              "Value": 9
+            },
+            {
+              "Descriptor": "Enabled for Buffer Ready",
+              "Value": 10
+            },
+            {
+              "Descriptor": "Enabled for Burglary",
+              "Value": 11
+            },
+            {
+              "Descriptor": "Enabled for Code Violation",
+              "Value": 12
+            },
+            {
+              "Descriptor": "Enabled for Command Failure",
+              "Value": 13
+            },
+            {
+              "Descriptor": "Enabled for Configuration Error",
+              "Value": 14
+            },
+            {
+              "Descriptor": "Enabled for Disabled",
+              "Value": 15
+            },
+            {
+              "Descriptor": "Enabled for Door Alarm",
+              "Value": 16
+            },
+            {
+              "Descriptor": "Enabled for Duress",
+              "Value": 17
+            },
+            {
+              "Descriptor": "Enabled for Emergency",
+              "Value": 18
+            },
+            {
+              "Descriptor": "Enabled for Escalation Started",
+              "Value": 19
+            },
+            {
+              "Descriptor": "Enabled for Evacuation",
+              "Value": 20
+            },
+            {
+              "Descriptor": "Enabled for Exclusion",
+              "Value": 21
+            },
+            {
+              "Descriptor": "Enabled for Fault",
+              "Value": 22
+            },
+            {
+              "Descriptor": "Enabled for Gas Alarm",
+              "Value": 23
+            },
+            {
+              "Descriptor": "Enabled for General",
+              "Value": 24
+            },
+            {
+              "Descriptor": "Enabled for Ground Fault",
+              "Value": 25
+            },
+            {
+              "Descriptor": "Enabled for Guard Tour",
+              "Value": 26
+            },
+            {
+              "Descriptor": "Enabled for High Priority Alarm",
+              "Value": 27
+            },
+            {
+              "Descriptor": "Enabled for Holdup",
+              "Value": 28
+            },
+            {
+              "Descriptor": "Enabled for Imminent Danger",
+              "Value": 29
+            },
+            {
+              "Descriptor": "Enabled for In Command",
+              "Value": 30
+            },
+            {
+              "Descriptor": "Enabled for Information",
+              "Value": 31
+            },
+            {
+              "Descriptor": "Enabled for Life Safety",
+              "Value": 32
+            },
+            {
+              "Descriptor": "Enabled for Life Safety Manual",
+              "Value": 33
+            },
+            {
+              "Descriptor": "Enabled for Low Priority Alarm",
+              "Value": 34
+            },
+            {
+              "Descriptor": "Enabled for Maintenance",
+              "Value": 35
+            },
+            {
+              "Descriptor": "Enabled for Medical Alarm",
+              "Value": 36
+            },
+            {
+              "Descriptor": "Enabled for Medium Priority Alarm",
+              "Value": 37
+            },
+            {
+              "Descriptor": "Enabled for Motion Detection",
+              "Value": 38
+            },
+            {
+              "Descriptor": "Enabled for Non Default Mode",
+              "Value": 39
+            },
+            {
+              "Descriptor": "Enabled for Not Ready",
+              "Value": 40
+            },
+            {
+              "Descriptor": "Enabled for Property Safety",
+              "Value": 41
+            },
+            {
+              "Descriptor": "Enabled for Recipients Not Reached",
+              "Value": 42
+            },
+            {
+              "Descriptor": "Enabled for Recording Active",
+              "Value": 43
+            },
+            {
+              "Descriptor": "Enabled for Sabotage",
+              "Value": 44
+            },
+            {
+              "Descriptor": "Enabled for Safety Position",
+              "Value": 45
+            },
+            {
+              "Descriptor": "Enabled for Safety Position Fault",
+              "Value": 46
+            },
+            {
+              "Descriptor": "Enabled for Seismic Alarm",
+              "Value": 47
+            },
+            {
+              "Descriptor": "Enabled for Status",
+              "Value": 48
+            },
+            {
+              "Descriptor": "Enabled for Streaming Fault",
+              "Value": 49
+            },
+            {
+              "Descriptor": "Enabled for Supervisory",
+              "Value": 50
+            },
+            {
+              "Descriptor": "Enabled for Tamper",
+              "Value": 51
+            },
+            {
+              "Descriptor": "Enabled for Technical Message",
+              "Value": 52
+            },
+            {
+              "Descriptor": "Enabled for Test Alarm",
+              "Value": 53
+            },
+            {
+              "Descriptor": "Enabled for Test Mode",
+              "Value": 54
+            },
+            {
+              "Descriptor": "Enabled for Trouble",
+              "Value": 55
+            },
+            {
+              "Descriptor": "Enabled for Urgent Priority Alarm",
+              "Value": 56
+            },
+            {
+              "Descriptor": "Enabled for Video Sensor Alarm",
+              "Value": 57
+            },
+            {
+              "Descriptor": "Enabled for Wait Position",
+              "Value": 58
+            },
+            {
+              "Descriptor": "Enabled for Water Flooding",
+              "Value": 59
+            },
+            {
+              "Descriptor": "Enabled for PQ Event",
+              "Value": 60
+            },
+            {
+              "Descriptor": "Enabled for PQ Info",
+              "Value": 61
+            },
+            {
+              "Descriptor": "Enabled for PQ Violation",
+              "Value": 62
+            }
+          ],
+          "Application": 0,
+          "ParameterType": 0
+        },
+        "propertyDetailsRepresentationWithoutValue": {
+          "Order": 2,
+          "PropertyName": "Value",
+          "Descriptor": "Value",
+          "Type": "ExtendedEnum",
+          "Usage": 23,
+          "PropertyAbsent": false,
+          "IsArray": false,
+          "TextTable": "TxG_AlarmSuppressionValues",
+          "PropertyType": 0
+        }
+      },
+      "Param": {
+        "Name": "Value",
+        "SetAtRuntime": true,
+        "Value": 2,
+        "RuntimeValue": {
+          "_type": 393216,
+          "a": false,
+          "b": 2,
+          "_originalType": 393216
+        },
+        "UseOriginalValue": false,
+        "IsImplicitCns": false
+      },
+      "DefaultParamValue": {
+        "_type": 393216,
+        "a": false,
+        "b": 2,
+        "_originalType": 393216
+      },
+      "UseCurrentPropertyValue": false
+    },
+    "ObjectId": "System100:ApplicationView_Logics_VirtualObjects_multistate"
+  }
+]

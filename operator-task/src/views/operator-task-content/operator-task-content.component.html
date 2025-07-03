@@ -1,0 +1,179 @@
+<div #contentContainer class="div-flex-ngx-table mb-4">
+
+  <ng-container *ngIf="this.fullSnapinID.snapInId === this.otFrame">
+    <si-main-detail-container class="si-layout-fixed-height master-detail-container"
+                              [style.maxWidth.px]="containerMaxWidth ? containerMaxWidth : null" [largeLayoutBreakpoint]="largeLayoutBreakpoint"
+                              [(detailsActive)]="detailsActive" [truncateHeading]="truncateHeading" [detailsHeading]="detailsHeading"
+                              [hideBackButton]="false" containerClass="operator-task-master-container" [resizableParts]="resizableParts"
+                              [minMainSize]="minMasterSize" [minDetailSize]="minDetailSize" [(mainContainerWidth)]="masterContainerWidth"
+                              (mainContainerWidthChange)="onSplitterPositionChange($event)" >
+      <si-content-action-bar slot="mainActions" [primaryActions]="masterActions"  [viewType]="viewType"/>
+      <div #tableContainer slot="mainData" class="hfw-flex-item-grow table-height">
+        <ngx-datatable *ngIf="(showCompact===false)" class="table-element elevation-1"
+                       siDatatableInteraction [cssClasses]="tableConfig.cssClasses" [rows]="(rows$ | async)" [columns]="columns"
+                       [columnMode]="ColumnMode.force" [reorderable]="false" [headerHeight]="tableConfig.headerHeight"
+                       [rowHeight]="tableConfig.rowHeightSmall" [footerHeight]="0" [ghostLoadingIndicator]="isLoading > 0"
+                       [scrollbarV]="true" [externalPaging]="true" [externalSorting]="true" [count]="totalElements"
+                       [selectionType]="selectionType"
+                       [selected]="selectedEntities"
+                       (select)="datatableOnSelect($event)" [sorts]="(taskSorts$ | async)"
+                       (sort)="onSort($event)" [rowIdentity]="rowIdentity">
+          <si-empty-state  *ngIf="totalElements === 0 || rows.length === 0" empty-content
+                           icon="element-plus"
+                           [heading]="emptyHeading"
+                           [content]="emptyStateContent" />
+
+          <ngx-datatable-column [name]="statusIconTitle" [minWidth]="statusColumnWidth"
+                                [width]="statusColumnWidth"
+                                [canAutoResize]="false" [resizeable]="false" prop="status">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+              <i> <si-icon
+                [icon]="utility.getIcon(row.status)"
+                [color]="utility.getIconColor(row.status)"
+              /></i>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [name]="nameTitle" [minWidth]="taskNameColumnWidth" [width]="taskNameColumnWidth"
+                                [canAutoResize]="true" prop="name">
+
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+              <div [ngClass]='"ellipsis " + taskListVm?.getStatusClasssFontColor(row?.status)'>
+                {{row?.taskNameLocalized}}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [name]="statusDetailsTitle" [minWidth]="statusDetailsColumnWidth"
+                                [width]="statusDetailsColumnWidth" [canAutoResize]="true" prop="statusDetails">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+              <div [ngClass]='"ellipsis " + taskListVm?.getStatusClasssFontColor(row?.status)'>
+                {{row?.statusAndTimeValue}}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [name]="ownerTitle" [minWidth]="ownerColumnWidth"
+                                [width]="ownerColumnWidth"
+                                [canAutoResize]="true" prop="createdBy">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+              <div [ngClass]='"text-secondary " + taskListVm?.getStatusClasssFontColor(row?.status)'>
+                {{row?.createdBy}}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+        <div *ngIf="(showCompact===true)" class="operator-task-table minified compact-mini-table">
+          <ngx-datatable siDatatableInteraction class="table-element elevation-1"
+                         [cssClasses]="tableConfig.cssClasses" [rows]="(rows$ | async)" [columnMode]="ColumnMode.force"
+                         [messages]="{emptyMessage: ''}" [rowHeight]="compactRowHeight" [reorderable]="false"
+                         [headerHeight]="compactHeaderHeight" [footerHeight]="0" [ghostLoadingIndicator]="isLoading > 0"
+                         [scrollbarV]="true" [externalPaging]="true" [externalSorting]="true" [count]="totalElements"
+                         [selectionType]="selectionType" [selected]="selectedEntities"
+                         (select)="datatableOnSelect($event)" [rowIdentity]="rowIdentity">
+
+            <si-empty-state empty-content icon="element-plus" [heading]="emptyHeading" [content]="emptyStateContent" />
+
+            <ngx-datatable-column name="Tasks" [width]="compactColumnWidth" [minWidth]="compactColumnWidth"
+                                  [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="operator-task-table__container">
+                  <div class="operator-task-table__row mb-1">
+                    <div class="operator-task-table__icon-mini py-4">
+                      <si-icon
+                        [icon]="utility.getIcon(row.status)"
+                        [color]="utility.getIconColor(row.status)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column>
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="width-100p py-2">
+                  <div [ngClass]='"si-title-2 ellipsis width-100p mb-4 " + taskListVm?.getStatusClasssFontColor(row?.status)'>
+                    {{row?.taskNameLocalized}}
+                  </div>
+                  <i class="element-right-2 icon float-right"></i>
+                  <div [ngClass]='"si-body-2 ellipsis mb-4 " + taskListVm?.getStatusClasssFontColor(row?.status)'>
+                    {{row?.statusAndTimeValue}}
+                  </div>
+                  <div class="si-body-2">
+                    <span [ngClass]='"text-secondary " + taskListVm?.getStatusClasssFontColor(row?.status)'>{{row?.createdBy}}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+
+      <!-- Detail (content slots: detailActions | details) -->
+      <si-content-action-bar slot="detailActions" [primaryActions]="detailActions" [viewType]="viewType" />
+
+      <!-- details -->
+      <div slot="details" class="card elevation-1 detail-container">
+        <div class="card-body overflow-auto pt-4">
+          <gms-operator-task-info #infoComponent
+                                  [snapInId]="fullSnapinID"
+                                  [saveEvent]="saveEventsSubject.asObservable()"
+                                  [countRows]="rows.length"
+                                  [list]="rows"
+                                  [taskListVm]="taskListVm"
+                                  (notifyParent)="onNotify()"
+          />
+        </div>
+      </div>
+    </si-main-detail-container>
+  </ng-container>
+
+  <ng-container *ngIf="this.fullSnapinID.snapInId === this.otSecondary">
+    <div class="p-5 bg-base-0 d-flex">
+      <si-content-action-bar [primaryActions]="masterActions"     viewType="expanded" class="ms-auto"/>
+    </div>
+
+    <div class="card elevation-1 card-body overflow-auto pt-4 detail-container" style="height: 95%;">
+      <gms-operator-task-info #infoComponent
+                              [snapInId]="fullSnapinID"
+                              [saveEvent]="saveEventsSubject.asObservable()"
+                              [gmsMessageData]="gmsMessageData"
+                              [countRows]="rows.length"
+                              [list]="rows"
+                              [taskListVm]="taskListVm"
+                              (notifyParent)="onNotify()"/>
+    </div>
+
+  </ng-container>
+
+</div>
+
+<ng-template #modalWarningTemplate let-iconModalRef="modalRef">
+  <div class="si-modal-content-icon-wrapper">
+    <si-icon color="status-warning" icon="element-triangle-filled" size="si-h1"
+             stackedColor="status-warning-contrast"
+             stackedIcon="element-state-exclamation-mark" />
+    <div class="si-modal-content-icon-spacer">
+      <div class="modal-header">
+        <h4 class="modal-title" id="sample-modal-title">
+          {{ modalWarningTitle }}
+        </h4>
+        <button (click)="iconModalRef.hide()" aria-label="Close modal"
+                class="btn btn-circle btn-sm btn-ghost element-cancel" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <span>{{ modalWarningMessage }}</span>
+      </div>
+      <div class="modal-footer">
+        <button (click)="iconModalRef.hide(false)" class="btn btn-secondary" type="button">
+          {{ cancel }}
+        </button>
+        <button (click)="iconModalRef.hide(true)" class="btn btn-primary" type="button">
+          {{ yesTitle }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

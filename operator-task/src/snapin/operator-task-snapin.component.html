@@ -1,0 +1,7 @@
+<div class="hfw-flex-container-column hfw-flex-item-grow snapin-container snapin-container-overflow-auto"
+  style="overflow: visible">
+  <div class="operator-task-grid-control-container">
+    <gms-operator-task-content #contentComponent *ngIf="(this.showSnapin | async) === true" [fullSnapinID]=fullSnapInID [fullQParamID]=fullQParamID
+                               [fullPaneID]=fullPaneID [gmsMessageData]="gmsMessageData"/>
+  </div>
+</div>
