@@ -1,0 +1,29 @@
+:host{
+  overflow: hidden;
+}
+
+.license-container{
+  width: 100%;
+}
+
+.license-wrapper{
+  width: 100%;
+}
+
+// rem value is 8px
+.license-table{
+  height: 100%;
+}
+
+.searchBar:focus{
+  position: relative;
+  z-index: 1;
+}
+
+:host ::ng-deep .datatable-body-cell.danger-description{
+  color: #fcccd7 !important;
+}
+
+:host ::ng-deep .datatable-body-cell.warning-description{
+  color:  #ffe1cc !important;
+}

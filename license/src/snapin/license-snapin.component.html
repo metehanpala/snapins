@@ -1,0 +1,100 @@
+<div #licenseTabeleContainer class ="license-container">
+  <div>
+    <si-inline-notification
+  class="pt-3 pb-6"
+  [severity]= "inlineSeverity"
+  [heading]= "inlineHeading"
+  [message]="inlineMessage"
+  [title]="inlineFilter"
+  [action]="{ target: '_blank'}"
+/>
+  </div>
+  <div class="pb-6 bg-base-0">
+    <si-search-bar
+      [placeholder]="searchBarPlaceholder"
+      prohibitedCharacters="*?"
+      [debounceTime]="400"
+      [showIcon]="true"
+      (searchChange)="searchChange($event)"
+    />
+  </div>
+  <div class ="license-wrapper" *ngIf="!minifiedTable">
+  <ngx-datatable
+    #table
+    class="table-element elevation-1 license-table "
+    columnMode="force"
+    siDatatableInteraction
+    [rows]="filteredRows"
+    [rowHeight]="getRowHeight(false)"
+    [selectionType]="selectionType"
+    [scrollbarV]="true"
+    [headerHeight]="40"
+    [footerHeight]="0"
+  >
+  <ngx-datatable-column
+    [width]="80"
+    [minWidth]="80"
+    [sortable]="false"
+    [canAutoResize]="false"
+    [draggable]="false"
+    [resizeable]="false"
+    >
+      <ng-template #statusCellTempl let-value="value" let-row="row" ngx-datatable-cell-template>
+        <si-circle-status [status]="getStatusIcon(row.remaining, row.required)" icon="element-key-alt"/>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column *ngFor="let headerContent of columns"
+    [sortable]="true"
+    [prop]="headerContent.prop"
+    [name]="headerContent.name"
+    [width]="headerContent.width"
+    [minWidth]="headerContent.minWidth"
+    [cellClass]="detailsStatusColor"
+    />
+
+    <si-empty-state empty-content icon="element-key-alt" [heading]= "noLicense" />
+  </ngx-datatable>
+  </div>
+<!--minified-->
+
+<div class="license-wrapper" *ngIf="minifiedTable">
+  <ngx-datatable
+    #table
+    class="table-element elevation-1 license-table "
+    columnMode="force"
+    siDatatableInteraction
+    [rows]="filteredMiniRows"
+    [rowHeight]="getRowHeight(true)"
+    [selectionType]="selectionType"
+    [scrollbarV]="true"
+    [headerHeight]="40"
+    [footerHeight]="0"
+  >
+  <ngx-datatable-column
+    [width]="80"
+    [minWidth]="80"
+    [sortable]="false"
+    [canAutoResize]="false"
+    [draggable]="false"
+    [resizeable]="false"
+    >
+      <ng-template #statusCellTempl let-value="value" let-row="row" ngx-datatable-cell-template>
+        <si-circle-status icon="element-key-alt" [status]="getStatusIcon(row.remaining, row.required)" />
+      </ng-template>
+    </ngx-datatable-column>
+
+  <ngx-datatable-column *ngFor="let headerContent of miniColumns" 
+    class="column"
+    [sortable]="true"
+    [prop]="headerContent.prop"
+    [name]="headerContent.name" 
+    [width]="headerContent.width"
+    [minWidth]="headerContent.minWidth"
+    [cellClass]="miniDetailsStatusColor"
+    >
+  </ngx-datatable-column>
+    <si-empty-state empty-content icon="element-key-alt" [heading]= "noLicense" />
+  </ngx-datatable>
+</div>
+</div>

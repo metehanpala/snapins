@@ -1,0 +1,182 @@
+@import '../../../../node_modules/@simpl/element-theme/src/styles/variables';
+
+.container-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: $element-base-0;
+}
+
+.table_configs {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: transparent;
+}
+
+.list {
+  width: 450px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: $element-base-1;
+  border: 1px solid $element-ui-4;
+  box-shadow: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.element {
+  padding: 5px 0px 5px 10px;
+}
+
+.element:hover:not(.selected) {
+  background-color: $element-base-0;
+  cursor: pointer;
+}
+
+.color {
+  border-radius: 6px;
+  height: 6px;
+  width: 6px;
+  margin-left: 6px;
+  display: inline-block;
+}
+
+.icon {
+  font-size: 16px;
+  color: $element-ui-1;
+  margin-right: 12px;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.iconSelected {
+  color: $element-text-active !important;
+}
+
+.iconOverride {
+  font-size: 25px;
+  color: $element-ui-1;
+}
+
+.descOverride {
+  width: 59% !important;
+}
+
+.selected {
+  background-color: $element-base-0;
+}
+
+.configscol {
+  width: 100%;
+}
+
+.configs {
+  height: 100%;
+  overflow-x: hidden;
+  background-color: $element-base-1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.check {
+  margin-top: 20px;
+}
+
+.check_label {
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.customValue_label {
+  margin-left: 5px;
+}
+
+.customData {
+  margin-top: 40px;
+}
+
+.custom_title {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+label {
+  font-weight: 300;
+  display: block;
+  font-size: 13px;
+}
+
+.config_toast {
+  margin-bottom: 40px;
+}
+
+.toast_label {
+  text-align: center;
+}
+
+.toast_table {
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toast_title {
+  font-size: 19px;
+  font-weight: 500;
+  cursor: default;
+}
+
+.toast_sel {
+  border: 1px solid $element-text-active !important;
+}
+
+.toastlabel_sel {
+  color: $element-text-active !important;
+}
+
+.opened {
+  transform: rotate(180deg);
+}
+
+.description {
+  cursor: default;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  width: 68%;
+}
+
+.toast_img {
+  border: 1px solid $element-ui-4;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.svg {
+  padding: 32px 5px 5px 68px;
+  background-color: $element-base-1;
+}
+
+.arrow {
+  display: inline-block;
+  padding: 0;
+  color: $element-ui-2;
+  font-size: 30px;
+  margin: 0px 3px;
+}
+
+.toast_el {
+  padding: 10px 20px 0px 0px;
+}
+
+.show {
+  width: auto;
+}

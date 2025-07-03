@@ -1,0 +1,174 @@
+
+<si-main-detail-container
+    [resizableParts]="true"
+    [(detailsActive)]="detailsActive"
+    [detailsHeading]="selectedSub !== undefined ? getSub().label : this.configurations.get(selected)!.getDescription()"
+    containerClass="event-master-container"
+>
+    <si-tree-view
+        #treeComponent
+        slot="mainData"
+        class="h-100 list rounded-2"
+        [enableStateIndicator]="true"
+        [enableContextMenuButton]="false"
+        [folderStateStart]="true"
+        [singleSelectMode]="true"
+        [isVirtualized]="false"
+        [flatTree]="flatTree"
+        [items]="treeItems"
+        [updateTreeDisplay]="updateTree"
+        [deleteChildrenOnCollapse]="false"
+        [selectedItem]="treeSelected"
+        [inFocus]="treeSelected"
+        [enableSelection]="true"
+        [enableFocus]="true"
+        (treeItemsSelected)="sel($event)">
+
+        <ng-template let-node siTreeViewItemTemplate="root" style="width: 100%;">
+            <div style="display: flex; width: 100%;">
+              <span style="width: 100%; align-self: center" [class.bold]="!selectedSub && node.customData[0] === selected">{{ node.label }}</span>
+            </div>
+        </ng-template>
+        <ng-template let-node siTreeViewItemTemplate="child" style="width: 100%;">
+            <div style="display: flex; width: 100%">
+              <span style="width: 90px; align-self: center" [class.bold]="node.label === selectedSub && node.parent.customData[0] === selected">{{ node.label }}</span>
+              <span *ngIf="getOverride(node.customData)" class="element-edit-filled iconOverride" [class.iconSelected]="node.label === selectedSub && node.parent.customData[0] === selected"></span>
+            </div>
+        </ng-template>
+    </si-tree-view>
+
+    <si-card slot="details" class="card-size card configscol">
+        <div class="configs card-body card-text ps-6" *ngIf="selected && !selectedSub" body>
+            <div class="config_toast">
+                <div class="toast_title">{{ getLabel("TOAST-TITLE") }}</div>
+                <div class="toast_table">
+                    <div class="toast_el">
+                        <img class="toast_img" [class.toast_sel]="configurations.get(selected).getToast() === 'none'" src="@gms-flex/notifconfig/assets/none.png" (click)="setConfig(1)">
+                        <label class="toast_label" [class.toastlabel_sel]="configurations.get(selected).getToast() === 'none'">
+                            {{ getLabel("NONE") }}
+                        </label>
+                    </div>
+                    <div class="toast_el">
+                        <img class="toast_img svg" [class.toast_sel]="configurations.get(selected).getToast() === 'banner'" src="@gms-flex/notifconfig/assets/banners.svg" (click)="setConfig(2)">
+                        <label class="toast_label" [class.toastlabel_sel]="configurations.get(selected).getToast() === 'banner'">
+                            {{ getLabel("BANNER") }}
+                        </label>
+                    </div>
+                    <div class="toast_el">
+                        <img class="toast_img svg" [class.toast_sel]="configurations.get(selected).getToast() === 'alert'" src="@gms-flex/notifconfig/assets/alerts.svg" (click)="setConfig(3)">
+                        <label class="toast_label" [class.toastlabel_sel]="configurations.get(selected).getToast() === 'alert'">
+                            {{ getLabel("ALERT") }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="check">
+                <label>
+                    <div class="form-switch">
+                        <input
+                            id="show"
+                            type="checkbox"
+                            class="form-check-input col-sm-2 col-xs-2 show"
+                            role="switch"
+                            [checked]="configurations.get(selected).getShow()"
+                            (change)="setConfig(0, $event.target.checked)"
+                        >
+                        <label class="col-sm-0 form-check-label" for="switch-input">{{ getLabel("CONFIG-SHOW") }}</label>
+                    </div>
+                </label>
+            </div>
+            <div class="check">
+                <label>
+                    <div class="form-switch">
+                        <input
+                            id="show"
+                            type="checkbox"
+                            class="form-check-input col-sm-2 col-xs-2 show"
+                            role="switch"
+                            [disabled]="!canEditSoundToggle && selected === 'newEvents'"
+                            [checked]="configurations.get(selected).getSound()"
+                            (change)="setConfig(4, $event.target.checked)"
+                        >
+                        <label *ngIf="selected !== 'newEvents'" class="col-sm-0 form-check-label" for="switch-input">{{ getLabel("CONFIG-SOUND") }}</label>
+                        <label *ngIf="selected === 'newEvents'" class="col-sm-0 form-check-label" for="switch-input">{{ getLabel("CONFIG-SOUND-EVENTS") }}</label>
+                    </div>
+                </label>
+            </div>
+            <div class="check" *ngFor="let customCfg of configurations.get(selected).getCustomSettings(); let i = index">
+                <label *ngIf="i !== 0 || (i === 0 && this.enableBackToNormal === true)">
+                    <div class="form-switch">
+                        <input
+                            [id]="customCfg.name"
+                            type="checkbox"
+                            class="form-check-input col-sm-2 col-xs-2 show"
+                            role="switch"
+                            [checked]="customCfg.value"
+                            (change)="setConfig(i, $event.target.checked, 'customCfg')"
+                        >
+                        <label class="col-sm-0 form-check-label" for="switch-input">{{ customCfg.label }}</label>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="configs card-body card-text ps-6" *ngIf="selected !== undefined && selectedSub !== undefined" body>
+            <div class="check" style="margin-top: 0px">
+                <label>
+                    <div class="form-switch">
+                        <input
+                            id="confOverride"
+                            type="checkbox"
+                            class="form-check-input col-sm-2 col-xs-2 show"
+                            role="switch"
+                            [checked]="getSub().override"
+                            (change)="setConfig(5, $event.target.checked)"
+                        >
+                        <label class="col-sm-0 form-check-label" for="switch-input">{{ getLabel("OVERRIDE") }}</label>
+                    </div>
+                </label>
+            </div>
+            <div *ngIf="getSub().override">
+                <div class="check" *ngFor="let confSub of getSubData(); let i = index">
+                    <div class="config_toast" *ngIf="confSub.name === 'toast'">
+                        <div class="toast_title">{{ getLabel("TOAST-TITLE") }}</div>
+                        <div class="toast_table">
+                            <div class="toast_el">
+                                <img class="toast_img" [class.toast_sel]="confSub.value === 'none'" src="@gms-flex/notifconfig/assets/none.png" (click)="setConfig(i, 'none', 'sub')">
+                                <label class="toast_label" [class.toastlabel_sel]="confSub.value === 'none'">
+                                    {{ getLabel("NONE") }}
+                                </label>
+                            </div>
+                            <div class="toast_el">
+                                <img class="toast_img svg" [class.toast_sel]="confSub.value === 'banner'" src="@gms-flex/notifconfig/assets/banners.svg" (click)="setConfig(i, 'banner', 'sub')">
+                                <label class="toast_label" [class.toastlabel_sel]="confSub.value === 'banner'">
+                                    {{ getLabel("BANNER") }}
+                                </label>
+                            </div>
+                            <div class="toast_el">
+                                <img class="toast_img svg" [class.toast_sel]="confSub.value === 'alert'" src="@gms-flex/notifconfig/assets/alerts.svg" (click)="setConfig(i, 'alert', 'sub')">
+                                <label class="toast_label" [class.toastlabel_sel]="confSub.value === 'alert'">
+                                    {{ getLabel("ALERT") }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <label *ngIf="confSub.name !== 'toast' && (i !== 3 || (i === 3 && this.enableBackToNormal === true))">
+                        <div class="form-switch">
+                            <input
+                                id="confSub"
+                                type="checkbox"
+                                class="form-check-input col-sm-2 col-xs-2 show"
+                                role="switch"
+                                [disabled]="!canEditSoundToggle && i === 2 && selected === 'newEvents'"
+                                [checked]="confSub.value"
+                                (change)="setConfig(i, $event.target.checked, 'sub')"
+                            >
+                            <label class="col-sm-0 form-check-label" for="switch-input">{{ confSub.label }}</label>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </si-card>
+
+</si-main-detail-container>
