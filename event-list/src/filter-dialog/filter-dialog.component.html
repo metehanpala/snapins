@@ -1,0 +1,196 @@
+<!--ng-template #template-->
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ filterDlgTitle }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <hr class="mx-5 my-2">
+
+  <div siDropdown #dropdown="si-dropdown" dropdownContainer="body" class="btn-group w-100">
+    <button siDropdownToggle type="button" [disabled]="savedFilters.length === 0" class="btn btn-secondary dropdown-toggle mx-5 mb-5">
+      {{ savedFiltersLabel }}
+    </button>
+    <ul siDropdownMenu id="-" role="menu" style="margin: 2 0 0 13;" class="dropdown-menu scrollable-dropdown-body"> 
+      <ng-container *ngIf="savedFilters.length > 0">
+        <li class="dropdown-header text-center w-100"> {{ availableFilters }} </li>
+        <div class="dropdown-item">
+          <label class="flex-grow-1 me-6" (click)="onDeleteAllFilters()" [style.font-weight] = "'bold'"> {{ deleteAllFiltersLabel }} </label>
+          <button type="button" class="btn btn-sm btn-circle element-delete" (click)="onDeleteAllFilters()"> </button>
+        </div>
+        <li class="divider dropdown-divider"></li>
+        <ng-container *ngFor="let savedFilter of savedFilters; let sidx=index">
+          <li role="menuitem" (click)="onSelectSavedFilter($event, sidx)">
+            <div class="dropdown-item">
+              <label class="flex-grow-1 me-6"  [style.font-weight] = "savedFilter.filterName === eventFilter.filterName ? 'bold' : 'normal'">{{ savedFilter.filterName }}</label>
+              <button type="button" class="btn btn-sm btn-circle element-delete" (click)="onDeleteSavedFilter($event, savedFilter)"> </button>
+            </div>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
+
+  <div class="scrollable-modal-body">
+    <div class="form-group px-5" style="margin-top: 5px; margin-bottom: 1rem;">
+      <si-search-bar
+        [placeholder]="searchFilterWatermark"
+        colorVariant="base-0"
+        [value]="stringPattern"
+        [showIcon]="true"
+        [debounceTime]="10"
+        (searchChange)="onStringPatternInputChange($event)" />
+        <div class="ms-4 mt-3">
+          <div class="form-check mb-2">
+            <input type="radio" class="form-check-input" id="descriptionChoice" name="stringChoice" [value]="descriptionFilterLabel" [(ngModel)]="stringPatternSelection">
+            <label class="form-check-label" for="descriptionChoice">
+              {{ descriptionFilterLabel }}
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input type="radio" class="form-check-input" id="nameChoice" name="stringChoice" [value]="nameFilterLabel" [(ngModel)]="stringPatternSelection">
+            <label class="form-check-label" for="nameChoice">
+              {{ nameFilterLabel }}
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input type="radio" class="form-check-input" id="aliasChoice" name="stringChoice" [value]="aliasFilterLabel" [(ngModel)]="stringPatternSelection">
+            <label class="form-check-label" for="aliasChoice">
+              {{ aliasFilterLabel }}
+            </label>
+          </div>
+        </div>
+    </div>
+    <si-collapsible-panel [heading]="categoryFilterLabel">
+      <div class="p-5">
+        <hfw-tree-selector
+            inputElementName="categorySelector"
+            [selectionTree]="categoryTree"
+            [itemFilterPlaceholder]="searchFilterWatermark"
+            [excludeAccordion]="true"
+            [enableItemFilter]="true"
+            (selectionChanged)="onCategorySelectionChanged()" />
+      </div>
+    </si-collapsible-panel>
+    <si-collapsible-panel [heading]="disciplineFilterLabel">
+      <div class="p-5">
+        <hfw-tree-selector
+          inputElementName="disciplineSelector"
+          [selectionTree]="disciplineTree"
+          [itemFilterPlaceholder]="searchFilterWatermark"
+          [excludeAccordion]="true"
+          [enableItemFilter]="true"
+          (selectionChanged)="onDisciplineSelectionChanged()" />
+    </div>
+    </si-collapsible-panel>
+    <si-collapsible-panel [heading]="stateFilterLabel" >
+      <div class="p-5">
+        <hfw-tree-selector
+          inputElementName="stateSelector"
+          [selectionTree]="stateTree"
+          [itemFilterPlaceholder]="searchFilterWatermark"
+          [excludeAccordion]="true"
+          [enableItemFilter]="true"
+          (selectionChanged)="onStateSelectionChanged()" />
+      </div>
+    </si-collapsible-panel>
+    <si-collapsible-panel [heading]="srcStateFilterLabel" >
+      <div class="p-5">
+        <hfw-tree-selector
+            inputElementName="srcStateSelector"
+            [selectionTree]="srcStateTree"
+            [itemFilterPlaceholder]="searchFilterWatermark"
+            [excludeAccordion]="true"
+            (selectionChanged)="onSrcStateSelectionChanged()" />
+      </div>
+    </si-collapsible-panel>
+    <si-collapsible-panel [heading]="dateTimeFilterLabel" >
+      <div class=" ms-4 mt-3">
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeEmptyFilterChoice" name="timeFilterChoice" [value]="timeEmptyFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeEmptyFilterChoice">
+            {{ timeEmptyFilterLabel }}
+          </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeLastQuarterHourFilterChoice" name="timeFilterChoice" [value]="timeLastQuarterHourFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeLastQuarterHourFilterChoice">
+              {{ timeLastQuarterHourFilterLabel }}
+            </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeLastHalfHourFilterChoice" name="timeFilterChoice"  [value]="timeLastHalfHourFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeLastHalfHourFilterChoice">
+              {{ timeLastHalfHourFilterLabel }}
+            </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeLastHourFilterChoice" name="timeFilterChoice" [value]="timeLastHourFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeLastHourFilterChoice">
+              {{ timeLastHourFilterLabel }}
+            </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeLastNightFilterChoice" name="timeFilterChoice" [value]="timeLastNightFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeLastNightFilterChoice">
+              {{ timeLastNightFilterLabel }}
+            </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeYesterdayFilterChoice" name="timeFilterChoice" [value]="timeYesterdayFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeYesterdayFilterChoice">
+              {{ timeYesterdayFilterLabel }}
+            </label>
+        </div>
+        <div class="form-check custom-radio time-radio">
+          <input type="radio" class="form-check-input" id="timeTodayFilterChoice" name="timeFilterChoice" [value]="timeTodayFilterLabel" [(ngModel)]="timeSelection">
+          <label class="form-check-label" for="timeTodayFilterChoice">
+              {{ timeTodayFilterLabel }}
+            </label>
+        </div>
+      </div>
+    </si-collapsible-panel>
+    <si-collapsible-panel [heading]="hiddenEventsFilterLabel">
+      <div class="p-5">
+        <hfw-tree-selector
+          inputElementName="hiddenEventsSelector"
+          [selectionTree]="hiddenEventsTree"
+          [excludeAccordion]="true"
+          (selectionChanged)="onHiddenEventsSelectionChanged()" />
+      </div>
+    </si-collapsible-panel>
+  </div>
+
+  <div class="modal-footer pl-0">
+    <ng-container *ngIf="isSaveDlgOpen">
+      <si-inline-notification *ngIf="isSaveError" [message]="saveErrorMessage" [severity]="saveErrorSeverity" style="margin: -5 228 10 0;" />
+      <si-card class="w-100" style="position: absolute; bottom: -6px; left: 0; z-index: 10; font-weight: bold;" [heading]="aliasFilterLabel">
+        <div class="card-body" body>
+          <form style="margin-right: 16">
+            <div style="position: relative;">
+              <label style="margin-bottom: 10;" class="form-check-label" for="filterDescr"> {{ filterSaveAsLabel }} </label>
+              <input id="filterDescr" type="text" class="form-control" name="filterName" [(ngModel)]="saveFilterName" (input)="checkFilterName()" required autocomplete="off">
+            </div>
+          </form>
+          <div class="d-flex flex-row justify-content-end"style="margin-right: 20; margin-bottom: -4">
+            <button type="button" class="ms-auto element-cancel btn btn-circle btn-lg btn-secondary" (click)="onNewFilter(false)"> </button>
+            <button type="button" class="element-ok btn btn-circle btn-lg btn-primary ms-4" (click)="onNewFilter(true)" [disabled]="!saveFilterNameValid"> </button>
+          </div>
+        </div>
+      </si-card>
+    </ng-container>  
+    <div class="right-col d-flex justify-content-between w-100" [ngStyle]= "isSaveDlgOpen ? { 'margin-top': '60px' } : { 'margin-top': '4', 'margin-left': '-4' }"  >  
+      <button type="button" class="btn btn-circle btn-lg btn-secondary element-save ms-4" [disabled]="isFilterSavingEnabled()" (click)="showSave(true)"
+      [style.visibility]="!isSaveDlgOpen ? 'visible' : 'hidden'" > </button>
+      <div>
+        <ng-container *ngIf="!isSaveDlgOpen" style="margin-top: -5;">
+          <button type="button" class="ms-auto element-cancel btn btn-circle btn-lg btn-secondary" (click)="cancel()"> </button>
+          <button type="button" class="element-ok btn btn-circle btn-lg btn-primary ms-4" [disabled]="!isFilterChanged" (click)="apply()"> </button>
+        </ng-container>
+      </div>
+    </div>      
+  </div>
+</div>
+<!--/ng-template-->

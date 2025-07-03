@@ -1,0 +1,122 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+
+.wrap-text {
+  white-space: pre-wrap;
+}
+
+.it-event-icon {
+  margin-right: 5px;
+}
+
+.it-event-text {
+  margin-left: 5px;
+}
+
+.it-wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid $element-status-information;
+  background-color: $element-base-1;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.it-minified {
+  .it-leave {
+    min-width: auto;
+    padding: 7px 4px;
+
+    &-title {
+      display: none;
+    }
+
+    .icon {
+      margin: 0;
+    }
+  }
+}
+
+.it-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.it-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.it-start-maximized {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  width: 90%;
+}
+
+.it-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 25%;
+
+  .si-content-action-bar {
+    width: 100%;
+  }
+}
+
+.it-end-minified {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 10%;
+
+  .si-content-action-bar {
+    width: 100%;
+  }
+}
+
+.it-title {
+  color: $element-text-information;
+}
+
+.it-event {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 1 0;
+  width: 0;
+}
+
+.it-source {
+  flex: 1 1 0;
+}
+
+.it-state {
+  background-color: $element-text-information;
+  width: 4px;
+  height: 100%;
+  display: flex;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host {
+  overflow: visible !important;
+}
+
+:host ::ng-deep .it-event {
+  .status-indication {
+    border: none !important;
+  }
+}

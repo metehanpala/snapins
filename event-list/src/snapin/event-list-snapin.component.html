@@ -1,0 +1,44 @@
+<div
+  class="hfw-flex-container-column hfw-flex-item-grow snapin-container snapin-container-overflow-auto"
+  style="overflow: visible"
+>
+
+    <div>
+      <span
+        *ngIf="eventFilter?.empty && isEventsFilterSelectorOpen"
+        class="text-muted"
+        >{{ filterClearMsg }}</span
+      >
+      <div
+        *ngIf="!eventFilter?.empty"
+        class="hfw-flex-container-row"
+        style="flex-flow: wrap"
+      >
+      </div>
+    </div>
+
+  <div class="event-list-grid-control-container">
+    <gms-event-content
+      [showAllEvents]="true"
+
+      [fullSnapinID]=fullSnapInID
+      [fullQParamID]=fullQParamID
+      [fullPaneID]=fullPaneID
+      [selectedEventsIds]="selectedEventsIds"
+      [showColumnSelectionDlg]="showColumnSelectionDlg"
+      [filterPills]="filterPills"
+      [splitPosition]="splitPosition"
+      [resizableParts]="resizableParts"
+      [coloredRows]="coloredRows"
+
+      (selectedEventsEv)="onEventSelected($event)"
+      (gridEvents)="catchEvents($event)"
+      (numEventsChanged)="onEventsNumberNotification($event)"
+      (notifyUpdatedSelectionEv)="onNotifyUpdatedSelection($event)"
+      (splitChanges)="onSplitChange($event)"
+      (eventFilterChange)="onDeletePill($event)"
+      (filterActions)="openFilterDialog()"
+      (columnsActions)="onShowColumnSelectionDlg()"
+      />
+  </div>
+</div>

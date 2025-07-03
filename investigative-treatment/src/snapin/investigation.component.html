@@ -1,0 +1,52 @@
+
+<investigative-treatment>
+  <div #infoContainer >
+    <div *ngIf = "investigativeMode && !isMobile"
+    class="it-wrapper elevation-2 rounded-2 mb-7 {{ containerWidth < minimumWidth ? 'it-minified': ''}}">
+      <div class="it-state"></div>
+      <div class="it-inner pe-2 pt-2 pb-2">
+        <div [class]="contentStartClass" *ngIf="currentEvent">
+          <div class="it-title ms-6 me-7 si-title-2 wrap-text">
+            <div>{{InvestigationMode1Text}}</div>
+          </div>
+          <button type="button" class="it-leave btn  btn-secondary me-7" (click)="leaveTreatment()">
+            <i class="icon element-logout"></i>
+            <b class="it-leave-title">{{ LeaveBtnText }}</b>
+          </button>
+          <div class="it-event me-7 si-body-2">
+            <div class="it-event-icon">
+              <si-circle-status
+                [icon]="currentEvent.icon"
+                [blink]="currentEvent.state === 'Unprocessed' || currentEvent.state ===  'UnprocessedWithTimer'? true: false"
+                [color]="getEventDisciplineColor()" />
+            </div>
+            <!--status="info" class="event-info__circle-status"-->
+            <div *ngIf="currentEvent !== null" class="it-event-text si-title-2 text-ellipsis">
+              {{currentEvent.cause}}
+            </div>
+          </div>
+          <div class="it-date me-7">
+            <div class="si-title-2">{{getEventDate(currentEvent)}}</div>
+            <div class="si-body-2 text-secondary">{{getEventTime(currentEvent)}}</div>
+          </div>
+          <div class="it-source me-2 text-ellipsis" >
+            <div class="si-title-2 text-ellipsis">
+              {{getSrcObjectName(currentEvent, currCnsLabel)}}
+            </div>
+            <div *ngIf="hasDescription(currentEvent, currCnsLabel)" class="si-body-2 text-secondary text-ellipsis">
+              {{getSrcObjectDescription(currentEvent, currCnsLabel)}}
+            </div>
+          </div>
+        </div>
+        <div [class]="contentActionClass">
+          <si-content-action-bar #itActionBar
+          [actionParam]="{ row: 'first', someThingElse: 37 }"
+          [primaryActions]="primaryActions"
+          [secondaryActions]="secondaryActions"
+          viewType="expanded"
+          toggleItemLabel="toggle" />
+        </div>
+      </div>
+    </div>
+  </div>
+</investigative-treatment>

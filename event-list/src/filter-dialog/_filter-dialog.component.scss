@@ -1,0 +1,21 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.scrollable-modal-body {
+  overflow-y: auto;
+  max-height: 68vh;
+}
+
+.scrollable-dropdown-body {
+  overflow-y: auto;
+  max-height: 38vh;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.time-radio {
+  margin-left: 12px;
+}
