@@ -1,0 +1,52 @@
+  <div *ngIf="!showEmptySnapin" class="container-flex-filter-bar pb-0">
+    <div class="search-filter-box" *ngIf = "fromSnapin">
+      <div [ngClass]="mobileView ? 'filter-bar-mobile-view' : 'filter-bar'">
+        <si-filtered-search [criteria]="searchCriteriaSelectable" [showIcon]="true" [lazyLoadingDebounceTime]="0"
+        [disableFreeTextSearch]="true" [lazyValueProvider]="lazyValueProvider" [strictCriterion]="false"
+        [doSearchOnInputChange]="false" [submitButtonLabel]="searchLabel" [noMatchingCriteriaText]="noMatch"
+        [exclusiveCriteria]="false" [placeholder]="searchPlaceHolder" [searchCriteria]="selectedCriteriaOptions"
+        [items]="items" (doSearch)="onSearchAppliedFilterChanged($event)" [maxCriteriaOptions]="0"
+        (searchCriteriaChange)="onSearchFilterChange($event)" />
+    </div>
+    <div [ngClass]="mobileView ? 'content-action-mobile-view' : 'content-action'" >
+        <si-content-action-bar class="float-end" [primaryActions]="filterActions"
+          [secondaryActions]="columnsActions" [back] viewType="expanded" />
+      </div>
+    </div>
+  </div>
+  <si-inline-notification class="mt-5" *ngIf="isToShowWarningMessage && fromSnapin && !showEmptySnapin"
+    severity="warning"
+    [message]="warningMsg"
+  />
+  <si-main-detail-container
+  #siMasterDetailContainer
+  *ngIf="!showEmptySnapin"
+   [largeLayoutBreakpoint]="largeLayoutBreakpoint"
+   [(detailsActive)]="detailsActive"
+   [truncateHeading]="truncateHeading"
+   [resizableParts]="resizableParts"
+   [hideBackButton]="false"
+   containerClass="remove-shadow" 
+   mainContainerClass="remove-master-search"
+   detailContainerClass="remove-master-search"
+   [mainContainerWidth]="masterContainerWidth"
+   (mainContainerWidthChange)="onSplitterPositionChange($event)"
+   (detailsActiveChange)="detailsActiveChange($event)">
+   <div slot="mainData" class="card elevation-1 masterContainer" [ngStyle]="{'margin-left': fromSnapin ? '0' : '0.2em'}">
+    <gms-log-viewer-table #logViewerTable (isLoadingDataEvent)="historyDataFetched($event)" (dataLength)="logTableDataLength($event)" (showCustomDialogueEvent)="onCustomDialogue($event)" (colResizeEvent)="onResize($event)" [siFilteredSearch] ="siFilteredSearchComponent" 
+      (splitterPositionEvent)="setSplitterPosition($event)" [storageService] ="storageService" [objectDesignationRightPane] = "objectDesignationRightPane" [objectLocationRightPane] = "objectLocationRightPane" [objectIdRightPane] = "objectIdRightPane" (userLocale) = "userLocale($event)"  [fromSnapin] = "fromSnapin" [actionResultBadges] = "actionResultBadges" (filterDataEvent)="setfilterData($event)" (showHideWarningMessage)="showHideWarningMessageHandler($event)"   [systemId]="systemId"
+      (criteriaLoc)="criteriaLoc($event)" [alertIdHistoryLog]="alertIdHistoryLog" [recordTypeHistoryLog] = "recordTypeHistoryLog" [dpeNameHistoryLog]="dpeNameHistoryLog" [isHistoryExpanded] = "isHistoryExpanded" [fullId]="fullId" (showLogViewerProperties)="showLogViewerDetails($event)"  (sendSelectionEvent)="sendSelectionDetails($event)" 
+      [tableChangeDetect] = "logViewerChangeDetect" [viewId]="receivedViewId" [objectId]="objectId" [managedTypeName]="managedTypeName" [browserObject]="browserObject" (resetTableInit) = "onResetTable($event)"  (lvdDeleted) = "onDeleteLogViewDefinition($event)" (savedChangesEvent)="onChangesSavedEvent($event)"/>
+  </div>
+    <div slot="details" class="card elevation-1 hfw-flex-item-grow" [ngStyle]="{'margin-left': fromSnapin ? '0em' : '0.1em'}">
+      <div #rowDetailsPane [ngClass]="[ noDataDetailPane ? 'card-body height-100' :'height-100', !fromSnapin ? 'overflow-hidden' : 'overflow-auto'  ]">
+        <gms-log-viewer-row-details (paneControlsOp) = "paneControls($event)"   [systemId]="systemId" [fromSnapin] = "fromSnapin" (noData)="noData($event)" [snapInId] = "fullId"  [actionResultBadges] = "actionResultBadges" [userLang]="userLang" />
+      </div>
+    </div>
+  </si-main-detail-container>
+
+
+
+  <div *ngIf="showEmptySnapin" class="empty-snapin">
+    <h4 class="delete-message">{{ emptySnapinMessage }}</h4>
+  </div>

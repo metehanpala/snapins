@@ -1,0 +1,108 @@
+
+<ng-container *ngIf="rowData else noEntitySelected">
+  <div class="details-pane">
+    <div class="spinner-centered-child" *ngIf="loader">
+      <si-loading-spinner />
+      </div>
+    <div *ngIf="!loader" class="main-div">
+      <ng-container *ngFor="let section of sectionsFinalized trackBy: trackByIndex">
+        <ng-container *ngIf="section.sectionKey ==='title';else otherSections">
+          <div class="title-row">
+            <div>
+              <si-circle-status [icon]="activityIconClass" class="circle-status-class" color="$element-ui-5" />
+            </div>
+            <div class="title-col">
+              <p class="si-h3 activity">
+                {{rowData?.Activity}}
+              </p>
+              <p class="si-body-2 activity-message">
+                {{ rowData?.ActivityMessage }}
+              </p>
+            </div>
+            <div [ngClass]="!split ? 'title-col-status' :'title-col-status1'">
+              <p class="si-caption action-time">
+                {{!split ? ((rowData?.Time | dateFormatPipe : userLang : 'dateTimeFormat')) : (rowData?.Time | dateFormatPipe : userLang : 'dateFormat')}}
+              </p>
+              <p *ngIf="split">
+                {{(rowData?.Time | dateFormatPipe : userLang : 'timeFormat')}}
+              </p>
+              <div *ngIf="rowData.ActionResultId > 1 && rowData.ActionResultId < 7"
+                [ngClass]="'badge ' + (actionResultBadges[rowData.ActionResultId])">
+                {{rowData.Status}}</div>
+            </div>
+          </div>
+        <div class="control-section-main-div" [ngClass]="{'display-flex': !split}">
+         <div [ngClass] = "split ? 'width-100' : 'width-50'" *ngIf="section.column1.length > 0">
+          <ng-container *ngTemplateOutlet="controlSectionTemplate; context: {controls:section.column1}" />
+          </div>
+          <div [ngClass] = "split ? 'width-100' : 'width-50'" *ngIf="section.column2.length > 0">
+            <ng-container *ngTemplateOutlet="controlSectionTemplate; context: {controls:section.column2}" />
+            </div>
+          </div>
+
+        </ng-container>
+        <ng-template #otherSections>
+          <div class="row section-row ps-4">
+            <div class="col col-sm-1 other-section-heading-first-column"></div>
+            <div [ngClass]="section.sectionKey === 'activityDetails' ? '
+            col col-8 col-sm-8 si-title-1 ellipsis w-36': 'col col-8 col-sm-8 si-title-1 ellipsis'">
+              {{section.sectionLabel}}
+            </div>
+            <div [ngClass]="section.sectionKey === 'activityDetails' ? 'min-width-12em max-width-61p': ''">
+              <button *ngIf="section.sectionKey === 'activityDetails'" type="button"
+                class="btn btn-secondary me-6 noOutline float-right" (click)="hideShowVeryDetailPane()">
+                <i
+                  [ngClass]=" isCollapsed ? 'icon element-double-down' : 'icon element-double-up'"></i>{{isCollapsed ? showDetailsLabel : hideDetailsLabel}}</button>
+            </div>
+          </div>
+          <div
+          class="control-section-main-div"
+          [ngClass]="{'collapse': section.sectionKey === 'activityDetails' && isCollapsed,
+                     'display-flex' : !split && (section.sectionKey !== 'activityDetails' || (section.sectionKey === 'activityDetails' && !isCollapsed)) }">
+            <div [ngClass] = "split ? 'width-100' : 'width-50'">
+            <ng-container *ngTemplateOutlet="controlSectionTemplate; context: {controls:section.column1}" />
+            </div>
+            <div [ngClass] = "split ? 'width-100' : 'width-50'">
+            <ng-container *ngTemplateOutlet="controlSectionTemplate; context: {controls:section.column2}" />
+            </div>
+        </div>
+        </ng-template>
+        <hr *ngIf="section.sectionKey !== 'activityDetails'" class="gray-divider" />
+      </ng-container>
+    </div>
+    </div>
+</ng-container>
+<ng-template #controlSectionTemplate let-controls='controls'>
+    <ng-container *ngFor="let control of controls; let index = index trackBy: trackByIndex">
+      <div class="control-div"  *ngIf="control.columnName === 'Name' ? hideLocation ? false : true : !!rowData[control.columnName]">
+        <div class="display-flex">
+          <div class="control-icon-div height-3em"><i [ngClass]=" 'control-icon ' + control.icon"> </i></div>
+          <div [ngClass]="'title-col ' + (controls.length - 1 !== index && !split  && !control.veryDetailPane ? 'height-4P5em' : ''  )">
+            <p class="si-caption text-secondary activity"> {{control.label}} </p>
+            <p [ngClass]=" 'si-body-1 ellipsis p-0 m-0 ' + control.extraCssClasses"> {{ control.columnName === 'Name' ? sourceName : (control.columnName  === 'AlertTime' ||
+              control.columnName  === 'RefTime' ?
+             (rowData[control.columnName ] | dateFormatPipe : userLang : 'dateTimeFormat')
+              : control.columnName === 'InvestigativeEventSourceName' ? investigativeEventSourceName : rowData[control.columnName ])}} </p>
+            <p  class="si-body-1 ellipsis text-secondary p-0 m-0" *ngIf=" sourceDescriptorShow "> {{ control.columnName === 'Name' ?  sourceDescriptor : control.columnName === 'InvestigativeEventSourceName' ? investigativeEventSourceDescription : '' }} </p>
+          </div>
+          <div class="info-icon-div">
+            <gms-about-popover style="flex: 0 0 auto;" popoverPlacement="top" id="sourceNamePop" *ngIf="control.columnName === 'Name' " [clientId]="snapInId" [objectList]="selectedBrowserObjects"
+              (openStateChanged)="isObjInfoOpen = $event">
+              <div role="button" class="btn-circle btn-flat-ovrd" tabindex="0">
+                <i class="element-info info-icon"></i>
+              </div>
+            </gms-about-popover>
+            <gms-about-popover style="flex: 0 0 auto;" popoverPlacement="top" id="investiagateSourceNamePop" *ngIf="control.columnName === 'InvestigativeEventSourceName' " [clientId]="snapInId" [objectList]="investigateBrowserObjects"
+            (openStateChanged)="isObjInfoOpen = $event">
+            <div role="button" class="btn-circle btn-flat-ovrd" tabindex="0">
+              <i class="element-info info-icon"></i>
+            </div>
+          </gms-about-popover>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+</ng-template>
+<ng-template #noEntitySelected>
+  <si-empty-state icon="element-document" [heading]="noDataMessage" [content]="pleaseSelectRow" />
+</ng-template>

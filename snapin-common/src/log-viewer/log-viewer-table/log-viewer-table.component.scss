@@ -1,0 +1,387 @@
+/* stylelint-disable */
+@import "@simpl/element-theme/src/styles/_variables";
+
+::ng-deep {
+  /* Used to avoid that an additional scroll bar is displayed by the snapin container;
+      i.e. only the scroll bar of the ngx datatable shall be displayed. */
+  .snapin-container-overflow-auto {
+    overflow-y: hidden;
+  }
+}
+
+
+.snapin-background-color {
+  background-color: $element-ui-5;
+  border-radius: 8px;
+}
+
+.search-filter-box {
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+/* Used to justify the ngx table flexibly within its parent container. */
+.div-flex-ngx-table {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+/* Layouts top left button and search filter box */
+.container-flex-filter-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* Used to position the spinner */
+.spinner-centered-parent {
+  position: relative;
+}
+
+.ellipsis-beginning {
+  direction: rtl;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.spinner-centered-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+::ng-deep ngx-datatable.material {
+  // fix ellipsis on header
+  datatable-header-cell {
+    width: 100%;
+
+    div.datatable-header-cell-template-wrap {
+      width: 100% !important;
+    }
+
+    span {
+      display: inline-block;
+      width: 100%;
+
+      span {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.filterHeight {
+  min-height: 42px;
+}
+
+.log-viewer-table {
+  // height: 400px;
+  height: 100%;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__row {
+    &-arrow {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__sort {
+    i {
+      font-size: 25px;
+    }
+  }
+
+  &__hdr-cell {
+    display: flex;
+    flex-direction: row;
+
+    &-title {
+      flex: 1 1 auto;
+      text-overflow: ellipsis;
+    }
+
+    &-icon {
+      flex: 0 0 auto;
+      width: 30px;
+    }
+  }
+
+  &__icon {
+    overflow: visible !important;
+    display: inline-block;
+
+    &-mini {
+      text-align: center;
+
+      &>* {
+        overflow: unset !important;
+      }
+    }
+  }
+
+  &__state {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: start;
+
+    .active {
+      color: $element-status-danger;
+    }
+
+    .test-hidden {
+      display: none;
+    }
+
+    &:hover {
+      .test-hidden {
+        display: inline-block;
+      }
+    }
+
+    .double-icon {
+      position: relative;
+      color: $element-ui-3;
+
+      .grey-icon {
+        color: $element-ui-3;
+      }
+
+      .tick-icon {
+        color: $element-ui-2;
+        position: absolute;
+        margin-left: -23px;
+        margin-top: 1.4px;
+        font-size: 22;
+      }
+    }
+  }
+
+  &__timer {
+    color: $element-status-danger;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  &__recursation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .badge {
+      margin: 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &-minified &__recursation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    .badge {
+      margin: 0;
+    }
+  }
+
+  &__arrow {
+    flex-direction: row-reverse;
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+
+  &-minified &__arrow {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-minified &__state {
+    .badge {
+      margin: 0 !important;
+    }
+  }
+}
+
+.overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host ::ng-deep .log-viewer-table.log-viewer-table.non-scrollable {
+  .ngx-datatable.scroll-vertical .datatable-body {
+    overflow-y: hidden !important;
+  }
+}
+
+:host ::ng-deep .log-viewer-table {
+
+  .datatable-body-cell-label {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    margin-right: 5px;
+  }
+
+  .ngx-datatable .datatable-row-left,
+  .ngx-datatable .datatable-row-right {
+    display: none;
+  }
+}
+
+:host ::ng-deep .log-viewer-table-minified {
+
+  .ngx-datatable.table-element .datatable-header .datatable-header-cell,
+  .ngx-datatable.table-element .datatable-header .datatable-body-cell,
+  .ngx-datatable.table-element .datatable-body .datatable-header-cell,
+  .ngx-datatable.table-element .datatable-body .datatable-body-cell {
+    padding: 3px !important;
+  }
+
+  .ngx-datatable.table-element .datatable-body .datatable-body-cell:last-child {
+    flex: 1;
+  }
+
+  .datatable-body-row{
+    display: contents;
+  }
+  
+  .ngx-datatable .datatable-body .datatable-body-row>div {
+    width: 100% !important;
+  }
+
+  .ngx-datatable.table-element .datatable-header .datatable-header-cell:last-child,
+  .ngx-datatable.table-element .datatable-header .datatable-body-cell:last-child,
+  .ngx-datatable.table-element .datatable-body .datatable-header-cell:last-child,
+  .ngx-datatable.table-element .datatable-body .datatable-body-cell:last-child {
+    padding: 4px 0 !important;
+    min-width: 20px;
+  }
+
+    .ngx-datatable.table-element .datatable-body .datatable-row-wrapper {
+      min-block-size: var(--si-datatable-row-min-height, 48px);
+      justify-content: center;
+      padding: 0;
+      display: table
+    }
+    }
+
+
+:host ::ng-deep .activities-items {
+  .activities {
+    float: left;
+    margin-top: 0.3rem;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: $element-ui-2;
+    padding: 0;
+  }
+
+  .items {
+    float: left;
+    margin-top: 0.3rem;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    color: $element-text-secondary;
+    padding: 0;
+  }
+
+  .right-float {
+    float: right;
+  }
+
+  .left-float {
+    float: left;
+  }
+}
+
+:host ::ng-deep .table-row-template {
+  .result-badge {
+    float: right;
+    margin-top: -1.143em;
+  }
+}
+
+
+:host ::ng-deep .log-viewer-table__container {
+  .margin-bottom {
+    margin-bottom: 0.5em;
+  }
+}
+
+:host ::ng-deep .table-height{
+  .ngx-datatable {
+    height: calc(100% - 42px) !important;
+  }
+  .ngx-datatable .datatable-body {
+    overflow-x: hidden;
+  }
+}
+
+
+:host ::ng-deep .div-flex-ngx-table {
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .height-100 {
+    height: 100% !important;
+  }
+  .width-100p {
+    width: 100%;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .min-width-8em {
+    min-width: 8em;
+  }
+
+}
+
+:host ::ng-deep .compact-mini-table {
+  .ngx-datatable .datatable-body .datatable-scroll {
+    display: block;
+  }
+}

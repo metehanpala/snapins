@@ -1,0 +1,127 @@
+<div #logViewerTable class="div-flex-ngx-table spinner-centered-parent">
+  <div *ngIf="(showCompact===false)" class="tabular-format w-100 table-height">
+    <ngx-datatable  #table class="height-100 table-element elevation-1 h-100 " [cssClasses]="tableConfig.cssClasses"
+      [scrollbarV]="true" [scrollbarH]="false" [virtualization]="true" [rows]="histLogResult" [columnMode]="columnMode"
+      [reorderable]="false" [headerHeight]="tableConfig.headerHeight" [rowHeight]="tabularRowHeight" [footerHeight]="0"
+      [loadingIndicator]="loadingOnRequest" [externalPaging]="false" [externalSorting]="false" [count]="totalElements"
+      [selectionType]="selectionType.single" [selected]="selectedRows" [messages]="{emptyMessage: ''}"
+      (select)="onSelect($event)" (resize)="onColumnResize($event)" (scroll)="onScroll($event.offsetY)">
+
+      <ng-container *ngFor="let col of updatedColumns trackBy: trackByIndex">
+        <ng-container
+                [ngTemplateOutlet]="col.id ==='Icon' ? iconsTemplate : col.id==='Time' && col.visible ? timeTemplate : col.id === 'ActivityMessage' && col.visible ? activityMessageTemplate : (col.id === 'DefaultViewLocation' || col.id === 'DefaultViewDesignation') && col.visible ? locationTemplate : otherColumns" />
+        <ng-template #iconsTemplate>
+          <ngx-datatable-column [width]="80" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
+          [minWidth]="80"  [id]="col.id" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div class="log-viewer-table__text log-viewer-table__icon">
+                <si-circle-status class="log-viewer-table__circle-icon"
+                  [color]="row?.RecordTypeId ==='2' ? '#E93D9F' : '' "
+                  [icon]="row?.ActionId!==undefined ? icons?.actions?.activityIcons[row?.ActionId]?.icon:icons?.events?.activityIcons[row?.EventStateId]?.icon" />
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ng-template>
+        <ng-template #timeTemplate>
+        <ngx-datatable-column [width]="110"
+           [prop]="col.id" [id]="col.id"
+          [name]="col.title" [canAutoResize]="false" [sortable]="false" [resizeable]="false">
+          <ng-template let-row="row" let-value="value" class="ellipsis" ngx-datatable-cell-template>
+            <div class="text-wrap">
+              {{value | dateFormatPipe : userLang : 'dateTimeFormat'}}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ng-template>
+      <ng-template #locationTemplate>
+        <ngx-datatable-column [resizeable]="true" [width]="getWidth(col.id)" [sortable]="false"
+           [id]="col.id" [name]="col.title">
+           <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div *ngIf ="!!getLocation(row)" class="si-body-2 ellipsis ellipsis-beginning ">
+              {{ getLocation(row) }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        </ng-template>
+      <ng-template #activityMessageTemplate>
+        <ngx-datatable-column [prop]="col.id" [resizeable]="true"   [width]="colSettingsDefault.get(col.id)" [sortable]="false"
+           [id]="col.id" [name]="col.title">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div class="si-body-2 ellipsis">
+              {{row?.ActivityMessage }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        </ng-template>
+        <ng-template #otherColumns>
+          <ngx-datatable-column [resizeable]="true" [width]="colSettingsDefault.get(col.id)" *ngIf="col.visible && col.id === 'Activity'" [sortable]="false"
+            [prop]="col.id" [id]="col.id" [name]="col.title" />
+        </ng-template>
+      </ng-container>
+    </ngx-datatable>
+  </div>
+  <div *ngIf="showCompact===true" class="log-viewer-table log-viewer-table-minified table-height compact-mini-table">
+    <div class="hfw-flex-container-column hfw-flex-item-grow snapin-container snapin-container-overflow-auto snapin-background-color">
+      <div class="event-filter filterHeight" >
+        <div class="activities-items pt-2  bg-base-1 clearfix">
+          <div class="activities">{{activitiesLabel}}</div>
+          <div class="right-float">
+            <div class="items">{{itemsLabel}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ngx-datatable #compactTable class="table-element elevation-1"  [cssClasses]="tableConfig.cssClasses"
+      [rows]="histLogResult" columnMode="force" [headerHeight]="0" [footerHeight]="0"
+      [messages]="{emptyMessage: ''}"
+      [rowHeight]="compactRowHeight" [scrollbarV]="fromSnapin" selectionType="multi" [selected]="selectedRows"
+      [reorderable]="true" [externalSorting]="true" [loadingIndicator]="loadingOnRequest" (select)="onSelect($event)"
+      (sort)="onSort($event)" [offset]="tableOffset" (scroll)="onScroll($event.offsetY)">
+      <ngx-datatable-column name="Action" [width]="compactColumnWidth" [minWidth]="compactColumnWidth" [sortable]="false" [canAutoResize]="false"
+        [draggable]="false"  [resizeable]="false">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+          <div class="log-viewer-table__container">
+            <div class="log-viewer-table__row mb-1">
+              <div class="log-viewer-table__icon-mini">
+                <si-circle-status  class="log-viewer-table__circle-icon mt-3"
+                  [color]="row?.RecordTypeId ==='2' ? '#E93D9F' : '' "
+                  [icon]="row?.ActionId!==undefined ? icons?.actions?.activityIcons[row?.ActionId]?.icon:icons?.events?.activityIcons[row?.EventStateId]?.icon"
+                  />
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Action">
+        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+          <div class="title-col width-100p pe-4">
+                      <div>
+                      <div class="si-title-1 ellipsis width-100p m-0">
+                        {{row?.Activity}}
+                      </div>
+                      <div *ngIf="row?.ActionResultId > 1 && row?.ActionResultId < 7" [class]="!!actionResultBadges[row?.ActionResultId]?'min-width-8em ms-4':''">
+                        <span   [ngClass]="'result-badge badge float-right m-0 ' + (actionResultBadges[row?.ActionResultId])">{{row?.Status}}</span>
+                      </div>
+                      </div>
+                      <div class="si-body-2 ellipsis mb-3">
+                        {{row?.ActivityMessage }}
+                      </div>
+                      <div class="si-body-2 ellipsis mb-3 ellipsis-beginning " *ngIf ="!!getLocation(row)">
+                        {{ getLocation(row) }}
+                      </div>
+                      <div>
+                        <span class="si-caption float-right">{{row?.Time | dateFormatPipe : userLang : 'dateTimeFormat'}}
+                      </span>
+                        </div>
+                    </div>
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="spinner-centered-child">
+    <si-loading-spinner *ngIf="loadingOnRequest" />
+    <span *ngIf="totalElements === 0 && !loadingOnRequest && !firstLoad">{{this.messageTable.emptyMessage}}</span>
+  </div>
+</div>
