@@ -1,0 +1,7 @@
+{
+  "protocol":"https",
+  "host": "md2c9pcc.ad001.siemens.net",
+  "port": "444",
+  "site": "WSI",
+  "renewTimeOut": "30"
+}

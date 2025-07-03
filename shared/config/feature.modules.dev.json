@@ -1,0 +1,41 @@
+{
+  "modules":[
+    {
+      "relativeURL": "./@gms-flex/system-browser-root-services/bundles/gms-system-browser-root-services.umd",
+      "name": "GmsSystemBrowserRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/textual-viewer-root-services/bundles/gms-textual-viewer-root-services.umd",
+      "name": "GmsTextualViewerRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/property-root-services/bundles/gms-property-root-services.umd",
+      "name": "GmsPropertyRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/graphics-viewer-root-services/bundles/gms-graphics-viewer-root-services.umd",
+      "name": "GmsGraphicsViewerRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/event-list-root-services/bundles/gms-event-list-root-services.umd",
+      "name": "GmsEventListRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/event-details-root-services/bundles/gms-event-details-root-services.umd",
+      "name": "GmsEventDetailsRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/summary-bar-root-services/bundles/gms-summary-bar-root-services.umd",
+      "name": "GmsSummaryBarRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/trend-root-services/bundles/gms-trend-root-services.umd",
+      "name": "GmsTrendRootServicesModule"
+    },
+    {
+      "relativeURL": "./@gms-flex/schedule-root-services/bundles/gms-schedule-root-services.umd",
+      "name": "GmsScheduleRootServicesModule"
+    }
+  ]
+}
+

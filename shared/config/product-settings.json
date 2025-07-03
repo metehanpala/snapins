@@ -1,0 +1,12 @@
+{
+  "productIcon": "assets/images/ApplicationIcon.ico",
+  "landingPageImage":  "assets/images/Login_image.jpg",
+  "navigationBarLogo": "assets/images/Navigation_logo.svg",
+  "landingPageLogo": "assets/images/Landing_logo.svg",
+  "brandProductName": "Desigo CC",
+  "version": "2.0.0-alpha.17",
+  "defaultCulture": "en-US",
+  "installedLanguages": ["en-US", "de-DE"],
+  "eulaLink": { "name": "EULA", "url": "" },
+  "ossLink": { "name": "OSS", "url": "eula/FlexClient-Readme-OSS.pdf"}
+}

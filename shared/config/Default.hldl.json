@@ -1,0 +1,1978 @@
+{
+  "hfwInstance": {
+    "snapInTypes": [
+      {
+        "typeId": "SystemBrowserType",
+        "moduleURL": "@gms-flex/system-browser/bundles/gms-system-browser.umd.min",
+        "moduleName": "GmsSystemBrowserSnapInModule",
+        "resourceFolder": "@gms-flex/system-browser/i18n/"
+      },
+      {
+        "typeId": "RelatedItemType",
+        "moduleURL": "@gms-flex/related-items/bundles/gms-related-items.umd.min",
+        "moduleName": "GmsRelatedItemsSnapInModule",
+        "resourceFolder": "@gms-flex/related-items/i18n/"
+      },
+      {
+        "typeId": "GraphicsViewerType",
+        "moduleURL": "@gms-flex/graphics-viewer/bundles/gms-graphics-viewer.umd.min",
+        "moduleName": "GmsGraphicsViewerSnapInModule",
+        "resourceFolder": "@gms-flex/graphics-viewer/i18n/"
+      },
+      {
+        "typeId": "EasyNavigationBarType",
+        "moduleURL": "@gms-flex/easy-navigation-bar/bundles/gms-easy-navigation-bar.umd.min",
+        "moduleName": "GmsEasyNavigationBarSnapinModule",
+        "resourceFolder": "@gms-flex/easy-navigation-bar/i18n/"
+      },
+      {
+        "typeId": "TextualViewerType",
+        "moduleURL": "@gms-flex/textual-viewer/bundles/gms-textual-viewer.umd.min",
+        "moduleName": "GmsTextualViewerSnapInModule",
+        "resourceFolder": "@gms-flex/textual-viewer/i18n/"
+      },
+      {
+        "typeId": "DocumentViewerType",
+        "moduleURL": "@gms-flex/document/bundles/gms-document.umd.min",
+        "moduleName": "GmsDocumentSnapInModule",
+        "resourceFolder": "@gms-flex/document/i18n/",
+        "messageTypes": [
+          {
+            "name": "External Document"
+          },
+          {
+            "name": "File Viewer"
+          }
+        ]
+      },
+      {
+        "typeId": "PropertyViewerType",
+        "moduleURL": "@gms-flex/property/bundles/gms-property.umd.min",
+        "moduleName": "GmsPropertySnapInModule",
+        "resourceFolder": "@gms-flex/property/i18n/"
+      },
+      {
+        "typeId": "SummaryBarType",
+        "moduleURL": "@gms-flex/summary-bar/bundles/gms-summary-bar.umd.min",
+        "moduleName": "GmsSummaryBarSnapInModule",
+        "resourceFolder": "@gms-flex/summary-bar/i18n/"
+      },
+      {
+        "typeId": "EventListType",
+        "moduleURL": "@gms-flex/event-list/bundles/gms-event-list.umd.min",
+        "moduleName": "GmsEventListSnapInModule",
+        "resourceFolder": "@gms-flex/event-list/i18n/"
+      },
+      {
+        "typeId": "EventDetailsType",
+        "moduleURL": "@gms-flex/event-details/bundles/gms-event-details.umd.min",
+        "moduleName": "GmsEventDetailsSnapInModule",
+        "resourceFolder": "@gms-flex/event-details/i18n/"
+      },
+      {
+        "typeId": "ReportViewerSnapInType",
+        "moduleURL": "@gms-flex/report-viewer/bundles/gms-report-viewer.umd.min",
+        "moduleName": "GmsReportViewerModule",
+        "resourceFolder": "@gms-flex/trend/i18n/",
+        "messageTypes": [
+          {
+            "name": "Reports"
+          }
+        ]
+      },
+      {
+        "typeId": "TrendSnapInType",
+        "moduleURL": "@gms-flex/trend/bundles/gms-trend.umd.min",
+        "moduleName": "GmsTrendSnapInModule",
+        "resourceFolder": "@gms-flex/trend/i18n/",
+        "messageTypes": [
+          {
+            "name": "TrendLog"
+          },
+          {
+            "name": "TrendLogOnline"
+          },
+          {
+            "name": "TrendsFolder"
+          },
+          {
+            "name": "TrendLogPredicted"
+          },
+          {
+            "name": "TrendViewDefinition"
+          },
+          {
+            "name": "NewTrend"
+          },
+          {
+            "name": "TrendLogApogee"
+          },
+          {
+            "name": "TrendLogSORIS"
+          },
+          {
+            "name": "TrendLogS7"
+          }
+        ]
+      },
+      {
+        "typeId": "AboutSnapinType",
+        "moduleURL": "@gms-flex/about/bundles/gms-about.umd.min",
+        "moduleName": "GmsAboutSnapInModule",
+        "resourceFolder": "@gms-flex/about/i18n/"
+      },
+      {
+        "typeId": "AccountSnapinType",
+        "moduleURL": "@gms-flex/account/bundles/gms-account.umd.min",
+        "moduleName": "GmsAccountSnapInModule",
+        "resourceFolder": "@gms-flex/account/i18n/"
+      },
+      {
+        "typeId": "NotifConfigSnapinType",
+        "moduleURL": "@gms-flex/notifconfig/bundles/gms-notifconfig.umd.min",
+        "moduleName": "GmsNotifConfigSnapInModule",
+        "resourceFolder": "@gms-flex/notifconfig/i18n/"
+      },
+      {
+        "typeId": "ScheduleSnapInType",
+        "moduleURL": "@gms-flex/schedule/bundles/gms-schedule.umd.min",
+        "moduleName": "GmsScheduleSnapInModule",
+        "resourceFolder": "@gms-flex/schedule/i18n/",
+        "messageTypes": [
+          {
+            "name": "BACnet Schedule"
+          },
+          {
+            "name": "BACnet Calendar Folder"
+          },
+          {
+            "name": "BACnet Schedule Folder"
+          },
+          {
+            "name": "Schedule Folder"
+          },
+          {
+            "name": "BACnet Calendar"
+          }
+        ]
+      }
+    ],
+    "hfwFrames": [
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "sb",
+            "typeId": "SummaryBarType"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "sb",
+                "config": {
+                  "EnableNotificationsForNewEvents": true,
+                  "EnableCollapsing": true
+                }
+              }
+            ],
+            "id": "sb-pane"
+          }
+        ],
+        "id": "summary-bar",
+        "docked": "top"
+      },
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "about",
+            "typeId": "AboutSnapinType"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "about"
+              }
+            ],
+            "id": "about-pane"
+          }
+        ],
+        "id": "about-frame-id",
+        "docked": "none",
+        "order": 1,
+        "isSecondaryFrame": true
+      },
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "account",
+            "typeId": "AccountSnapinType"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "account"
+              }
+            ],
+            "id": "account-pane"
+          }
+        ],
+        "id": "account-frame-id",
+        "docked": "none",
+        "order": 2,
+        "isSecondaryFrame": true
+      },
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "notifconfig",
+            "typeId": "NotifConfigSnapinType"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "notifconfig",
+                "config": {
+                  "Experimental": false
+                }
+              }
+            ],
+            "id": "notifconfig-pane"
+          }
+        ],
+        "id": "notifconfig-frame-id",
+        "docked": "none",
+        "order": 3,
+        "isSecondaryFrame": true
+      },
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "el",
+            "typeId": "EventListType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "ed",
+            "typeId": "EventDetailsType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "prp-view",
+            "typeId": "PropertyViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "sys-brow",
+            "typeId": "SystemBrowserType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "trend",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TrendSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "schedule",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "ScheduleSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "graph",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "GraphicsViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "document",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "DocumentViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "txt-view",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TextualViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "related",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "RelatedItemType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "trend-comparison",
+            "typeId": "TrendSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "schedule-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "ScheduleSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "graph-comparison",
+            "typeId": "GraphicsViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "document-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "DocumentViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "txt-view-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TextualViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "el",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.ed-pane"
+                  }
+                ],
+                "config": {
+                  "columns": [
+                    {
+                      "name": "eventIcon"
+                    },
+                    {
+                      "name": "groupButton"
+                    },
+                    {
+                      "name": "messageText"
+                    },
+                    {
+                      "name": "srcSource"
+                    },
+                    {
+                      "name": "srcPath"
+                    },
+                    {
+                      "name": "commands"
+                    },
+                    {
+                      "name": "creationTime"
+                    },
+                    {
+                      "name": "state"
+                    }
+                  ],
+                  "sorting_criteria": [
+                    {
+                      "column_name": "state",
+                      "direction": "Ascending"
+                    },
+                    {
+                      "column_name": "categoryDescriptor",
+                      "direction": "Ascending"
+                    },
+                    {
+                      "column_name": "creationTime",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "el-pane",
+            "titleVisible": true,
+            "paneTitleOrSnapinTitle": "snapin",
+            "primaryHeader": false,
+            "hasTab": false
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "ed",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection-investigative"
+                  },
+                  {
+                    "destination": "event-list.el-pane"
+                  }
+                ]
+              },
+              {
+                "id": "prp-view"
+              }
+            ],
+            "id": "ed-pane",
+            "titleVisible": false,
+            "primaryHeader": false,
+            "hasTab": true
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "sys-brow",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.primary-pane"
+                  },
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ],
+                "config": {
+                  "enableValues": [
+                    {
+                      "enabled": false
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "selection-pane",
+            "titleVisible": true,
+            "paneTitleOrSnapinTitle": "snapin",
+            "primaryHeader": false,
+            "hasTab": false
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "schedule",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  },
+                  {
+                    "destination": "event-list.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ]
+              },
+              {
+                "id": "graph",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "document",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  }
+                ]
+              }
+            ],
+            "id": "primary-pane",
+            "hasTab": true,
+            "canStartWithoutSelectedSnapin": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "schedule",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "graph",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "document",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  }
+                ],
+                "config": {
+                  "avoidPreselectOnSecondarySelection": true
+                }
+              },
+              {
+                "id": "prp-view"
+              },
+              {
+                "id": "related",
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "event-list.comparison-pane",
+                    "fallbackDestination": "event-list.compact-primary-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-primary-pane"
+                  }
+                ],
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "compact-primary-pane",
+            "hasTab": true,
+            "canStartWithoutSelectedSnapin": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "prp-view"
+              }
+            ],
+            "id": "contextual-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "prp-view"
+              },
+              {
+                "id": "related",
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "event-list.comparison-pane",
+                    "fallbackDestination": "event-list.primary-pane"
+                  },
+                  {
+                    "destination": "event-list.primary-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  }
+                ],
+                "canSendToSelf": true,
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "compact-contextual-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "related",
+                "canSendToSelf": true,
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "event-list.comparison-pane",
+                    "fallbackDestination": "event-list.primary-pane"
+                  },
+                  {
+                    "destination": "event-list.primary-pane"
+                  },
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  }
+                ],
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "related-pane",
+            "primaryHeader": true,
+            "hasTab": true
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "schedule-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ]
+              },
+              {
+                "id": "graph-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "document-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "event-list.contextual-pane"
+                  },
+                  {
+                    "destination": "event-list.related-pane"
+                  },
+                  {
+                    "destination": "event-list.compact-contextual-pane"
+                  }
+                ]
+              }
+            ],
+            "id": "comparison-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "closeButton": true,
+            "paneTitleOrSnapinTitle": "snapin",
+            "canStartWithoutSelectedSnapin": true
+          }
+        ],
+        "layoutInstances": [
+          {
+            "paneInstance": {
+              "id": "el-pane"
+            },
+            "id": "1-pane",
+            "iconClass": "element-payout-pane-1"
+          },
+          {
+            "splitter": {
+              "id": "ed-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "el-pane"
+                }
+              },
+              "secondChild": {
+                "paneInstance": {
+                  "id": "ed-pane"
+                }
+              },
+              "orientation": "vertical",
+              "secondChildSize": "340px",
+              "collapsingPane": "second"
+            },
+            "id": "2-pane",
+            "isDefault": true,
+            "iconClass": "element-payout-pane-2-right"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "ed-pane-splitter",
+                  "firstChild": {
+                    "paneInstance": {
+                      "id": "compact-primary-pane"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "ed-pane"
+                    }
+                  },
+                  "orientation": "vertical",
+                  "secondChildSize": "340px",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "24%"
+            },
+            "id": "3-pane-investigative",
+            "iconClass": "element-payout-pane-2-right",
+            "mediaQuery": "only screen and (min-width:640px)",
+            "onGrowth": "5-pane-investigative"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "ed-pane-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "primary-pane-horizontal-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "primary-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "compact-contextual-pane"
+                        }
+                      },
+                      "orientation": "horizontal",
+                      "firstChildSize": "70%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "ed-pane"
+                    }
+                  },
+                  "orientation": "vertical",
+                  "secondChildSize": "340px",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "24%"
+            },
+            "id": "4-pane-investigative",
+            "iconClass": "element-payout-pane-3",
+            "isDefault": true,
+            "mediaQuery": "only screen and (min-width:640px)",
+            "onGrowth": "5-pane-investigative",
+            "onLayoutChange": "4-pane-investigative-comparison"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "ed-pane-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "primary-pane-horizontal-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "primary-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "splitter": {
+                          "id": "related-pane-splitter",
+                          "firstChild": {
+                            "paneInstance": {
+                              "id": "contextual-pane"
+                            }
+                          },
+                          "secondChild": {
+                            "paneInstance": {
+                              "id": "related-pane"
+                            }
+                          },
+                          "orientation": "vertical",
+                          "secondChildSize": "340px",
+                          "collapsingPane": "second"
+                        }
+                      },
+                      "orientation": "horizontal",
+                      "firstChildSize": "70%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "ed-pane"
+                    }
+                  },
+                  "orientation": "vertical",
+                  "secondChildSize": "340px",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "5-pane-investigative",
+            "iconClass": "element-payout-pane-4",
+            "mediaQuery": "only screen and (min-width:1425px)",
+            "isDefault": true,
+            "onShrink": "4-pane-investigative",
+            "onLayoutChange": "5-pane-investigative-comparison"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "ed-pane-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "primary-pane-horizontal-splitter",
+                      "firstChild": {
+                        "splitter": {
+                          "id": "comparison-pane-splitter",
+                          "firstChild": {
+                            "paneInstance": {
+                              "id": "primary-pane"
+                            }
+                          },
+                          "secondChild": {
+                            "paneInstance": {
+                              "id": "comparison-pane",
+                              "whenClosed": "4-pane-investigative"
+                            }
+                          },
+                          "orientation": "vertical",
+                          "firstChildSize": "50%",
+                          "collapsingPane": "second"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "compact-contextual-pane"
+                        }
+                      },
+                      "orientation": "horizontal",
+                      "firstChildSize": "70%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "ed-pane"
+                    }
+                  },
+                  "orientation": "vertical",
+                  "secondChildSize": "340px",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "4-pane-investigative-comparison",
+            "iconClass": "element-payout-pane-5",
+            "mediaQuery": "only screen and (min-width:1710px)",
+            "onShrink": "4-pane-investigative"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "ed-pane-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "primary-pane-horizontal-splitter",
+                      "firstChild": {
+                        "splitter": {
+                          "id": "comparison-pane-splitter",
+                          "firstChild": {
+                            "paneInstance": {
+                              "id": "primary-pane"
+                            }
+                          },
+                          "secondChild": {
+                            "paneInstance": {
+                              "id": "comparison-pane",
+                              "whenClosed": "5-pane-investigative"
+                            }
+                          },
+                          "orientation": "vertical",
+                          "firstChildSize": "50%",
+                          "collapsingPane": "second"
+                        }
+                      },
+                      "secondChild": {
+                        "splitter": {
+                          "id": "related-pane-splitter",
+                          "firstChild": {
+                            "paneInstance": {
+                              "id": "contextual-pane"
+                            }
+                          },
+                          "secondChild": {
+                            "paneInstance": {
+                              "id": "related-pane"
+                            }
+                          },
+                          "orientation": "vertical",
+                          "secondChildSize": "340px",
+                          "collapsingPane": "second"
+                        }
+                      },
+                      "orientation": "horizontal",
+                      "firstChildSize": "70%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "ed-pane"
+                    }
+                  },
+                  "orientation": "vertical",
+                  "secondChildSize": "340px",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "5-pane-investigative-comparison",
+            "iconClass": "element-payout-pane-5",
+            "mediaQuery": "only screen and (min-width:1710px)",
+            "onShrink": "5-pane-investigative"
+          }
+        ],
+        "modes": [
+          {
+            "id": "default",
+            "isDefaultMode": true,
+            "availableLayoutIds": [
+              {
+                "id": "1-pane"
+              },
+              {
+                "id": "2-pane"
+              }
+            ]
+          },
+          {
+            "id": "investigative",
+            "availableLayoutIds": [
+              {
+                "id": "3-pane-investigative"
+              },
+              {
+                "id": "4-pane-investigative"
+              },
+              {
+                "id": "5-pane-investigative"
+              },
+              {
+                "id": "4-pane-investigative-comparison"
+              },
+              {
+                "id": "5-pane-investigative-comparison"
+              }
+            ]
+          }
+        ],
+        "id": "event-list",
+        "iconClass": "element-list",
+        "order": 1
+      },
+      {
+        "snapInInstances": [
+          {
+            "snapInId": "sys-brow",
+            "typeId": "SystemBrowserType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "trend",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TrendSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "schedule",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "ScheduleSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "graph",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "GraphicsViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "easy-navigation-bar",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "EasyNavigationBarType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "document",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "DocumentViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "txt-view",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TextualViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "prp-view",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "PropertyViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "related",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "RelatedItemType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "trend-comparison",
+            "typeId": "TrendSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "schedule-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "ScheduleSnapInType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "graph-comparison",
+            "typeId": "GraphicsViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "document-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "DocumentViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          },
+          {
+            "snapInId": "txt-view-comparison",
+            "canLoseFocusOnPreselection": true,
+            "typeId": "TextualViewerType",
+            "tabTitleId": "SNAPIN-TITLE"
+          }
+        ],
+        "panes": [
+          {
+            "snapInReferences": [
+              {
+                "id": "sys-brow",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ],
+                "config": {
+                  "enableValues": [
+                    {
+                      "enabled": false
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "selection-pane",
+            "titleVisible": true,
+            "paneTitleOrSnapinTitle": "snapin",
+            "primaryHeader": false,
+            "hasTab": false
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "schedule",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  },
+                  {
+                    "destination": "system-manager.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ]
+              },
+              {
+                "id": "easy-navigation-bar",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "graph",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "document",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  }
+                ]
+              }
+            ],
+            "id": "primary-pane",
+            "hasTab": true,
+            "canStartWithoutSelectedSnapin": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "schedule",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  },
+                  {
+                    "destination": "system-manager.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ]
+              },
+              {
+                "id": "graph",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "document",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.selection-pane",
+                    "ruleName": "new-primary-selection"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  }
+                ],
+                "config": {
+                  "avoidPreselectOnSecondarySelection": true
+                }
+              },
+              {
+                "id": "prp-view"
+              },
+              {
+                "id": "related",
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "system-manager.comparison-pane",
+                    "fallbackDestination": "system-manager.compact-primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-primary-pane"
+                  }
+                ],
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "compact-primary-pane",
+            "hasTab": true,
+            "canStartWithoutSelectedSnapin": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "prp-view"
+              }
+            ],
+            "id": "contextual-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "prp-view"
+              },
+              {
+                "id": "related",
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "system-manager.comparison-pane",
+                    "fallbackDestination": "system-manager.primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  }
+                ],
+                "canSendToSelf": true,
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "compact-contextual-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "related",
+                "canSendToSelf": true,
+                "communicationRules": [
+                  {
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true,
+                    "destination": "system-manager.comparison-pane",
+                    "fallbackDestination": "system-manager.primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.primary-pane"
+                  },
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  }
+                ],
+                "config": {
+                  "exceptions": [
+                    {
+                      "managedTypeName": "NewReport",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewTrend",
+                      "new": true,
+                      "hide": true
+                    },
+                    {
+                      "managedTypeName": "NewRemoteNotification",
+                      "new": true,
+                      "hide": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "id": "related-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "paneFamily": "compact-primary"
+          },
+          {
+            "snapInReferences": [
+              {
+                "id": "trend-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "schedule-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.comparison-pane",
+                    "ruleName": "SecondarySelection",
+                    "canSwitchLayout": true
+                  }
+                ]
+              },
+              {
+                "id": "graph-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "document-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  }
+                ]
+              },
+              {
+                "id": "txt-view-comparison",
+                "communicationRules": [
+                  {
+                    "destination": "system-manager.contextual-pane"
+                  },
+                  {
+                    "destination": "system-manager.related-pane"
+                  },
+                  {
+                    "destination": "system-manager.compact-contextual-pane"
+                  }
+                ]
+              }
+            ],
+            "id": "comparison-pane",
+            "primaryHeader": true,
+            "hasTab": true,
+            "closeButton": true,
+            "paneTitleOrSnapinTitle": "snapin",
+            "canStartWithoutSelectedSnapin": true
+          }
+        ],
+        "layoutInstances": [
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "paneInstance": {
+                  "id": "compact-primary-pane"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "2-pane",
+            "iconClass": "element-payout-pane-2",
+            "mediaQuery": "only screen and (min-width:640px)",
+            "isDefault": true,
+            "onGrowth": "4-pane"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "primary-pane-horizontal-splitter",
+                  "firstChild": {
+                    "paneInstance": {
+                      "id": "primary-pane"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "compact-contextual-pane"
+                    }
+                  },
+                  "orientation": "horizontal",
+                  "firstChildSize": "70%",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "3-pane",
+            "iconClass": "element-payout-pane-3",
+            "mediaQuery": "only screen and (min-width:640px)",
+            "onGrowth": "4-pane",
+            "onLayoutChange": "3-pane-comparison"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "primary-pane-horizontal-splitter",
+                  "firstChild": {
+                    "paneInstance": {
+                      "id": "primary-pane"
+                    }
+                  },
+                  "secondChild": {
+                    "splitter": {
+                      "id": "related-pane-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "contextual-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "related-pane"
+                        }
+                      },
+                      "orientation": "vertical",
+                      "secondChildSize": "340px",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "orientation": "horizontal",
+                  "firstChildSize": "70%",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "4-pane",
+            "iconClass": "element-payout-pane-4-bottom",
+            "mediaQuery": "only screen and (min-width:1075px)",
+            "isDefault": true,
+            "onShrink": "3-pane",
+            "onLayoutChange": "4-pane-comparison"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "primary-pane-horizontal-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "comparison-pane-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "primary-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "comparison-pane",
+                          "whenClosed": "3-pane"
+                        }
+                      },
+                      "orientation": "vertical",
+                      "firstChildSize": "50%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "paneInstance": {
+                      "id": "compact-contextual-pane"
+                    }
+                  },
+                  "orientation": "horizontal",
+                  "firstChildSize": "70%",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "3-pane-comparison",
+            "iconClass": "element-payout-pane-4",
+            "mediaQuery": "only screen and (min-width:1360px)",
+            "onShrink": "3-pane"
+          },
+          {
+            "splitter": {
+              "id": "selection-pane-splitter",
+              "firstChild": {
+                "paneInstance": {
+                  "id": "selection-pane"
+                }
+              },
+              "secondChild": {
+                "splitter": {
+                  "id": "primary-pane-horizontal-splitter",
+                  "firstChild": {
+                    "splitter": {
+                      "id": "comparison-pane-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "primary-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "comparison-pane",
+                          "whenClosed": "4-pane"
+                        }
+                      },
+                      "orientation": "vertical",
+                      "firstChildSize": "50%",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "secondChild": {
+                    "splitter": {
+                      "id": "related-pane-splitter",
+                      "firstChild": {
+                        "paneInstance": {
+                          "id": "contextual-pane"
+                        }
+                      },
+                      "secondChild": {
+                        "paneInstance": {
+                          "id": "related-pane"
+                        }
+                      },
+                      "orientation": "vertical",
+                      "secondChildSize": "340px",
+                      "collapsingPane": "second"
+                    }
+                  },
+                  "orientation": "horizontal",
+                  "firstChildSize": "70%",
+                  "collapsingPane": "second"
+                }
+              },
+              "orientation": "vertical",
+              "firstChildSize": "340px"
+            },
+            "id": "4-pane-comparison",
+            "iconClass": "element-payout-pane-5",
+            "mediaQuery": "only screen and (min-width:1360px)",
+            "onShrink": "4-pane"
+          }
+        ],
+        "id": "system-manager",
+        "iconClass": "element-alarm-filled",
+        "order": 0
+      }
+    ]
+  }
+}
