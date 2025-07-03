@@ -1,0 +1,32 @@
+<div *ngIf="visibleView === 'docuview'; then docuview; else otherView"></div>
+
+<ng-template #docuview>
+  <gms-report-view
+    [fullId]="fullId"
+    [selectedObjectsData]="selectedObjectsData"
+    [isFromRightPane]="isFromRightPane"
+    [storeObject]="storeObject"
+    [storageService] = "storageService" 
+    (storeObjectEmitter)="handleStoreObjectData($event)"
+    (setActiveEvent)="handleSetActiveEvent($event)"  
+    (showReportEvent)="handleShowReportEvent($event)"
+    (scrollHandlerEvent)="scrollHandlerEvent($event)"
+    (savedSelectedRule)="savedSelectedRule($event)"  
+    (selectiondocumentMapEmitter)="selectiondocumentMapEmitter($event)"
+    (expandRowEventData)="expandRowEvent($event)"/>
+</ng-template>
+
+<ng-template #otherView>
+  <div *ngIf="visibleView === 'tileview'; then tileview; else emptyReportView"></div>
+  <ng-template #tileview>
+    <gms-report-search-view
+      #searchComponent
+      (reports)="getReports($event)"
+      class="gms-search-container"
+      [selectedObject]="selectedObject"
+      [fullId]="fullId"
+      [placeholder]="searchPlaceHolder"
+    />
+  </ng-template>
+</ng-template>
+
