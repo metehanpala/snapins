@@ -1,0 +1,70 @@
+<div class="object-view">
+
+  <!-- Header row (optional) -->
+  <ng-container *ngIf="allowBackNavigation">
+    <div class="view-header">
+      <div class="left">
+        <button type="button" class="btn btn-circle btn-sm element-left-3" (click)="onBack($event)"> </button>
+      </div>
+    </div>
+    <hr class="view-section-fixed mt-2 mb-0">
+  </ng-container>
+
+  <!-- Main object label w/ icon -->
+  <!-- NOTE: spacing above label varies depending on whether we have a header row or not -->
+  <div class="view-section-fixed view-header mb-0" [ngClass]="allowBackNavigation ? 'mt-4' : 'mt-1'">
+    <div class="left">
+      <ng-container *ngTemplateOutlet="labelTemplate; context:{objectRef: objectRef, selectorEnabled: false}" />
+      <hr class="mt-4 mb-0">
+    </div>
+    <i #copyIcon class="right icon element-copy copy-icon" [cdkMenuTriggerFor]="contextMenu" (click)="onMenu($event)"></i>
+  </div>
+
+  <ng-template #contextMenu>
+    <si-menu-factory [items]="items" />
+  </ng-template>
+
+  <!-- Scrollable container for object details -->
+  <div class="view-section-fill my-1" #detailContainer>
+    <div class="my-4 me-4">
+      <span class="h4 text-secondary">{{ labelDescription }}</span><br>
+      <span style="word-wrap: break-word" class="si-caption">{{ objectRef.description }}</span>
+    </div>
+
+    <div class="my-4 me-4">
+      <span class="h4 text-secondary">{{ labelName }}</span><br>
+      <span style="word-wrap: break-word" class="si-caption">{{ objectRef.name }}</span>
+    </div>
+
+    <div class="my-4 me-4" *ngIf="objectRef.hasAlias">
+      <span class="h4 text-secondary">{{ labelAlias }}</span><br>
+      <span style="word-wrap: break-word" class="si-caption">{{ objectRef.alias }}</span>
+    </div>
+
+    <div class= "my-4 me-4" *ngIf="objectRef.hasInformationText">
+      <span class="h4 text-secondary">{{ labelInformation }}</span><br>
+      <span style="word-wrap: break-word; white-space: pre-wrap;" class="si-caption">{{ objectRef.informationText }}</span>
+    </div>
+  </div>
+
+  <!-- Parent object label (if applicable) -->
+  <div class="view-section-fixed mb-2" *ngIf="objectRef.hasParent && objectRef.parentRef">
+    <hr class="my-0">
+    <div class="my-2">
+      <span class="si-caption text-secondary">{{ labelBelongsTo }}</span>
+    </div>
+    <ng-container *ngTemplateOutlet="labelTemplate; context:{objectRef: objectRef.parentRef, selectorEnabled: false}" />
+  </div>
+
+  <!-- Path button (optional) -->
+  <div class="view-section-fixed m-2" *ngIf="allowPathNavigation">
+    <button type="button" class="show-path-btn-ovrd btn btn-tertiary" (click)="onPath($event)">
+      <span>{{ labelShowPath }}</span>
+      <i class="icon element-right-2"></i>
+    </button>
+  </div>
+  <!-- allow a bit more margin a the bottom if the 'show path' button is not visible -->
+  <div class="view-section-fixed mt-3" *ngIf="!allowPathNavigation">
+  </div>
+
+</div>

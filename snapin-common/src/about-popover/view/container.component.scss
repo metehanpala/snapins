@@ -1,0 +1,163 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.about-object-container {
+  height: 70vh;
+  max-height: 365px;
+  min-height: 220px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-object-container-item {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.object-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  // Ensures <hr> elements used as separators inside flex container have a non-zero width
+  hr {
+    width: 100%;
+  }
+}
+
+.view-header {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    width: 50%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .middle {
+    width: auto;
+    height: 32px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right {
+    width: 50%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.view-section-fixed {
+  flex: 0 0 auto;
+}
+
+.view-section-fill {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.object-label-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  // min-width accounts for 'empty' icon (not defined) and maintains vertical alignment of
+  // stacked label text
+  .label-icon {
+    flex: 0 0 auto;
+    min-width: 24px;
+  }
+
+  .label-text-container {
+    cursor: default;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    // Allows `overflow` setting in `label-text` class to have an effect.  Otherwise; no ellipsis on long text!
+    min-width: 0;
+
+    .primary {
+      flex: 1 0 auto;
+    }
+
+    .secondary {
+      flex: 1 0 auto;
+      min-height: 16px;
+    }
+
+    .label-text {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .selector-icon {
+    flex: 0 0 auto;
+  }
+}
+
+.multiline-text {
+  white-space: pre-wrap;
+}
+
+// User to override some default si-element `list-group-item` styling:
+// * Local styling of the object-list items uses a non-zero margin (see usage of my-N utility class).
+//   This exposes the fact that the si-element list-item styling sets the border-width-top property to 0
+//   for all items (other than the first), assuming there will be no space between. The border-width
+//   override ensures each of our items will have a complete, 4-sided border.
+// * We removed the default list-item padding so that layout of list-item content can be controlled
+//   using interior element margins.
+.list-group-item-ovrd {
+  border-width: 1px;
+  padding: 0;
+
+  &.highlight {
+    border-color: $element-ui-0;
+  }
+}
+
+// NOTE: Style overrides on the button are used because no suitable 'Si-Element' classes could be
+// found to style the button according to the wire-frame: left-justified, no hover behavior.
+.show-path-btn-ovrd {
+  padding: 0;
+  min-width: auto;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+// TODO: This is to override the button styling of the left-right paging buttons of the path-view.
+//  The goal is to make a button with no border and no styling of dynamic states.  This is not complete
+//  presently, as a border appears around the button when pressed, which is undesirable.
+//  This whole exercised should be question, really.  Ideally, we should be using some suitable si-element
+//  utility classed for this, but none could be found.
+.path-page-btn-ovrd {
+  border-width: 0;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+::ng-deep .cdk-overlay-container {
+  // The z-index of the popover container is 1070. So z-index: 1071 allows for the context menu to be on top
+  z-index: 1071;
+}

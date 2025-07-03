@@ -1,0 +1,24 @@
+<div class="object-view">
+
+  <!-- Header row -->
+  <div class="view-header">
+    <div class="middle">
+      <span class="si-title-1">{{ headerTitle }}</span>
+    </div>
+  </div>
+  <hr class="view-section-fixed mt-2 mb-0">
+
+  <!-- Scrollable container for object items -->
+  <div class="view-section-fill my-1">
+    <div class="list-group">
+      <ng-container *ngFor="let item of objectList;  trackBy: trackByIndex">
+
+        <a class="list-group-item-ovrd list-group-item list-group-item-action my-1 px-1 py-4" (click)="onItemSelected($event, item)">
+          <ng-container *ngTemplateOutlet="labelTemplate; context:{objectRef: item, selectorEnabled: true}" />
+        </a>
+
+      </ng-container>
+    </div>
+  </div>
+
+</div>

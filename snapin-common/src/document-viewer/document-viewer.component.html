@@ -1,0 +1,53 @@
+<div class="menubar bg-base-1" *ngIf="fileUrl !== null && !error && appRights">
+    <a [href]="newTabUrl | safe" target="_blank"><button type="button" class="newTab"><span class="element-export" style="font-size: 20px"></span> {{newTabLabel}}</button></a>
+</div>
+<si-empty-state
+    *ngIf="error && appRights"
+    class="empty-list"
+    id="empty-list-file"
+    icon="element-technical-operator"
+    [heading]="emptyTitleFileLabel"
+    display="none"
+    >
+    <a [href]="newTabUrl" target="_blank"><button id="newTabButtonEmptyState" type="button" class="btn btn-primary"><span id="newTabIconEmptyState" class="element-export" style="font-size: 20px"></span> {{newTabLabel}}</button></a>
+</si-empty-state>
+<si-empty-state
+    *ngIf="!appRights"
+    class="empty-list"
+    id="empty-list-file"
+    icon="element-technical-operator"
+    [heading]="noAppRightsLabel"
+    display="none"
+    />
+<si-empty-state
+    *ngIf="fileUrl === null"
+    class="empty-list"
+    id="empty-list-file"
+    icon="element-technical-operator"
+    [heading]="noDocumentLabel"
+    display="none"
+    />
+
+<si-loading-spinner *ngIf="appRights && (fileUrl === undefined)" style="margin-top: 40px;" />
+
+  <!-- Empty state for web app not supported on iOS devices (iPhone/iPad) -->
+  <si-empty-state *ngIf="appRights && isMobileDevice && fileUrl !== undefined" class="flex-grow-1" icon="element-report"
+    [heading]="notSupportedMessage">
+    <!-- Button to open the file in a new tab -->
+    <a [href]="fileUrl" target="_blank">
+      <button type="button" class="btn btn-primary">
+        <span class="element-export" style="font-size: 20px"></span> {{newTabLabel}}
+      </button>
+    </a>
+  </si-empty-state>
+
+<div *ngIf="appRights && (fileUrl !== undefined && loaded === true && !isMobileDevice)" class="viewer" [ngStyle]="{ 'height': snapInId?.frameId === 'event-list' ? '1000px' : '95%' }">
+<hfw-panel-navigation
+    class="hfw-flex-container-column hfw-flex-item-grow"
+    style="height: 100%;"
+    (rightBtnClicked)="switchDocument(1)"
+    (leftBtnClicked)="switchDocument(0)"
+    [hideBtns]="this.docuList?.length < 2">
+    <iframe #iframe *ngIf="!error" [src]="fileUrl | safe" id="doc" (load)="onIframeLoaded()"></iframe>
+</hfw-panel-navigation>
+</div>

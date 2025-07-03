@@ -1,0 +1,44 @@
+<div class="object-view">
+
+  <!-- Header row -->
+  <div class="view-header">
+    <div class="left m-2">
+      <button type="button" class="btn btn-circle btn-sm element-left-3" (click)="onBack($event)"> </button>
+    </div>
+    <div class="middle">
+      <span class="si-title-1">{{ headerTitle }}</span>
+    </div>
+    <!-- Controls to page forward/back through paths -->
+    <div class="right">
+      <button type="button" class="path-page-btn-ovrd btn btn-secondary btn-circle btn-sm" [class.element-left-2]="!isStartPathPosition" [disabled]="isStartPathPosition"
+        (click)="onPreviousPath($event)"> </button>
+      <div class="si-caption text-primary">
+        <span>{{ objectRef.selectedPathPos + 1 }}</span>
+        <span class="mx-1">/</span>
+        <span>{{ objectRef.pathCount }}</span>
+      </div>
+      <button type="button" class="path-page-btn-ovrd btn btn-secondary btn-circle btn-sm" [class.element-right-2]="!isEndPathPosition" [disabled]="isEndPathPosition"
+        (click)="onNextPath($event)"> </button>
+    </div>
+  </div>
+  <hr class="view-section-fixed mt-2 mb-0">
+
+  <!-- Scrollable container for path items -->
+  <div class="view-section-fill my-1" #pathContainer>
+    <div class="list-group">
+
+      <!-- Path Ancestors -->
+      <ng-container *ngFor="let item of objectRef.selectedPathHeader.ancestorList;  trackBy: trackByIndex">
+        <a class="list-group-item-ovrd list-group-item list-group-item-action my-1 px-1 py-4" (click)="onPathItemSelected($event, item)">
+          <ng-container *ngTemplateOutlet="labelTemplate; context:{objectRef: item, selectorEnabled: true}" />
+        </a>
+      </ng-container>
+      <!-- Path Header -->
+      <a class="list-group-item-ovrd highlight list-group-item list-group-item-action disabled my-1 px-1 py-4" (click)="onPathItemSelected($event, objectRef.selectedPathHeader)">
+        <ng-container *ngTemplateOutlet="labelTemplate; context:{objectRef: objectRef.selectedPathHeader, selectorEnabled: false}" />
+      </a>
+
+    </div>
+  </div>
+
+</div>

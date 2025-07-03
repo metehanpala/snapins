@@ -1,0 +1,66 @@
+<div class="about-object-container" [ngSwitch]="vm.viewState">
+
+  <ng-container *ngSwitchCase="eViewState.List">
+    <gms-object-list-view
+      class="about-object-container-item"
+      [objectList]="vm.objectList"
+      [labelTemplate]="objectLabelTemplate"
+      (itemSelected)="onListItemSelected($event)" />
+  </ng-container>
+
+  <ng-container *ngSwitchCase="eViewState.ObjectInfo">
+    <gms-object-detail-view
+      class="about-object-container-item"
+      [objectRef]="vm.selectedObject"
+      [labelTemplate]="objectLabelTemplate"
+      [allowBackNavigation]="listViewEnabled"
+      [allowPathNavigation]="true"
+      (pathNavigation)="onPathSelected()"
+      (backNavigation)="onDetailBackNavigation()" />
+  </ng-container>
+
+  <ng-container *ngSwitchCase="eViewState.Paths">
+    <gms-object-path-view
+      class="about-object-container-item"
+      [objectRef]="vm.selectedObject"
+      [labelTemplate]="objectLabelTemplate"
+      (pathItemSelected)="onPathItemSelected($event)"
+      (backNavigation)="onPathBackNavigation()" />
+  </ng-container>
+
+  <ng-container *ngSwitchCase="eViewState.ObjectAncestorInfo">
+    <gms-object-detail-view
+      class="about-object-container-item"
+      [objectRef]="vm.selectedObjectInSelectedPath"
+      [labelTemplate]="objectLabelTemplate"
+      [allowBackNavigation]="true"
+      [allowPathNavigation]="false"
+      (backNavigation)="onAncestorDetailsBackNavigation()" />
+  </ng-container>
+
+  <ng-container *ngSwitchDefault />
+
+</div>
+
+<!-- Template used to display object labels in container view components (expects a LabelTemplateContext object as its context)  -->
+<ng-template #objectLabelTemplate
+  let-iconCls="objectRef.objectLabel.iconCls"
+  let-primary="objectRef.objectLabel.primary"
+  let-secondary="objectRef.objectLabel.secondary"
+  let-secondaryEnabled="objectRef.secondaryLabelEnabled"
+  let-selectorEnabled="selectorEnabled">
+
+  <div class="object-label-container">
+    <i class="label-icon icon me-4" [ngClass]="iconCls"></i>
+    <div class="label-text-container">
+      <div class="primary">
+        <span class="label-text si-title-2">{{ primary }}</span>
+      </div>
+      <div class="secondary" *ngIf="secondaryEnabled">
+        <span class="label-text si-body-2">{{ secondary }}</span>
+      </div>
+    </div>
+    <i *ngIf="selectorEnabled" class="selector-icon icon ms-4 element-right-3"></i>
+  </div>
+
+</ng-template>

@@ -1,0 +1,36 @@
+<ng-template #popEvtList>
+  <ng-content />
+</ng-template>
+<span
+  *ngIf="hideButton"
+  [popover]="popEvtList"
+  [isOpen]="isOpen"
+  container="body"
+  (onShown)="isOpen = true"
+  (onHidden)="isOpen = false"
+  containerClass="button-popover"
+  [outsideClick]="true"
+></span>
+
+<button
+  [popover]="popEvtList"
+  containerClass="button-popover"
+  container="body"
+  [outsideClick]="true"
+  type="button"
+  [isOpen]="isOpen"
+  class="btn btn-flat"
+  *ngIf="!hideButton"
+  [disabled]="disableButton"
+  (onShown)="isOpen = true"
+  (onHidden)="isOpen = false">
+
+    <i *ngIf="!disableButton" [style.color]="color"
+    class="icon {{ (isOpen && iconActivated)? iconActivated : icon }}">
+    </i>
+    <span *ngIf="alertsNum && !disableButton" class="badge-text badge-default">{{alertsNum}}</span>
+    <i *ngIf="disableButton"
+    class="icon {{ (isOpen && iconActivated)? iconActivated : icon }} icon-disabled">
+    </i>
+
+</button>

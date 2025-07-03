@@ -1,0 +1,26 @@
+<!-- Wrapper around target element to host popover -->
+<ng-container *ngIf="!excludePopover">
+  <div
+    [popover]="aboutObjectPopoverTemplate"
+    container="body"
+    [placement]="popoverPlacement"
+    [isOpen]="isOpen"
+    [outsideClick]="!disableClick"
+    [triggers]="disableClick ? '' : 'click'"
+    (onShown)="onOpenStateChange(true)"
+    (onHidden)="onOpenStateChange(false)">
+
+    <ng-content />
+
+  </div>
+</ng-container>
+
+<!-- Exclude popover (just provide inner about-object container) -->
+<ng-container *ngIf="excludePopover">
+  <ng-container *ngTemplateOutlet="aboutObjectPopoverTemplate" />
+</ng-container>
+
+<!-- Popover content -->
+<ng-template #aboutObjectPopoverTemplate>
+  <gms-about-object-container [vm]="vm" />
+</ng-template>

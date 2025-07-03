@@ -1,0 +1,46 @@
+$event-popover-grey-text-color: rgb(128, 128, 128);
+
+::ng-deep {
+  .button-popover {
+    min-width: 280px;
+    width: 280px;
+  }
+}
+
+:host ::ng-deep .btn-flat {
+  background: none;
+  position: relative;
+
+  .color-red {
+    color: red;
+    font-size: 2em;
+  }
+
+  .badge-text {
+    background-color: rgb(240, 242, 245);
+    color: rgb(26, 28, 30);
+  }
+
+  background-color: transparent;
+  font-size: xx-large !important;
+  text-align: center;
+  box-shadow: none !important;
+  padding: 0;
+  min-width: 35px !important;
+  min-height: 35px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  &:active,
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  i {
+    font-size: 32px;
+
+    .icon-disabled {
+      color: $event-popover-grey-text-color;
+    }
+  }
+}
