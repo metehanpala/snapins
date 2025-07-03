@@ -1,0 +1,46 @@
+<div class="hfw-touch-selection-disabled">
+  <div >
+    <si-loading-spinner *ngIf="loading" />
+
+    <gms-event-table *ngIf="txtTable.length> 0 && isEventTableValid"
+      [scrollable]="scrollable"
+      [headerData]="hdrData"
+      [columnsSettingsDataObs]="columnsSettingsDataObs"
+      [txtTableObser]="txtTableObs"
+      pageSize="pageSize"
+      [sortable]="sortable"
+      [eventCommandsDisabledObs]="eventCommandsDisabledObs"
+      [isInAssistedTreatment]="isInAssistedTreatment"
+      [reattachIndication]="reattachIndication"
+      [selectedEventsIds]="selectedEventsIds"
+      [gridItem2select]="gridItem2select"
+      [compactMode]="compactMode"
+      [visibleColumns]="visibleColumns"
+      [selectedGridRows]="selectedGridRows"
+      [fullSnapinID]="fullSnapinID"
+      [allowMultiselection]="allowMultiselection"
+      [updateHeaderInitialization]="updateHeaderInitialization"
+      [coloredRows]="coloredRows"
+      [isInPopoverMode]="IsInPopoverMode"
+
+      (configurationChanged)="onConfigurationChanged($event)"
+      (columnsSettingsCnfgUpdate)="columnsSettingsCnfgUpdate"
+      (selectEvent)="onSelectedEvent($event)"
+      (unselectEvent)="onUnselectedEvent($event)"
+      (sortColumn)="onSortColumn($event)"
+      (columnResize)="onResize($event)"
+      (commandClick)="onCommandClick($event)"
+      (rowHeight)="onRowHeight($event)"
+      (minifiedState)="onTableMinifiedState($event)"
+    >
+    gms-event-table not loaded
+    </gms-event-table>
+
+    <si-empty-state class="h-100 elevation-1 card bg-base-1 flex-column-item-shrink d-flex flex-column justify-content-center pb-10"
+      icon="element-alarm"
+      *ngIf="txtTable.length === 0 && loading === false"
+      heading=""
+      [content]="_NoEvents"
+      />
+  </div>
+</div>

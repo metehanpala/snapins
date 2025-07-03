@@ -1,0 +1,341 @@
+<div  #evtTabeleContainer>
+  <div class="event-table event-table-full"
+  [ngClass]="{'non-scrollable': !scrollable, 'compactMode': compactMode, 'coloredRows': coloredRows, 'alwaysActive': this.isInInvestigativeMode}"
+  *ngIf="((!minifiedTable && !compactMode) || compactMode)">
+      <ngx-datatable
+      #table
+      class="table-element eventlist-table"
+      [cssClasses]="tableConfig.cssClasses"
+
+      width="100%"
+      [rows]="txtTable"
+      columnMode="force"
+      [headerHeight]="compactMode? 0 : 50"
+      [footerHeight]="0"
+      [rowHeight]="getRowHeight()"
+      [scrollbarV]="true"
+      [selectionType]="allowMultiselection? 'multi' : 'single'"
+      [rowClass]= "getTableRowClass"
+      [disableRowCheck]="isRowDisabled"
+
+      [selected]="selected"
+      [reorderable]="true"
+      [externalSorting]="true"
+      [loadingIndicator]="isLoading > 0"
+      (resize)="onResize($event)"
+      (select)="onSelect($event)"
+      (sort)="onSort($event)"
+    >
+      <ng-template ngFor let-headerContent [ngForOf]="hdrData" let-hdrData="ngForOf" [ngForTrackBy]="trackByIndex">
+        <!-- Icon fixed -->
+        <ngx-datatable-column
+          *ngIf="headerContent.columnType === 2 && !compactMode"
+          [sortable]=getSorting(true)
+          [canAutoResize]="false"
+          [draggable]="false"
+          [resizeable]="false"
+          [width]="evtIconColWidth"
+          [prop]="headerContent.id">
+          <ng-template let-sort="sortFn" ngx-datatable-header-template let-disable$="disable$">
+            <div class="event-table__hdr-cell" (click)="sort()">
+              <div class="event-table__hdr-cell-title">
+              </div>
+              <div class="event-table__hdr-cell-icon" [ngClass]="{'clickable': sortable}">
+                <ng-container [ngSwitch]="categoryDescriptorSortDir">
+                  <span class="event-table__sort" *ngSwitchCase="1">
+                    <i  class="element-sort-up"></i>
+                  </span>
+                  <span class="event-table__sort" *ngSwitchCase="2">
+                    <i  class="element-sort-down"></i>
+                  </span>
+                  <span class="event-table__sort"  *ngSwitchCase="0">
+                    <i  class="element-sort-up invisible"></i>
+                  </span>
+                  <span *ngSwitchDefault>
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div class="event-table__text event-table__icon">
+              <si-circle-status
+              [icon]="getDisciplineIcon(row.customData.eventItem)"
+              [blink]="row.customData.eventItem.state === 'Unprocessed' || row.customData.eventItem.state ===  'UnprocessedWithTimer'? true: false"
+              [color]="getDisciplineColor(row.customData.eventItem)"
+              [eventOut]="row.customData.eventItem.direction === 'Out'" />
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column
+        [name]="headerContent.label"
+        [prop]="headerContent.id"
+        [width]="+colWidthsMap.get(headerContent.id)"
+        [minWidth]="+headerContent.minColWidth"
+        [maxWidth]="headerContent.isFixedSize? +headerContent.minColWidth : undefined"
+        [resizeable]="!headerContent.isFixedSize"
+        [sortable]=getSorting(headerContent.allowSorting)
+        *ngIf="headerContent.columnVisible && headerContent.columnType !== 2">
+          <ng-template let-sort="sortFn" ngx-datatable-header-template let-disable$="disable$">
+            <div class="event-table__hdr-cell"
+            [ngClass]="{
+              'clickable': sortable && headerContent.allowSorting,
+              'text-center': headerContent.columnType === 6 || headerContent.columnType === 3
+            }"
+            (click)="sort()">
+              <div class="event-table__hdr-cell-title">
+                <strong> {{headerContent.label}} </strong>
+              </div>
+              <ng-container *ngIf="headerContent.allowSorting">
+                <ng-container [ngSwitch]="headerContent.sortingDirection">
+                  <div class="event-table__hdr-cell-icon" *ngSwitchCase="1">
+                    <span class="event-table__sort">
+                      <i  class="element-sort-up"></i>
+                    </span>
+                  </div>
+                  <div class="event-table__hdr-cell-icon" *ngSwitchCase="2">
+                    <span class="event-table__sort">
+                      <i  class="element-sort-down"></i>
+                    </span>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </ng-template>
+
+          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+            <div
+              class="event-table__text"
+              *ngIf="headerContent.columnType === 1"
+            >
+              <div class=" overflow-ellipsis"
+              [ngClass]="{
+                'ellipsis-backward': headerContent.id === 'srcPath',
+                'si-title-2 color-primary': headerContent.id === 'cause',
+                'si-body-2': headerContent.id !== 'cause'
+              }"
+              #rowDiv
+              [siTooltip]="tooltipToBeShown(headerContent) && checkIfEllipsis(rowDiv) ? setCellContents(headerContent.id, row).title : undefined"
+              *ngIf="setCellContents(headerContent.id, row).title">
+                {{ setCellContents(headerContent.id, row).title }}
+              </div>
+              <div
+                #rowDiv2
+                class="si-body-2 overflow-ellipsis color-secondary"  
+                *ngIf="setCellContents(headerContent.id, row).subtitle"
+                [siTooltip]="tooltipToBeShown(headerContent) && checkIfEllipsis(rowDiv2) ? setCellContents(headerContent.id, row).subtitle : undefined"
+              >
+                {{ setCellContents(headerContent.id, row).subtitle }}
+              </div>
+            </div>
+
+            <div class="event-table__scrollabletext" *ngIf="headerContent.columnType === 7">
+              <div class="si-body-2 scrollable-text"
+              #rowDiv3
+              [siTooltip]="tooltipToBeShown(headerContent) && checkIfEllipsis(rowDiv3) ? setCellContents(headerContent.id, row).title : undefined"
+              *ngIf="setCellContents(headerContent.id, row).title">
+                {{ setCellContents(headerContent.id, row).title }}
+              </div>
+              <div
+                #rowDiv4
+                class="si-body-2 overflow-ellipsis color-secondary"  
+                *ngIf="setCellContents(headerContent.id, row).subtitle"
+                [siTooltip]="tooltipToBeShown(headerContent) && checkIfEllipsis(rowDiv4) ? setCellContents(headerContent.id, row).subtitle : undefined"
+              >
+                {{ setCellContents(headerContent.id, row).subtitle }}
+              </div>
+            </div>
+
+            <!-- State -->
+            <div *ngIf="headerContent.columnType === 3" class="event-table__state">
+                <div class="double-icon">
+                  <i class="{{row.cellData.get('state')[1]}} icon  {{( row.customData.eventItem.srcState === 'Quiet'?'grey-icon':'active')}}"></i>
+                  <i *ngIf="row.cellData.get('state')[3]" class="{{row.cellData.get('state')[3]}} {{row.cellData.get('state')[4]}} tick-icon"></i>
+                </div>
+                <span>
+                  <i *ngIf="row.customData.eventItem.oPId != null" class="icon element-list"></i>
+                </span>
+                <span class="badge badge-secondary" *ngIf="row.cellData.get('recursation')">
+                  {{row.cellData.get('recursation')[0].text}}
+                </span>
+            </div>
+
+            <!-- Timer -->
+            <div *ngIf="headerContent.id === 'timer'" class="event-table__timer" style="font-weight: bold;">
+              <div class="event-table__timer overflow-ellipsis" >
+                <span *ngIf="isTimerAllowed(row.customData.eventItem) && row.customData.eventItem.timerUtc !== '0001-01-01T00:00:00Z'
+                && calculateTimer(row.customData.eventItem) !== ': 00:00'">
+                  <i class="element-timer icon"></i>
+                  {{calculateTimer(row.customData.eventItem)}}
+                </span>
+              </div>
+            </div>
+
+            <!-- recursation -->
+            <ng-container *ngIf="headerContent.columnType === 5 && row.cellData.get(headerContent.id)">
+              <div class="event-table__container">
+                <div class="event-table__recursation" >
+                  <i class="{{row.cellData.get(headerContent.id)[0].glyphicon}} icon"></i>
+                  <span class="badge badge-warning">{{row.cellData.get(headerContent.id)[0].text}}</span>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- commands -->
+            <ng-container *ngIf="headerContent.columnType === 6 && hasCommands(row.cellData.get(headerContent.id))">
+              <div class="event-table__actions event-table__container">
+                <si-content-action-bar *ngIf="actions[rowIndex]" style="margin-right: 24;"
+                  (click)="$event.stopPropagation()"
+                  [primaryActions]="actions[rowIndex].primary"
+                  [secondaryActions]="actions[rowIndex].secondary"
+                  viewType="expanded" />
+              </div>
+            </ng-container>
+          </ng-template>
+        </ngx-datatable-column>
+      </ng-template>
+
+      <!-- Arrow fixed -->
+      <ngx-datatable-column
+        [sortable]="false"
+        [canAutoResize]="false"
+        [draggable]="false"
+        [resizeable]="false"
+        [width]="arrowColWidth"
+        [minWidth]="arrowColWidth">
+        <ng-template let-sort="sortFn" ngx-datatable-header-template let-disable$="disable$" />
+        <ng-template let-row="row" ngx-datatable-cell-template let-disable$="disable$">
+          <div class="event-table__container">
+            <div class="event-table__arrow">
+              <i class="element-right-2 icon"></i>
+            </div>
+          </div>
+        </ng-template>
+
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="event-table event-table-minified" [ngClass]="{'coloredRows': coloredRows, 'alwaysActive': isInInvestigativeMode }"
+  *ngIf="minifiedTable && !compactMode">
+  <ngx-datatable
+  #table
+  class="table-element eventlist-table elevation-1"
+  [cssClasses]="tableConfig.cssClasses"
+
+  [rows]="rowsMinified"
+  columnMode="force"
+  [headerHeight]="0"
+  [footerHeight]="0"
+  [rowHeight]="getRowHeight(true)"
+  [scrollbarV]="true"
+  [selectionType]="allowMultiselection? 'multi' : 'single'"
+  [rowClass]="getTableRowClass"
+  [disableRowCheck]="isRowDisabledMinified"
+
+  [selected]="selectedMini"
+  [reorderable]="true"
+  [externalSorting]="true"
+  [loadingIndicator]="isLoading > 0"
+  (resize)="onResize($event)"
+  (select)="onSelectMini($event)"
+  (sort)="onSort($event)"
+>
+    <ngx-datatable-column
+      name="Icon"
+      [width]="80"
+      [minWidth]="80"
+      [sortable]="false"
+      [canAutoResize]="false"
+      [draggable]="false"
+      [resizeable]="false"
+    >
+      <ng-template ngx-datatable-cell-template let-value="value" let-disable$="disable$">
+        <div class="event-table__container">
+          <div class="event-table__row mb-1">
+            <div class="event-table__icon-mini">
+              <si-circle-status
+              class="event-table__circle-icon"
+              [icon]="value.iconData"
+              [blink]="value.state === 'Unprocessed' || value.state === 'UnprocessedWithTimer'"
+              [color]="value.pipeColor"
+              [eventOut]="value.el.customData.eventItem.direction === 'Out'" />
+            </div>
+          </div>
+          <div class="event-table__row">
+            <div
+            [style.justifyContent]="value.recursation > 0? null: 'center'"
+            [style.padding-right]="value.recursation > 0? '0': '12'"
+            [style.margin]="value.recursation > 0? '-4 -4 0 -4': '0'"
+            class="event-table__state">
+              <span class="double-icon">
+                <i class="{{value.stateIcon}} {{value.stateIconColor}} icon {{( value.el.customData.eventItem.srcState === 'Quiet'?'grey-icon':'active')}}"></i>
+                <i *ngIf="value.stateSecondaryIcon" class="{{value.stateSecondaryIcon}} {{value.stateSecondaryIconColor}} tick-icon"></i>
+              </span>
+              <span>
+                <i *ngIf="value.el.customData.eventItem.oPId != null" class="icon element-list"></i>
+              </span>
+              <span *ngIf="value.recursation > 0" class="badge bg-secondary"  style="padding-inline: 2px; background: none !important;">{{value.recursation}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Meta">
+      <ng-template ngx-datatable-cell-template let-value="value" let-disable$="disable$">
+        <div class="event-table__container">
+          <div class="event-table__row mb-5 overflow-ellipsis">
+            <div class="si-title-2" >{{ value.value }}</div>
+          </div>
+          <div class="event-table__row event-table__row-arrow">
+            <div style="display: flex; flex-direction: column">
+            <div
+              #rowDiv
+              class="si-body-2 overflow-ellipsis"
+              [siTooltip]="checkIfEllipsis(rowDiv) ? value.title : undefined"
+            >
+              {{ value.title }}
+            </div>
+            <div
+              #rowDiv2
+              class="si-body-2 overflow-ellipsis color-secondary"
+              [siTooltip]="checkIfEllipsis(rowDiv2) ? value.el.cellData.get('srcPath') : undefined"
+            >
+              {{ value.el.cellData.get("srcPath") }}
+            </div>
+            </div>
+            <i class="element-right-2 icon"></i>
+          </div>
+          <!-- Date & timer -->
+          <div class="event-table__row text-end pe-4">
+            <!-- Timer -->
+              <div class="event-table__row mb-2 si-caption" *ngIf="value.timer !== '0001-01-01T00:00:00Z'
+              && value.timer
+              && calculateTimer(value.el.customData.eventItem) !== ': 00:00' ">
+                <div class="event-table__timer text-end" >
+                  <i class="element-timer icon"></i>
+                  <span>{{calculateTimer(value.el.customData.eventItem)}}</span>
+                </div>
+              </div>
+              <!-- No timer, show date -->
+              <div class="event-table__row mb-2 si-caption"
+              *ngIf="value.date
+              && (!value.timer
+              || calculateTimer(value.timer) === ': 00:00'
+              || value.timer === '0001-01-01T00:00:00Z'
+              )">
+                <div class="event-table__date  text-end" >
+                    <div class="si-body-2 color-secondary">
+                      {{value.date}}
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  </div>
+</div>
+

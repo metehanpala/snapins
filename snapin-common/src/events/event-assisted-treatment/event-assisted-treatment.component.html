@@ -1,0 +1,167 @@
+<!--USER TOP BAR CARD-->
+<div id="wrapper">
+  <div class="card elevation-1 " id="header">
+    <div class="card-body">
+      <h2 class="card-title"><b>{{evSelected.cause}}</b></h2>
+      <p class="card-text"></p>
+    </div>
+  </div>
+
+  <div id="content">
+    <!--INFO COLAPSE PANEL-->
+    <div class="card elevation-1 col mb-6" style="margin-left: 50px; margin-top: 9px; margin-right: -4.8px;">
+      <si-collapsible-panel heading="Get situational awareness" headerCssClasses="bg-base-1" icon="element-issue"
+      style="padding: 2px;">
+
+      <!--left content-->
+      <div class="bg-base-1 p-2 hfw-flex-container-column hfw-flex-item-grow snapin-container snapin-container-overflow-auto
+      snapin-full-height content">
+      <div class="row" style="margin-top: 5px; overflow: hidden;">
+        <div class="column">
+          <gms-event-info
+            [EventsSelected]="selectedEvents"
+            [IsInInvestigativeMode]="isInInvestigativeMode"
+            [LocationInfoVisible]="true"
+            [WhereSectionVisible]="true"
+            [WhenSectionVisible]="true"
+            [DetailsSectionVisible] = "false"
+            [NotesSectionVisible] = "false"
+            [SnapInId]="snapInId"
+            (goToSystem)="goToSystem($event)"
+            (goToInvestigativeTreatment)="goToInvestigativeTreatment($event)"
+            (exitFromInvestigativeTreatment)="exitFromInvestigativeTreatment($event)" />
+        </div>
+
+        <!--center content-->
+        <div class="column"></div>
+  
+        <!--right content-->
+        <div class="column">
+          <i _ngcontent-gdf-c81="" class="icon ms-n2 me-2 element-issue"
+          ng-reflect-ng-class="element-issue">
+          </i>
+          <span _ngcontent-cwu-c81="" style="color: gray; font-size: 12;">Information</span>
+          <div style="word-break: break-word;">
+            <p style="margin-left: 25px;">{{evSelected.informationalText}}</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      </si-collapsible-panel>
+    </div>
+
+    <!--STEPS SOLUTIONS OF PROBLEM-->
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step01</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step02</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step03</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step04</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step05</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step06</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step07</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step08</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step09</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step10</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step11</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step12</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-left: 10px; margin-right: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step13</h5>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card elevation-1 col mb-6" style="margin-right: -4px; margin-left: -4.8px;">
+        <div class="card-body">
+          <h5 class="card-title">Step14</h5>
+        </div>
+      </div>
+    </div>      
+  
+  </div>
+</div>

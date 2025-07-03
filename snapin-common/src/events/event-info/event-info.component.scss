@@ -1,0 +1,560 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.event-info-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.btn-flat-ovrd {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-width: 0 !important;
+  outline-width: 0 !important;
+  color: $element-text-secondary;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    color: $element-text-primary;
+  }
+
+  &:active,
+  &.popover-open {
+    color: $element-text-active;
+  }
+
+  &.popover-disabled {
+    color: $element-text-disabled;
+    cursor: unset !important;
+  }
+}
+
+.white-bg {
+  background-color: var(--element-base-1);
+}
+
+.container-wrap-collapsed {
+  flex-wrap: nowrap;
+}
+
+.objInfo-btns-toolbar {
+  display: flex;
+}
+
+.event-info-background-color {
+  background-color: $element-ui-5;
+}
+
+.event-info-banner-background-color {
+  background-color: $element-ui-4;
+}
+
+.event-info-accordion-container-color {
+  background-color: $element-ui-5;
+}
+
+.event-info-note-border-color {
+  border-color: $element-ui-4;
+}
+
+.events-grid-border-color {
+  border-color: $element-ui-4;
+}
+
+.events-grid-style {
+  margin: 4px 8px;
+  flex: 1 1 auto;
+}
+
+.events-grid-bottom-header {
+  border-bottom: 1px solid $element-ui-4;
+}
+
+.events-grid-header {
+  border-bottom: 4px solid $element-ui-4;
+}
+
+.event-info-src-object-icon-color {
+  fill: $element-ui-1;
+}
+
+.event-info-source-icon-quiet-color {
+  color: $element-ui-3;
+}
+
+.event-info-goto-system-icon-color {
+  color: $element-status-information;
+}
+
+.event-info-status-ack-icon-color {
+  color: $element-ui-2;
+}
+
+.event-info-divider-color {
+  border-color: $element-ui-3;
+}
+
+.event-info-bannertexts-color-and-fonts {
+  font-size: 14px;
+  color: $element-ui-1;
+  margin: 0px;
+}
+
+.event-info-show-path {
+  cursor: pointer;
+}
+
+.event-info-show-more {
+  cursor: pointer;
+}
+
+.event-info-refresh-color-and-font {
+  color: $element-status-information;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.event-info-label {
+  display: grid;
+  margin: auto;
+}
+
+.event-info {
+  padding: 0;
+  overflow-x: hidden;
+
+
+
+  .event-info-flex {
+    min-height: 40px;
+    margin-bottom: 0;
+    padding-top: 3px;
+    padding-bottom: 6px;
+    text-overflow: ellipsis;
+
+    &:last-child {
+      padding-right: 0px;
+    }
+  }
+
+  .overflow-ellipsis,
+  .overflow-ellipsis p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .row {
+    flex-wrap: nowrap;
+    margin-right: -15px;
+  }
+
+  .column.left {
+    width: 40px;
+
+  }
+
+  .column.right {
+    flex: 1 1 auto;
+  }
+
+  .gray-divider {
+    display: block;
+    height: 1px;
+    border-width: 1px 0px 0px 0px;
+    border-style: solid;
+    margin-top: 0.1px;
+    margin-bottom: 0.1px;
+    padding: 0;
+  }
+
+  [class*='col-'] {
+    min-height: 32px;
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .what-icon {
+    @extend .icon;
+  }
+
+  .goto-system-icon {
+    @extend .icon;
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    left: 15px;
+  }
+
+  .where-investigative-button {
+    margin-top: 5;
+  }
+
+  .where-assisted-button {
+    margin-top: 5;
+  }
+
+  .source-icon {
+    @extend .icon;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+  }
+
+  .source-no-icon {
+    @extend .source-icon;
+    opacity: 0;
+  }
+
+  .status-ack-icon {
+    position: relative;
+    top: -23px;
+    left: 1px;
+    z-index: 2;
+  }
+
+  .status-acked-icon {
+    @extend .status-ack-icon;
+    opacity: 1;
+    font-size: 22px;
+  }
+
+  .status-unacked-icon {
+    @extend .status-ack-icon;
+    opacity: 0;
+  }
+
+  .event-info-button-container {
+
+    .button-stack {
+      flex-direction: row-reverse;
+
+      div {
+        margin-top: 5px;
+      }
+
+      &-col {
+        button {
+          margin-right: 5px;
+        }
+
+        &-double {
+          flex-direction: row-reverse;
+
+          button {
+            margin-right: 5px;
+          }
+        }
+      }
+
+      span i {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .event-info-banner {
+    padding: 0px 0px 0px 25px;
+  }
+
+  p {
+    word-wrap: break-word;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .event-info-flex-with-location {
+    display: flex;
+    min-height: 32px;
+
+    button {
+      background: none;
+      text-decoration: underline;
+      text-align: left;
+      margin-left: -5px;
+      border: none;
+      color: $element-status-information;
+      outline: none;
+    }
+  }
+
+  .panel-group {
+    border: none;
+  }
+
+  .btn-icon {
+    font-size: 25;
+  }
+
+  .investigative-treatment {
+    .icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  .assisted-treatment {
+    .icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  .event-info-accordions {
+
+    .event-info-accordion-heading {
+      background-color: $element-base-0;
+      width: auto;
+      height: 40px;
+      margin-top: -10;
+      margin-left: -15;
+      margin-right: -15;
+      margin-bottom: -10;
+      padding-top: 10;
+    }
+
+    .event-info-accordion-heading:hover {
+      background-color: $element-ui-4;
+    }
+
+    .panel-group {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: none;
+    }
+
+    .right-align {
+      float: right;
+    }
+  }
+
+  .event-info-filler {
+    height: 100%;
+  }
+
+  .btn-circle {
+    width: 24px;
+    height: 24px;
+    min-width: unset;
+    min-height: unset;
+    text-align: center;
+    border: 0;
+    padding: 0;
+    margin-left: 5;
+    background-image: none;
+  }
+
+  .left-column {
+
+    margin-bottom: 5px;
+    width: 40px;
+    flex: 0 0 40px;
+
+    p {
+      display: inline;
+    }
+
+    span {
+      margin-top: 5px;
+    }
+
+    i {
+      font-size: 32px;
+    }
+
+    img {
+      width: 32px;
+      margin: auto;
+    }
+
+  }
+
+  .event-info-notes-container {
+    padding: 8px;
+    margin-top: 5px;
+    border-width: 1px;
+    border-style: solid;
+    min-height: 100px;
+    height: auto;
+
+    body {
+      margin-top: 2px;
+      white-space: pre-line;
+      word-wrap: break-word;
+      color: $element-ui-1;
+      background-color: $element-ui-5;
+      height: auto;
+    }
+
+    caption {
+      color: $element-ui-2;
+      padding-bottom: 0px;
+      padding-top: 0px;
+    }
+
+  }
+
+  .btn.btn-xs.btn-white {
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .event-info-col {
+    width: 100%;
+  }
+}
+
+:host ::ng-deep .event-info {
+  .event-info__circle-status .status-indication {
+    width: 33px !important;
+    height: 33px !important;
+  }
+}
+
+.send-btn-disabled,
+.send-btn-disabled:hover {
+  pointer-events: none;
+  color: $element-text-disabled;
+  cursor: unset !important;
+}
+
+#StatusInfo {
+  margin-top: 6px;
+}
+
+.doubleText {
+  display: inline-flex;
+  margin-top: 10px;
+}
+
+.doubleBtn {
+  display: inline-flex;
+  margin-bottom: 10px;
+}
+
+#btnCommandsCol {
+  margin-left: 14px;
+}
+
+#btnCommandsRow {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: -105px;
+  margin-right: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.investigativeBtn {
+  padding: 11px 50.5px;
+  margin-bottom: 10px;
+}
+
+.fullSilBtn {
+  text-align: left;
+  padding: 6px 91.5px;
+}
+
+.fullUnsilBtn {
+  text-align: left;
+  padding: 6px 83.5px;
+}
+
+.multiselbanner {
+  padding: 0 0 0 17px;
+}
+
+.div-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.showMore {
+  color: $element-ui-1;
+}
+
+.defaultUserCommand {
+
+  .button-stack {
+    flex-direction: row-reverse;
+
+    div {
+      margin-top: 5px;
+    }
+
+    &-col {
+      button {
+        padding: 8px 71.5px;
+        margin-bottom: 10px;
+      }
+
+      &-double {
+        flex-direction: row-reverse;
+
+        button {
+          padding: 8px 71.5px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    span i {
+      font-size: 24px;
+    }
+  }
+}
+
+.showMore:focus {
+  box-shadow: none !important;
+}
+
+.si-caption {
+  white-space: pre-wrap !important;
+}
+
+.containerActions {
+  align-self: center;
+  height: 34px;
+}
+
+.containerActionsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondaryDiv {
+  display: flex;
+  height: 41px;
+  margin-left: 4px;
+  margin-right: 6px;
+  border: 1px solid $element-action-secondary-border;
+  align-self: center;
+}
+
+.secondaryDiv:hover {
+  background: $element-action-secondary-hover;
+}
+
+.popoverBtnDiv {
+  width: 205px;
+}
+
+.popoverBtn {
+  width: inherit !important;
+  margin-bottom: 4px;
+}
+
+.popoverContainerActions {
+  margin-left: -29px !important;
+  margin-right: 15px !important;
+  margin-bottom: 8px !important;
+}

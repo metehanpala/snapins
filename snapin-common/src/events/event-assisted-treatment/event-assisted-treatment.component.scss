@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+.ei-container {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+#content::-webkit-scrollbar {
+  display: none;
+}
+
+#content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Required */
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#wrapper {
+  height: 65vh;
+  display: grid;
+  grid-template-rows: 30px 1fr 30px;
+}
+
+#content {
+  overflow-y: scroll;
+}
+
+/* Optional */
+#wrapper > * {
+  padding: 5px;
+}
+/*
+#header {
+  background-color: #ff0000ff;
+}
+
+#content {
+  background-color: #00ff00ff;
+} */

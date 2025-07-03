@@ -1,0 +1,933 @@
+<!-- Events Info -->
+<!-- Header Section -->
+
+<div>
+    <div #infoContainer class="{{containerClass}} event-info-container white-bg rounded-2">
+        <div class="event-info-label" *ngIf="displaySnapinControls === false || selectedEvents.length === 0">
+            <si-empty-state icon="element-alarm" heading="" [content]="noEventSelected" />
+        </div>
+
+        <div class="event-info" *ngIf="displaySnapinControls === true && selectedEvents.length > 0">
+
+            <div class="row">
+                <div class="column left">
+                    <button type="button" *ngIf="isSubsequentEventSelected && !IsInPopoverMode && !IsInAssistedMode" style="border: none"
+                        class="btn btn-secondary me-6" (click)="onDeselectSubsequent()">
+                        <span>
+                            <em class="element-left-2 btn-icon"></em>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- event-details large size -->
+            <ng-container *ngIf="containerWidth > 460; else columnView;">
+                <!-- TITLE SECTION -- LARGE SIZE !-->
+                <div>
+                    <div id="WhatStatus" style="display:flex; justify-content: space-between;">
+                        <div class="row event-info-background-color" *ngIf="selectedEvents.length === 1">
+                            <div class="column left">
+                                <i class="what-icon {{selectedEventDisciplineIcon}}" [style.margin-left]="6"
+                                    [style.margin-top]="13">
+                                </i>
+                            </div>
+
+                            <div>
+                                <div class="column center px-4 ms-4" style="margin-top: 5px;">
+                                    <div *ngIf="selectedEvent.cause !== '' " class="event-info-flex">
+                                        <p class="si-title-1" style="white-space: nowrap; margin-top: 8px;" [style.width]="containerWidth - 338">
+                                            {{selectedEvent.cause}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="selectedEvents.length > 1">
+                            <div class="event-info-banner" style="align-self: center">
+                                <p class="event-info-bannertexts-color-and-fonts">{{multipleSelection}}</p>
+                                <p class="event-info-bannertexts-color-and-fonts">{{eventsSelected}}</p>
+                            </div>
+                        </div>
+                        <!-- Container actions for multiple events !-->
+                        <div class="containerActionsDiv" *ngIf="containerActions && ((selectedEvents.length === 1 && isContainerEvent) || selectedEvents.length > 1)">
+                            <div style="display: flex; flex-direction: row" *ngIf="containerActions.primary.length > 0">
+                                <button *ngIf="containerActions.primary.length > 0" class="btn btn-primary" type="button" style="width: 220px; height: 41px; align-self: center" (click)="onPrimaryClick(containerActions.primary[0].action)">
+                                    <span class="btn-icon" [ngClass]="containerActions.primary[0].icon" style="margin-top: 3px;"></span>
+                                    <span>{{containerActions.primary[0].title}}</span>
+                                </button>
+                                <div class="secondaryDiv" *ngIf="containerActions.secondary.length > 0">
+                                    <si-content-action-bar class="containerActions"
+                                      (click)="$event.stopPropagation()"
+                                      [primaryActions]="[]"
+                                      [secondaryActions]="containerActions.secondary"
+                                      viewType="expanded" />
+                                </div>
+                            </div>
+
+                            <!-- investigative command -->
+                            <button class="btn investigativeBtn btn-secondary" type="button"
+                                style="width: 266px; height: 41px; margin-top: 4px;" *ngIf="!displayAssistedCommand && !isMobileView && selectedEvents.length === 1"
+                                (click)="goToInvestigativeCommand()">
+                                <i class="investigative-treatment icon element-logout"
+                                    *ngIf="IsInInvestigativeMode"></i>
+                                <b *ngIf="IsInInvestigativeMode">{{leave}}</b>
+                                <i class="investigative-treatment icon element-search"
+                                    *ngIf="!IsInInvestigativeMode"></i>
+                                <b *ngIf="!IsInInvestigativeMode">{{investigateSystem}}</b>
+                            </button>
+                            <!-- assisted command -->
+                            <button class="btn investigativeBtn btn-secondary" type="button"
+                                style="width: 266px; height: 41px; margin-top: 4px;" *ngIf="displayAssistedCommand && !isMobileView && selectedEvents.length === 1"
+                                (click)="goToAssistedCommand()">
+                                <i class="assisted-treatment icon element-logout"
+                                    *ngIf="IsInAssistedMode"></i>
+                                <b *ngIf="IsInAssistedMode">{{leave}}</b>
+                                <i class="assisted-treatment icon element-search"
+                                    *ngIf="!IsInAssistedMode"></i>
+                                <b *ngIf="!IsInAssistedMode">{{assistedTreatment}}</b>
+                            </button>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- should display this view when is a SubsequentEvents -->
+                    <ng-container *ngIf="selectedEvents.length === 1 && isContainerEvent; else isNotMultiSelection;">
+                        <div id="SubsequentEvents" *ngIf="selectedEvents.length === 1 && isContainerEvent && !IsInAssistedMode">
+                            <div class="row event-info-background-color">
+                                <div class="column left" *ngIf="!IsInPopoverMode">
+                                    
+                                </div>
+                                <div class="events-grid-border-color events-grid-style" [style.width]="containerWidth"
+                                    [style.height]="eventsGridHeight"
+                                    style="border-radius: 5px; border-width: 1px; border-style: solid; margin-top: 30px;
+                                    margin-left: 20px; margin-right: 15px"
+                                    *ngIf="isContainerEvent">
+                                    <div class="events-grid-border-color events-grid-header" style="height: 30px;">
+                                        <p style="text-align: left; margin-top: 12px; margin-left:4px;"
+                                            class="si-title-2 text-active">{{eventGridTitle}}</p>
+                                    </div>
+                                    <div [style.height]="eventsGridHeight - 80" class="events-grid-bottom-header">
+                                        <gms-event-grid [eventFilter]="eventFilter" [fullSnapinID]="SnapInId"
+                                            [IsInPopoverMode]="IsInPopoverMode" [disableGroupEvents]="true"
+                                            [compactMode]="true" [visibleColumns]="eventGridVisibleColumns"
+                                            [scrollable]="eventsGridScrollable"
+                                            (selectedEventsEv)="onEventSelected($event)"
+                                            (rowHeight)="onRowHeight($event)">Event
+                                            grid is not loaded</gms-event-grid>
+                                    </div>
+                                    <div class="events-grid-border-color" style="height: 40px;">
+                                        <p class="si-title-2 text-primary event-info-show-more"
+                                            style="text-align: center; margin-top: 10px;"
+                                            (click)="onToggleEventsGrid()">
+                                            {{eventsGridShowText}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="StatusInfo" *ngIf="selectedEvents.length === 1 && !isContainerEvent">
+                            <div class="event-info-background-color container-wrap-collapsed">
+                                <div class="column left row">
+                                    <div>
+                                        <i class="{{getSourceStateIconClass(selectedEvent.srcState, selectedEvent.state)}}"
+                                            [style.margin-left]="6" [style.margin-top]="13"></i>
+                                        <i *ngIf="!isEventReadyToBeReset(selectedEvent.state)"
+                                            [ngClass]="{'status-acked-icon': isEventAcked(selectedEvent.state), 'status-unacked-icon': !isEventAcked(selectedEvent.state) }"
+                                            class="event-info-status-ack-icon-color element-alarm-tick"
+                                            [style.margin-left]="6"></i>
+                                    </div>
+
+                                    <div class="column center event-info-flex ms-5 event-info-background-color"
+                                        *ngIf="WhenSectionVisible && (selectedEvents.length === 1 && !isContainerEvent)"
+                                        [ngClass]="[containerWidth < 360 ? 'buttonBottom' : 'buttonInline']">
+                                        <div class="event-info-flex doubleText text"
+                                            [style.margin-right]="(containerWidth - 475)">
+                                            <p class="si-caption" style="overflow: visible" [style.margin-right]="15">
+                                                {{getEventDate(selectedEvent)}}
+                                            </p>
+                                            <p class="si-caption" style="overflow: visible; width: 200px">
+                                                {{getEventTime(selectedEvent)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-info-flex">
+                                <p class="si-caption text-secondary">{{eventSrcLocationTitle}}</p>
+                                <p class="si-caption">{{getEventSrcPath(selectedEvent)}}</p>
+                            </div>
+                            <hr class="gray-divider" />
+                        </div>
+                    </ng-container>
+
+                    <!-- should display this view when is not a SubsequentEvents -->
+                    <ng-template #isNotMultiSelection>
+                        <div id="StatusInfo" *ngIf="selectedEvents.length === 1 && isContainerEvent === false">
+                            <div class="event-info-background-color container-wrap-collapsed">
+                                <div class="column left row">
+                                    <div>
+                                        <i class="{{getSourceStateIconClass(selectedEvent.srcState, selectedEvent.state)}}"
+                                            [style.margin-left]="6" [style.margin-top]="13"></i>
+                                        <i *ngIf="!isEventReadyToBeReset(selectedEvent.state)"
+                                            [ngClass]="{'status-acked-icon': isEventAcked(selectedEvent.state), 'status-unacked-icon': !isEventAcked(selectedEvent.state) }"
+                                            class="event-info-status-ack-icon-color element-alarm-tick"
+                                            [style.margin-left]="6"></i>
+                                    </div>
+
+                                    <div class="column center event-info-flex ms-5 event-info-background-color"
+                                        *ngIf="WhenSectionVisible && (selectedEvents.length === 1 && isContainerEvent === false)"
+                                        [ngClass]="[containerWidth < 360 ? 'buttonBottom' : 'buttonInline']">
+                                        <div class="event-info-flex doubleText text"
+                                            [style.margin-right]="(containerWidth - 475)">
+                                            <p class="si-caption" style="overflow: visible" [style.margin-right]="15">
+                                                {{getEventDate(selectedEvent)}}
+                                            </p>
+                                            <p class="si-caption" style="overflow: visible; width: 200px">
+                                                {{getEventTime(selectedEvent)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BUTTONS - LARGE SIZE !-->
+                        <div id="btnCommandsRow" *ngIf="WhereSectionVisible && selectedEvents.length === 1">
+                            <div id="WhereStatus">
+                                <div class="row event-info-background-color">
+                                    <div class="column center overflow-ellipsis">
+                                        <!-- if user profile is UL or ULC or fs_en or tbs_en -->
+                                        <ng-container>
+                                            <!-- Commands -->
+                                            <div class="event-info-button-container">
+                                                <div class="row event-info-background-color">
+                                                    <div class="column center">
+                                                        <div class="button-stack doubleBtn"
+                                                            [ngClass]="[containerWidth < 450? 'button-stack-col': 'button-stack-col-double' ]">
+                                                            <!-- acknowledge command -->
+                                                            <button class="btn" type="button"
+                                                                [style.width]="(silUnsilCommand && ackCommandEnabled)? '151' : '256'"
+                                                                [ngStyle]=" !ackCommandEnabled && {'display':'none'}"
+                                                                [attr.disabled]="ackCommandEnabled === true ? null : true"
+                                                                [ngClass]="{'btn-primary': ackCommandEnabled, 'btn-secondary': !ackCommandEnabled}"
+                                                                [class.hidden]="eventSelected !== 'ack' ? null : ackCommandEnabled"
+                                                                (click)="onSelectCommand('ack', selectedEvent)">
+                                                                <span>
+                                                                    <em class="element-alarm-tick btn-icon"></em>
+                                                                    <span class="btn-text">{{ackCommandText}}</span>
+                                                                </span>
+                                                            </button>
+                                                            <!-- reset command -->
+                                                            <button class="btn" type="button"
+                                                                [style.width]="(silUnsilCommand && resCommandEnabled)? '151' : '256'"
+                                                                [ngStyle]=" !resCommandEnabled && {'display':'none'}"
+                                                                [attr.disabled]="resCommandEnabled === true ? null : true"
+                                                                [ngClass]="{'btn-primary': resCommandPrimary, 'btn-secondary': !resCommandPrimary}"
+                                                                [class.hidden]="eventSelected !== 'reset' ? null : resCommandPrimary"
+                                                                (click)="onSelectCommand('reset', selectedEvent)">
+                                                                <span>
+                                                                    <em class="element-undo btn-icon"></em>
+                                                                    <span class="btn-text">{{resetCommandText}}</span>
+                                                                </span>
+                                                            </button>
+                                                            <!-- silence command -->
+                                                            <ng-container
+                                                                *ngIf="eventContainDoubleCommand(); else silBlockIconAndText;">
+                                                                <button class="btn btn-secondary" type="button"
+                                                                    [ngStyle]=" silUnsilCommand !== 1 && {'pointer-events':'none'}"
+                                                                    [attr.hidden]="silUnsilCommand === 1 ? null : true"
+                                                                    *ngIf="silUnsilCommand !== 2; else unsilBlock;"
+                                                                    (click)="onSelectCommand('silence', selectedEvent)">
+                                                                    <span>
+                                                                        <em class="element-horn-off btn-icon"></em>
+                                                                    </span>
+                                                                </button>
+                                                            </ng-container>
+
+                                                            <ng-template #silBlockIconAndText>
+                                                                <button class="btn fullSilBtn btn-secondary"
+                                                                    type="button"
+                                                                    [ngStyle]=" silUnsilCommand !== 1 && {'pointer-events':'none'}"
+                                                                    [attr.hidden]="silUnsilCommand === 1 ? null : true"
+                                                                    *ngIf="silUnsilCommand !== 2; else unsilBlock;"
+                                                                    (click)="onSelectCommand('silence', selectedEvent)">
+                                                                    <span>
+                                                                        <em class="element-horn-off btn-icon"></em>
+                                                                        <span
+                                                                            class="btn-text">{{silenceCommandText}}</span>
+                                                                    </span>
+                                                                </button>
+                                                            </ng-template>
+                                                            <!-- unsilence command -->
+                                                            <ng-template #unsilBlock>
+                                                                <ng-container
+                                                                    *ngIf="eventContainDoubleCommand(); else unsilBlockIconAndText;">
+                                                                    <button class="btn btn-secondary" type="button"
+                                                                        *ngIf="silUnsilCommand === 2"
+                                                                        (click)="onSelectCommand('unsilence', selectedEvent)">
+                                                                        <span>
+                                                                            <em class="element-horn btn-icon"></em>
+                                                                        </span>
+                                                                    </button>
+                                                                </ng-container>
+
+                                                                <ng-template #unsilBlockIconAndText>
+                                                                    <button class="btn fullUnsilBtn btn-secondary"
+                                                                        type="button"
+                                                                        *ngIf="silUnsilCommand === 2 && (silUnsilCommandPrimary && !ackCommandEnabled) ||
+                                                                        (silUnsilCommandPrimary && !resCommandPrimary); else {'dislay':'none'};"
+                                                                        (click)="onSelectCommand('unsilence', selectedEvent)">
+                                                                        <span>
+                                                                            <em class="element-horn btn-icon"></em>
+                                                                            <span
+                                                                                class="btn-text">{{unsilenceCommandText}}</span>
+                                                                        </span>
+                                                                    </button>
+                                                                </ng-template>
+                                                            </ng-template>
+                                                            <!-- close command -->
+                                                            <button class="btn btn-default" type="button"
+                                                                [style.width]="(silUnsilCommand && resCommandEnabled)? '152' : '256'"
+                                                                [ngStyle]=" !closeCommandEnabled && {'display':'none'}"
+                                                                [ngClass]="{'btn-primary': closeCommandPrimary, 'btn-secondary': !closeCommandPrimary}"
+                                                                [attr.disabled]="closeCommandEnabled === true ? null : true"
+                                                                [class.hidden]="eventSelected !== 'close' ? null : !closeCommandPrimary"
+                                                                (click)="onSelectCommand('close', selectedEvent)">
+                                                                <span>
+                                                                    <em class="element-cancel btn-icon"></em>
+                                                                    <span class="btn-text">{{closeCommandText}}</span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+
+                                        <div *ngIf="LocationInfoVisible">
+                                            <!-- investigative command -->
+                                            <button class="btn investigativeBtn btn-secondary" type="button"
+                                                [style.width]="256" *ngIf="!displayAssistedCommand && !isMobileView"
+                                                (click)="goToInvestigativeCommand()">
+                                                <i class="investigative-treatment icon element-logout"
+                                                    *ngIf="IsInInvestigativeMode"></i>
+                                                <b *ngIf="IsInInvestigativeMode">{{leave}}</b>
+                                                <i class="investigative-treatment icon element-search"
+                                                    *ngIf="!IsInInvestigativeMode"></i>
+                                                <b *ngIf="!IsInInvestigativeMode">{{investigateSystem}}</b>
+                                            </button>
+                                            <!-- assisted command -->
+                                            <button class="btn investigativeBtn btn-secondary" type="button"
+                                                [style.width]="256" *ngIf="displayAssistedCommand && !isMobileView"
+                                                (click)="goToAssistedCommand()">
+                                                <i class="assisted-treatment icon element-logout"
+                                                    *ngIf="IsInAssistedMode"></i>
+                                                <b *ngIf="IsInAssistedMode">{{leave}}</b>
+                                                <i class="assisted-treatment icon element-search"
+                                                    *ngIf="!IsInAssistedMode"></i>
+                                                <b *ngIf="!IsInAssistedMode">{{assistedTreatment}}</b>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <!-- NAME-SOURCE-LOCATION SECTION --- LARGE SIZE !-->
+                    <hr class="gray-divider" style="margin-top: 23px" *ngIf="selectedEvents.length === 1" />
+                    <div style="display:flex; justify-content: right; margin-right: -30px;" *ngIf="selectedEvents.length === 1">
+                        <button type="button" class="btn btn-tertiary me-6 showmore" (click)="onShowMore($event);">
+                            <span *ngIf="showMoreButton === false">{{seeMore}} <i
+                                    class="icon element-down-2"></i></span>
+                            <span *ngIf="showMoreButton === true">{{seeLess}} <i class="icon element-up-2"></i></span>
+                        </button>
+                    </div>
+                    <div class="row event-info-background-color" *ngIf="selectedEvent && showMoreButton === true && selectedEvents.length === 1">
+                        <div class="column left">
+                            <i class="icon event-info-src-object-icon-color {{whereIcon}}" [style.margin-left]="6"
+                                [style.margin-top]="13"></i>
+                        </div>
+
+                        <div class="column center overflow-ellipsis" style="padding-left: 20px">
+                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                <div class="event-info-flex" style="margin-top:2px; margin-left:-3px">
+                                    <p *ngIf="getSrcObjectName().length > 0" class="si-caption si-body-2">
+                                        {{getSrcObjectName()}}</p>
+                                    <p *ngIf="getSrcObjectDescription().length > 0" class="si-caption text-secondary">
+                                        {{getSrcObjectDescription()}}</p>
+                                </div>
+                                <div style="display: flex; flex-direction: row; margin-top: 6;">
+
+                                    <gms-about-popover style="flex: 0 0 auto;" [clientId]="SnapInId"
+                                        [objectList]="selectedBrowserObjects"
+                                        (openStateChanged)="isObjInfoOpen = $event">
+                                        <div role="button" class="btn-circle btn-flat-ovrd" tabindex="0">
+                                            <i class="element-info"></i>
+                                        </div>
+                                    </gms-about-popover>
+
+                                    <div role="button"
+                                        style="font-size: 30px; align-items: normal; margin-left: 10px; margin-right: 44px; margin-top:-4px;"
+                                        class="btn-flat-ovrd" (click)="goToSystemCommand()" tabindex="0">
+                                        <i class="element-send-to"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="event-info-flex" *ngIf="getEventSrcSource().length > 0">
+                                <p class="si-caption text-secondary">{{eventSrcSourceTitle}}</p>
+                                <p class="si-caption">{{getEventSrcSource()}}</p>
+                            </div>
+                            <div class="event-info-flex">
+                                <p class="si-caption text-secondary">{{eventSrcLocationTitle}}</p>
+                                <p class="si-caption">{{getEventSrcPath(selectedEvent)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="gray-divider" *ngIf="selectedEvent && showMoreButton === true && selectedEvents.length === 1" />
+                </div>
+            </ng-container>
+
+            <!-- event details small size -->
+            <ng-template #columnView>
+                <!-- TITLE SECTION -- SMALL SIZE -->
+                <div>
+                    <div id="WhatStatus">
+                        <div class="row event-info-background-color" style="margin-right: 0px !important">
+                            <div class="column left" *ngIf="selectedEvents.length === 1">
+                                <i class="what-icon {{selectedEventDisciplineIcon}}" [style.margin-left]="6"
+                                    [style.margin-top]="13">
+                                </i>
+                                <div id="StatusInfo" *ngIf="selectedEvents.length === 1 && isContainerEvent === false">
+                                    <div class="container-wrap-collapsed">
+                                        <div class="column left row">
+                                            <div>
+                                                <i class="{{getSourceStateIconClass(selectedEvent.srcState, selectedEvent.state)}}"
+                                                    [style.margin-left]="6" [style.margin-top]="13"></i>
+                                                <i *ngIf="!isEventReadyToBeReset(selectedEvent.state)"
+                                                    [ngClass]="{'status-acked-icon': isEventAcked(selectedEvent.state), 'status-unacked-icon': !isEventAcked(selectedEvent.state) }"
+                                                    class="event-info-status-ack-icon-color element-alarm-tick"
+                                                    [style.margin-left]="6"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- align text and button in column view -->
+                            <div style="margin-left: -11px">
+                                <div class="column center px-4 ms-4" *ngIf="selectedEvents.length === 1">
+                                    <div *ngIf="selectedEvent.cause !== '' " class="event-info-flex">
+                                        <p class="si-title-1" [style.width]="containerWidth - 48"
+                                            style="white-space: nowrap; margin-right: 290px; margin-top: 13px;">
+                                            {{selectedEvent.cause}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="column center event-info-flex ms-5 event-info-background-color"
+                                    *ngIf="WhenSectionVisible && (selectedEvents.length === 1 && isContainerEvent === false)"
+                                    [ngClass]="[containerWidth < 360 ? 'buttonBottom' : 'buttonInline']">
+                                    <div class="event-info-flex doubleText text"
+                                        [style.margin-right]="(containerWidth - 475)">
+                                        <p class="si-caption" [style.margin-right]="15">
+                                            {{getEventDate(selectedEvent)}}
+                                        </p>
+                                        <p class="si-caption">{{getEventTime(selectedEvent)}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="selectedEvents.length > 1">
+                                    <div class="event-info-banner" style="align-self: center">
+                                        <p class="event-info-bannertexts-color-and-fonts">{{multipleSelection}}</p>
+                                        <p class="event-info-bannertexts-color-and-fonts">{{eventsSelected}}</p>
+                                    </div>
+                                </div>
+
+                                <!-- BUTTONS - SMALL SIZE !-->
+
+                                <!-- Container actions for multiple events !-->
+                                <div class="containerActionsDiv" *ngIf="containerActions && ((selectedEvents.length === 1 && isContainerEvent) || selectedEvents.length > 1)"
+                                    [class.multiselbanner]="selectedEvents.length > 1">
+                                    <div
+                                        style="display: flex; flex-direction: row; margin-top: 10px; margin-left: 11px"
+                                        [class.popoverContainerActions]="IsInPopoverMode"
+                                        *ngIf="containerActions.primary.length > 0"
+                                    >
+                                        <button *ngIf="containerActions.primary.length > 0" class="btn btn-primary" type="button" style="width: 209px; height: 41px; align-self: center" (click)="onPrimaryClick(containerActions.primary[0].action)">
+                                            <span class="btn-icon" [ngClass]="containerActions.primary[0].icon" style="margin-top: 3px;"></span>
+                                            <span>{{containerActions.primary[0].title}}</span>
+                                        </button>
+                                        <div class="secondaryDiv" *ngIf="containerActions.secondary.length > 0">
+                                            <si-content-action-bar class="containerActions"
+                                              (click)="$event.stopPropagation()"
+                                              [primaryActions]="[]"
+                                              [secondaryActions]="containerActions.secondary"
+                                              viewType="expanded" />
+                                        </div>
+                                    </div>
+
+                                    <!-- investigative command -->
+                                    <button class="btn investigativeBtn btn-secondary" type="button"
+                                        style="width: 255px; height: 41px; margin-top: 4px; margin-left: 11px; padding: 0px;" *ngIf="!displayAssistedCommand && !isMobileView && !IsInPopoverMode && selectedEvents.length === 1"
+                                        (click)="goToInvestigativeCommand()">
+                                        <i class="investigative-treatment icon element-logout"
+                                            *ngIf="IsInInvestigativeMode"></i>
+                                        <b *ngIf="IsInInvestigativeMode">{{leave}}</b>
+                                        <i class="investigative-treatment icon element-search"
+                                            *ngIf="!IsInInvestigativeMode"></i>
+                                        <b *ngIf="!IsInInvestigativeMode">{{investigateSystem}}</b>
+                                    </button>
+                                    <!-- assisted command -->
+                                    <button class="btn investigativeBtn btn-secondary" type="button"
+                                        style="width: 255px; height: 41px; margin-top: 4px; margin-left: 11px; padding: 0px;" *ngIf="displayAssistedCommand && !isMobileView && !IsInPopoverMode && selectedEvents.length === 1"
+                                        (click)="goToAssistedCommand()">
+                                        <i class="assisted-treatment icon element-logout"
+                                            *ngIf="IsInAssistedMode"></i>
+                                        <b *ngIf="IsInAssistedMode">{{leave}}</b>
+                                        <i class="assisted-treatment icon element-search"
+                                            *ngIf="!IsInAssistedMode"></i>
+                                        <b *ngIf="!IsInAssistedMode">{{assistedTreatment}}</b>
+                                    </button>
+                                </div>
+
+                                <div 
+                                    id="btnCommandsCol"
+                                    *ngIf="WhereSectionVisible && selectedEvents.length === 1 && isContainerEvent === false"
+                                    [ngStyle]="IsInPopoverMode && {'margin-left': '-29px'}"
+                                >
+                                    <div id="WhereStatus" *ngIf="selectedEvents.length === 1">
+                                        <div class="row event-info-background-color">
+                                            <div class="column center overflow-ellipsis">
+                                                <ng-container>
+                                                    <!-- Commands -->
+                                                    <div class="event-info-button-container">
+                                                        <div class="row event-info-background-color">
+                                                            <div class="column center">
+                                                                <div class="button-stack doubleBtn"
+                                                                    [ngClass]="[containerWidth < 450? 'button-stack-col': 'button-stack-col-double' ]"
+                                                                    [ngStyle]="IsInPopoverMode && {'flex-direction' : 'column'}"
+                                                                    [class.popoverBtnDiv]="IsInPopoverMode">
+                                                                    <!-- acknowledge command -->
+                                                                    <button class="btn" type="button"
+                                                                        [class.popoverBtn]="IsInPopoverMode"
+                                                                        [style.width]="(!IsInPopoverMode && silUnsilCommand && ackCommandEnabled)? '151' : '241'"
+                                                                        [ngStyle]=" !ackCommandEnabled && {'display':'none'}"
+                                                                        [attr.disabled]="ackCommandEnabled === true ? null : true"
+                                                                        [ngClass]="{'btn-primary': ackCommandEnabled, 'btn-secondary': !ackCommandEnabled}"
+                                                                        [class.hidden]="eventSelected !== 'ack' ? null : ackCommandEnabled"
+                                                                        (click)="onSelectCommand('ack', selectedEvent)">
+                                                                        <span>
+                                                                            <em
+                                                                                class="element-alarm-tick btn-icon"></em>
+                                                                            <span
+                                                                                class="btn-text">{{ackCommandText}}</span>
+                                                                        </span>
+                                                                    </button>
+                                                                    <!-- reset command -->
+                                                                    <button class="btn" type="button"
+                                                                        [class.popoverBtn]="IsInPopoverMode"
+                                                                        [style.width]="(!IsInPopoverMode && silUnsilCommand && resCommandEnabled)? '151' : '241'"
+                                                                        [ngClass]="{'btn-primary': resCommandPrimary, 'btn-secondary': !resCommandPrimary}"
+                                                                        [ngStyle]=" !resCommandEnabled && {'display':'none'}"
+                                                                        [attr.disabled]="resCommandEnabled === true ? null : true"
+                                                                        [class.hidden]="eventSelected !== 'reset' ? null : resCommandPrimary"
+                                                                        (click)="onSelectCommand('reset', selectedEvent)">
+                                                                        <span>
+                                                                            <em class="element-undo btn-icon"></em>
+                                                                            <span
+                                                                                class="btn-text">{{resetCommandText}}</span>
+                                                                        </span>
+                                                                    </button>
+                                                                    <!-- not in popover mode, silence to the left -->
+                                                                    <span *ngIf="!IsInPopoverMode">
+                                                                        <!-- silence command -->
+                                                                        <ng-container
+                                                                            *ngIf="eventContainDoubleCommand(); else silBlockIconAndText;">
+                                                                            <button class="btn btn-secondary" type="button"
+                                                                                [ngStyle]=" silUnsilCommand !== 1 && {'pointer-events':'none'}"
+                                                                                style="min-inline-size: 0px; width: 85px !important" 
+                                                                                [attr.hidden]="silUnsilCommand === 1 ? null : true"
+                                                                                *ngIf="silUnsilCommand !== 2; else unsilBlock;"
+                                                                                (click)="onSelectCommand('silence', selectedEvent)">
+                                                                                <span>
+                                                                                    <em
+                                                                                        class="element-horn-off btn-icon"></em>
+                                                                                </span>
+                                                                            </button>
+                                                                        </ng-container>
+
+                                                                        <ng-template #silBlockIconAndText>
+                                                                            <button class="btn fullSilBtn btn-secondary"
+                                                                                type="button"
+                                                                                [ngStyle]=" silUnsilCommand !== 1 && {'pointer-events':'none'}"
+                                                                                style="width: 241px !important"
+                                                                                [attr.hidden]="silUnsilCommand === 1 ? null : true"
+                                                                                *ngIf="silUnsilCommand !== 2; else unsilBlock;"
+                                                                                (click)="onSelectCommand('silence', selectedEvent)">
+                                                                                <span>
+                                                                                    <em
+                                                                                        class="element-horn-off btn-icon"></em>
+                                                                                    <span
+                                                                                        class="btn-text">{{silenceCommandText}}</span>
+                                                                                </span>
+                                                                            </button>
+                                                                        </ng-template>
+
+                                                                        <!-- unsilence command -->
+                                                                        <ng-template #unsilBlock>
+                                                                            <ng-container
+                                                                                *ngIf="eventContainDoubleCommand(); else unsilBlockIconAndText">
+                                                                                <button class="btn btn-secondary"
+                                                                                    style="min-inline-size: 0px; width: 85px !important" 
+                                                                                    type="button"
+                                                                                    *ngIf="silUnsilCommand === 2"
+                                                                                    (click)="onSelectCommand('unsilence', selectedEvent)">
+                                                                                    <span>
+                                                                                        <em
+                                                                                            class="element-horn btn-icon"></em>
+                                                                                    </span>
+                                                                                </button>
+                                                                            </ng-container>
+
+                                                                            <ng-template #unsilBlockIconAndText>
+                                                                                <button
+                                                                                    class="btn fullUnsilBtn btn-secondary"
+                                                                                    type="button"
+                                                                                    style="width: 241px !important"
+                                                                                    *ngIf="silUnsilCommand === 2 && (silUnsilCommandPrimary && !ackCommandEnabled) ||
+                                                                                    (silUnsilCommandPrimary && !resCommandPrimary); else {'dislay':'none'};"
+                                                                                    (click)="onSelectCommand('unsilence', selectedEvent)">
+                                                                                    <span>
+                                                                                        <em
+                                                                                            class="element-horn btn-icon"></em>
+                                                                                        <span
+                                                                                            class="btn-text">{{unsilenceCommandText}}</span>
+                                                                                    </span>
+                                                                                </button>
+                                                                            </ng-template>
+                                                                        </ng-template>
+                                                                    </span>
+                                                                    <!-- in popover mode, silence stacked below the commands -->
+                                                                    <span class="popoverBtn" *ngIf="IsInPopoverMode">
+                                                                        <!-- silence command -->
+                                                                        <ng-container>
+                                                                            <button class="btn fullSilBtn btn-secondary"
+                                                                                type="button"
+                                                                                [class.popoverBtn]="IsInPopoverMode"
+                                                                                [ngStyle]=" silUnsilCommand !== 1 && {'pointer-events':'none'}"
+                                                                                [attr.hidden]="silUnsilCommand === 1 ? null : true"
+                                                                                *ngIf="silUnsilCommand !== 2"
+                                                                                (click)="onSelectCommand('silence', selectedEvent)">
+                                                                                <span>
+                                                                                    <em
+                                                                                        class="element-horn-off btn-icon"></em>
+                                                                                    <span
+                                                                                        class="btn-text">{{silenceCommandText}}</span>
+                                                                                </span>
+                                                                            </button>
+                                                                        </ng-container>
+
+                                                                        <!-- unsilence command -->
+                                                                        <ng-container>
+                                                                            <button
+                                                                                class="btn fullUnsilBtn btn-secondary"
+                                                                                type="button"
+                                                                                [class.popoverBtn]="IsInPopoverMode"
+                                                                                *ngIf="silUnsilCommand === 2"
+                                                                                (click)="onSelectCommand('unsilence', selectedEvent)">
+                                                                                <span>
+                                                                                    <em
+                                                                                        class="element-horn btn-icon"></em>
+                                                                                    <span
+                                                                                        class="btn-text">{{unsilenceCommandText}}</span>
+                                                                                </span>
+                                                                            </button>
+                                                                        </ng-container>
+                                                                    </span>
+
+                                                                    <!-- close command -->
+                                                                    <button class="btn btn-primary" type="button"
+                                                                        [class.popoverBtn]="IsInPopoverMode"
+                                                                        style="width: 241px;"
+                                                                        [ngStyle]=" !closeCommandEnabled && {'display':'none'}"
+                                                                        [attr.disabled]="closeCommandEnabled === true ? null : true"
+                                                                        [class.hidden]="eventSelected !== 'close' ? null : !closeCommandPrimary"
+                                                                        (click)="onSelectCommand('close', selectedEvent)">
+                                                                        <span>
+                                                                            <em class="element-cancel btn-icon"></em>
+                                                                            <span
+                                                                                class="btn-text">{{closeCommandText}}</span>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+
+                                                <div *ngIf="LocationInfoVisible">
+                                                    <!-- investigative command -->
+                                                    <button class="btn investigativeBtn btn-secondary" type="button"
+                                                        [style.width]="241" *ngIf="!displayAssistedCommand && !isMobileView"
+                                                        (click)="goToInvestigativeCommand()">
+                                                        <i class="investigative-treatment icon element-logout"
+                                                            *ngIf="IsInInvestigativeMode"></i>
+                                                        <b *ngIf="IsInInvestigativeMode">{{leave}}</b>
+                                                        <i class="investigative-treatment icon element-search"
+                                                            *ngIf="!IsInInvestigativeMode"></i>
+                                                        <b *ngIf="!IsInInvestigativeMode">{{investigateSystem}}</b>
+                                                    </button>
+                                                    <!-- assisted command -->
+                                                    <button class="btn investigativeBtn btn-secondary" type="button"
+                                                        [style.width]="241" *ngIf="displayAssistedCommand && !isMobileView"
+                                                        (click)="goToAssistedCommand()">
+                                                        <i class="assisted-treatment icon element-logout"
+                                                            *ngIf="IsInAssistedMode"></i>
+                                                        <b *ngIf="IsInAssistedMode">{{leave}}</b>
+                                                        <i class="assisted-treatment icon element-search"
+                                                            *ngIf="!IsInAssistedMode"></i>
+                                                        <b *ngIf="!IsInAssistedMode">{{assistedTreatment}}</b>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="SubsequentEvents" *ngIf="selectedEvents.length === 1 && isContainerEvent && !IsInAssistedMode">
+                            <div class="row event-info-background-color">
+                                <div class="events-grid-border-color events-grid-style" [style.width]="containerWidth"
+                                    [style.height]="eventsGridHeight"
+                                    style="margin-right: 15px; border-radius: 5px; border-width: 1px; border-style: solid;"
+                                    [ngStyle]="!IsInPopoverMode && {'margin-left' : '47px'}"
+                                    *ngIf="isContainerEvent">
+                                    <div class="events-grid-border-color events-grid-header" style="height: 30px;">
+                                        <p style="text-align: left; margin-top: 12px; margin-left:4px;"
+                                            class="si-title-2 text-active">{{eventGridTitle}}</p>
+                                    </div>
+                                    <div [style.height]="eventsGridHeight - 80" class="events-grid-bottom-header">
+                                        <gms-event-grid [eventFilter]="eventFilter" [fullSnapinID]=SnapInId
+                                            [disableGroupEvents]="true" [compactMode]="true"
+                                            [visibleColumns]="eventGridVisibleColumns" [scrollable]="eventsGridScrollable"
+                                            (selectedEventsEv)="onEventSelected($event)" (rowHeight)="onRowHeight($event)">Event
+                                            grid is not loaded</gms-event-grid>
+                                    </div>
+                                    <div class="events-grid-border-color" style="height: 40px;">
+                                        <p class="si-title-2 text-primary event-info-show-more"
+                                            style="text-align: center; margin-top: 10px;" (click)="onToggleEventsGrid()">
+                                            {{eventsGridShowText}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NAME-SOURCE-LOCATION SECTION --- SMALL SIZE !-->
+                        <hr class="gray-divider" *ngIf="selectedEvents.length === 1" />
+                        <div style="display:flex; justify-content: right; margin-right: -30px;" *ngIf="selectedEvents.length === 1">
+                            <button type="button" class="btn btn-tertiary me-6 showmore" (click)="onShowMore($event);">
+                                <span *ngIf="showMoreButton === false">{{seeMore}} <i
+                                        class="icon element-down-2"></i></span>
+                                <span *ngIf="showMoreButton === true">{{seeLess}} <i
+                                        class="icon element-up-2"></i></span>
+                            </button>
+                        </div>
+                        <div class="row event-info-background-color" *ngIf="selectedEvent && showMoreButton === true && selectedEvents.length === 1">
+                            <div class="column left">
+                                <i class="icon event-info-src-object-icon-color {{whereIcon}}" [style.margin-left]="6"
+                                    [style.margin-top]="13"></i>
+                            </div>
+
+                            <div class="column center overflow-ellipsis" style="padding-left: 11px; flex-shrink: initial">
+                                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                                    <div class="event-info-flex" style="margin-top:2px; margin-left:-3px">
+                                        <p *ngIf="getSrcObjectName().length > 0" class="si-caption si-body-2">
+                                            {{getSrcObjectName()}}</p>
+                                        <p *ngIf="getSrcObjectDescription().length > 0"
+                                            class="si-caption text-secondary">
+                                            {{getSrcObjectDescription()}}</p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; margin-top: 6;">
+
+                                        <gms-about-popover
+                                            *ngIf="!IsInPopoverMode"
+                                            style="flex: 0 0 auto;"
+                                            [clientId]="SnapInId"
+                                            [objectList]="selectedBrowserObjects"
+                                            (openStateChanged)="isObjInfoOpen = $event">
+                                            <div role="button" class="btn-circle btn-flat-ovrd" tabindex="0">
+                                                <i class="element-info"></i>
+                                            </div>
+                                        </gms-about-popover>
+
+                                        <div role="button"
+                                            style="font-size: 32px; align-items: normal; margin-left: 8px; margin-right: 44px; margin-top:-4px;"
+                                            class="btn-flat-ovrd" (click)="goToSystemCommand()" tabindex="0">
+                                            <i class="element-send-to"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="event-info-flex" *ngIf="getEventSrcSource().length > 0">
+                                    <p class="si-caption text-secondary">{{eventSrcSourceTitle}}</p>
+                                    <p class="si-caption">{{getEventSrcSource()}}</p>
+                                </div>
+                                <div class="event-info-flex">
+                                    <p class="si-caption text-secondary">{{eventSrcLocationTitle}}</p>
+                                    <p class="si-caption">{{getEventSrcPath(selectedEvent)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="gray-divider" *ngIf="selectedEvent && showMoreButton === true && selectedEvents.length === 1" />
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="event-info" *ngIf="!IsInPopoverMode && selectedEvents.length === 1 && showMoreButton === true">
+            <!-- INFO SECTION -- LARGE SIZE !-->
+            <div class="event-info row mt-3 mb-3"
+                *ngIf="selectedEvent && containerWidth > 460 && showMoreButton === true">
+                <div class="column overflow-ellipsis div-flex" style="padding-left: 50px">
+                    <div class="event-info-flex" style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventIdTitle}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.eventId !== -1">{{selectedEvent.eventId}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.eventId === -1">*</p>
+                    </div>
+                    <div *ngIf="showSystemId === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventSrcSystemIdTitle}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.srcSystemId !== -1">{{selectedEvent.srcSystemId}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.srcSystemId === -1">*</p>
+                    </div>
+                    <div *ngIf="showDiscipline === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventDisciplineTitle}}</p>
+                        <p class=" si-caption">{{selectedEvent.srcDisciplineDescriptor}}</p>
+                    </div>
+                    <div *ngIf="showInProcessBy === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventInProcessByTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.inProcessBy}}</p>
+                    </div>
+                    <div *ngIf="showMsgText === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventMessageTextTitle}}</p>
+                        <p class="si-caption" *ngIf="useCause === false">{{selectedEvent.messageTextToDisplay}}</p>
+                        <p class="si-caption" *ngIf="useCause === true">{{selectedEvent.cause}}</p>
+                    </div>
+                    <div *ngIf="showCategory === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventCategoryTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.categoryDescriptor}}</p>
+                    </div>
+                    <div *ngIf="showDesignation === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventSrcDesignationTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.srcDesignation}}</p>
+                    </div>
+                    <div *ngIf="showSystemName === true" class="event-info-flex"
+                        style="flex: 1 1 22%; max-width: 22%; padding: 0px 10px;">
+                        <p class="si-caption text-secondary">{{eventSrcSystemNameTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.srcSystemName}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- INFO SECTION -- SMALL SIZE !-->
+            <div class="event-info row mt-3 mb-3"
+                *ngIf="selectedEvent && containerWidth <= 460 && showMoreButton === true">
+                <div class="column overflow-ellipsis" style="padding-left: 50px">
+                    <div class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventIdTitle}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.eventId !== -1">{{selectedEvent.eventId}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.eventId === -1">*</p>
+                    </div>
+                    <div *ngIf="showSystemId === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventSrcSystemIdTitle}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.srcSystemId !== -1">{{selectedEvent.srcSystemId}}</p>
+                        <p class="si-caption" *ngIf="selectedEvent.srcSystemId === -1">*</p>
+                    </div>
+                    <div *ngIf="showDiscipline === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventDisciplineTitle}}</p>
+                        <p class=" si-caption">{{selectedEvent.srcDisciplineDescriptor}}</p>
+                    </div>
+                    <div *ngIf="showInProcessBy === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventInProcessByTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.inProcessBy}}</p>
+                    </div>
+                    <div *ngIf="showMsgText === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventMessageTextTitle}}</p>
+                        <p class="si-caption" *ngIf="useCause === false">
+                            {{selectedEvent.messageTextToDisplay}}</p>
+                        <p class="si-caption" *ngIf="useCause === true">{{selectedEvent.cause}}</p>
+                    </div>
+                    <div *ngIf="showCategory === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventCategoryTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.categoryDescriptor}}</p>
+                    </div>
+                    <div *ngIf="showDesignation === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventSrcDesignationTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.srcDesignation}}</p>
+                    </div>
+                    <div *ngIf="showSystemName === true" class="event-info-flex">
+                        <p class="si-caption text-secondary">{{eventSrcSystemNameTitle}}</p>
+                        <p class="si-caption">{{selectedEvent.srcSystemName}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="gray-divider" />
+            <!-- NOTES !-->            
+            <si-loading-spinner *ngIf="isLoadingNotes" />
+            <div style="padding: 4px 8px;" *ngIf="!isLoadingNotes">
+                <si-content-action-bar [primaryActions]="newNoteContentActions" viewType="expanded" />
+                <div style="clear: both"></div>
+                <div class="row" style="margin-left: 40px; margin-right: 2px;" *ngIf="isNewNoteOpen">
+                    <div style="width: 100%;">
+
+
+                        <textarea rows="4" class="form-control py-2 ng-valid ng-dirty ng-touched"
+                            style="width: 100%; margin: 5px auto; resize: none;" [(ngModel)]="newEventNote">
+                            {{newEventNote}}
+                        </textarea>
+
+                        <si-prompt-dialog-buttons (confirm)="onConfirmNewNote(selectedEvent)"
+                            (cancel)="onCancelNewNote(selectedEvent)"
+                            [confirmDisabled]="newEventNote.length > 0 ? false : true" />
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div style="margin-left: 40px; margin-bottom: 20px;"
+                    *ngIf="isNewNoteAddMessageVisible && !isMultipleEventsSelected">{{newEventNoteAdded}}</div>
+                <div style="margin-left: 40px; margin-bottom: 20px;"
+                    *ngIf="isNewNoteAddMessageVisible && isMultipleEventsSelected">
+                    {{newMultipleEventsNoteAdded}}</div>
+                <div style="margin-left: 40px; margin-bottom: 20px;"
+                    *ngIf="isMultipleEventsSelected  && !isNewNoteOpen && !isNewNoteAddMessageVisible">
+                    {{noEventNotesForMultiselection}}
+                </div>
+                <div style="height: fit-content;"
+                    *ngIf="!isMultipleEventsSelected && eventNotes.length === 0 && !isNewNoteAddMessageVisible && !isNewNoteOpen">
+                    <si-empty-state icon="element-message" heading="" [content]="noEventNotes" />
+                </div>
+                <div class="row" style="margin-left: 40px;" *ngIf="eventNotes.length > 0">
+                    <div style="width: 100%;" class="column right" *ngIf="!isMultipleEventsSelected">
+                        <div class="form-control event-info-notes-container event-info-note-border-color"
+                            *ngFor="let eventNote of eventNotes; trackBy: trackByIndex">
+                            <caption style="float:left">
+                                {{eventNote.time}}
+                            </caption>
+                            <caption style="float: right; ">
+                                {{eventNote.userName}}
+                            </caption>
+                            <div style="clear: both"></div>
+
+                            <body>
+                                {{eventNote.messageText}}
+                            </body>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

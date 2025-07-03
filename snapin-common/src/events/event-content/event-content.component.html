@@ -1,0 +1,284 @@
+<div
+  class="event-popover temporary-background"
+  [ngClass]="{ 'event-popover-full': showAllEvents }"
+  *ngIf="eventFilter"
+>
+  <div class="modal-scroll event-popover-row-fill events-modal-content mb-4">
+    <si-main-detail-container
+      class="si-layout-fixed-height"
+
+      [style.maxWidth.px]="containerMaxWidth ? containerMaxWidth : null"
+      [largeLayoutBreakpoint]="largeLayoutBreakpoint"
+
+      [(detailsActive)]="detailsActive"
+      [truncateHeading]="truncateHeading"
+      [detailsHeading]="detailsHeading"
+      [resizableParts]="resizableParts"
+      [hideBackButton]="false"
+      containerClass="event-master-container"
+
+      [mainContainerWidth]="splitPosition"
+      (mainContainerWidthChange)="onSplitChange($event)"
+      [minMainSize]="minMasterSize"
+      [minDetailSize]="minDetailSize"
+
+    >
+      <!-- Header -->
+      <div slot="mainActions" class="event-popover-header">
+        <div class="event-popover-node-container" *ngIf="!detailsActive && fullSnapinID?.frameId !== 'event-list'">
+          <div *ngIf="header" class="event-popover-icon-wrapper">
+            <i
+              *ngIf="header.icon"
+              class="{{ header.icon }} label-icon icon me-4"
+            ></i>
+          </div>
+          <div *ngIf="header" class="event-popover-group">
+            <h5
+              *ngIf="header.primary"
+              class="text-ellipsis event-popover-primary-label si-title-2"
+            >
+              {{ header.primary }}
+            </h5>
+            <span
+              class="text-ellipsis event-popover-secondary-label si-body-2"
+              *ngIf="header.secondary"
+              >{{ header.secondary }}</span
+            >
+          </div>
+          <div class="event-popover-group middle">
+            <ng-container *ngIf="nodes">
+              <h5 class="text-ellipsis event-popover-primary-label si-title-1">
+                <span *ngIf="nodes.length > 1">
+                  Items selected: {{ nodes.length }}
+                </span>
+              </h5>
+            </ng-container>
+            <ng-container *ngIf="designations">
+              <h5
+                *ngIf="designations.length > 1"
+                class="text-ellipsis event-popover-primary-label si-title-1"
+              >
+                Items selected: {{ designations.length }}
+              </h5>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Pills section -->
+        <div class="pills-section" *ngIf="fullSnapinID?.frameId === 'event-list'">
+          <div
+            class="hfw-flex-container-row"
+            style="flex-flow: wrap">
+            <div
+              *ngFor="let pillData of filterPills; trackBy: trackByIndex"
+              class="hfw-flex-item"
+              style="margin: 0 5px">
+                <hfw-filter-pill
+                  [pillData]="pillData"
+                  (deleteClick)="onDeletePill($event)"
+                  [pillDisable]="isInInvestigativeMode || isInAssistedMode"
+                  [multipleFiltersLabel]="multipleFiltersLabel"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions (filters) for mobile view -->
+      <si-content-action-bar *ngIf="isMobileView === true && fullSnapinID?.frameId === 'event-list'" slot="mainActions"
+      [primaryActions]="primaryActions" [secondaryActions]="secondaryActions" viewType="mobile"
+      [disabled]="isInAssistedMode || isInInvestigativeMode" />
+
+      <!-- Event list -->
+      <div
+        slot="mainData"
+        class="event-popover-event-list"
+        *ngIf="eventFilter"
+      >
+      <hr *ngIf="" class="event-popover-hr mb-0 mt-2" />
+
+        <!-- When used in the event-list snapin -->
+        <gms-event-grid
+          *ngIf="fullPaneID"
+          class="hfw-touch-selection-disabled"
+          isVirtualizedEG="true"
+          pageSizeEG=5
+          pagesVirtualizedEG=20
+          showHeader = true;
+          storeColumnsSettings = true;
+          [supportQparam]="true"
+
+          [fullSnapinID]=fullSnapinID
+          [fullQParamID]=fullQParamID
+          [fullPaneID]=fullPaneID
+          [eventFilter]=""
+          [selectedEventsIds]="selectedEventsIds"
+          [showColumnSelectionDlg]="showColumnSelectionDlg"
+          [isInAssistedTreatment] = "isInAssistedMode"
+          [coloredRows]="coloredRows"
+
+          (gridEvents)="onGridEvents($event)"
+          (notifyUpdatedSelectionEv)="onNotifyUpdatedSelection($event)"
+          (minifiedState)="onGridMinifiedState($event)"
+          (numEventsChanged)="onEventsNumberNotification($event)"
+          (selectedEventsEv)="onEventSelectedRaise($event)"
+          (eventCommandsDisabled)="onEventCommandsDisabled($event)"
+          />
+
+        <!-- When used as a standalone component -->
+        <gms-event-grid
+          *ngIf="!fullPaneID"
+
+          (selectedEventsEv)="onEventSelected($event)"
+          (numEventsChanged)="setEventCounter($event)"
+
+          [fullSnapinID]="fullSnapinID"
+          [IsInPopoverMode]="evaluatePopoverMode()"
+          (eventsChanged)="onEventsChange($event)"
+          [eventFilter]="eventFilter"
+          (firstEvent)="onFirstEvent($event)"
+          (notifyUpdatedSelectionEv)="onNotifyUpdatedSelection($event)"
+          >
+          Event grid is not loaded
+        </gms-event-grid>
+      </div>
+      <!-- Event details -->
+
+      <si-content-action-bar *ngIf="isMobileView === false && fullSnapinID?.frameId === 'event-list'" slot="detailActions"
+      [primaryActions]="primaryActions" [secondaryActions]="secondaryActions"
+      [disabled]="isInAssistedMode || isInInvestigativeMode" />
+
+      <!-- Destroy on selection change -->
+      <div slot="details" *ngIf="!showAssistedTreatment" style="overflow: auto; margin-top: -2px;">
+        <hr *ngIf="" class="event-popover-hr mb-0 mt-2" />
+        <div class="events-modal-head">
+
+          <si-stepper
+            #stepper
+            [showOnlyRequired] = false
+            showOnlyRequiredSwitch
+            showPagination
+            [onlyRequiredSwitchLabel]="mandatoryStepsLabel"
+          >
+            <div header>
+              <gms-event-info
+                *ngIf="!fullPaneID"
+                [SnapInId]="fullSnapinID"
+                [EventsSelected]="selectedEventsObs"
+                [IsInInvestigativeMode]="false"
+                [IsInPopoverMode]="true"
+                [LocationInfoVisible]="false"
+                [WhenSectionVisible]="true"
+                [WhereSectionVisible]="true"
+                [DetailsSectionVisible]="false"
+                [NotesSectionVisible]="false"
+              />
+
+              <gms-event-info
+                *ngIf="fullPaneID"
+                [EventsSelected] = "selectedEventsObs"
+                [IsInInvestigativeMode] = "isInInvestigativeMode"
+                [IsInAssistedMode] = "isInAssistedMode"
+                [LocationInfoVisible] = "true"
+                [WhereSectionVisible] = "true"
+                [WhenSectionVisible] = "true"
+                [DetailsSectionVisible] = "true"
+                [NotesSectionVisible] = "true"
+                [EventCommandsDisabled] = "eventCommandsDisabledObs"
+                [SnapInId] = "fullSnapinID"
+                (goToSystem) = "onGotoSystem($event)"
+                (goToInvestigativeTreatment) = "onGoToInvestigativeTreatment($event)"
+                (exitFromInvestigativeTreatment) = "onExitFromInvestigativeTreatment($event)"
+                (goToAssistedTreatment) = "onGoToAssistedTreatment($event)"
+                (exitFromAssistedTreatment) = "onExitFromAssistedTreatment($event)"
+              />
+            </div>
+              <si-stepper-step
+                *ngFor="let step of steps; let index = index  trackBy: trackByIndex"
+                [heading]= "formatStepNameLabel(step)"
+                [disabled]="step.disabled"
+                [required]="step.required"
+                [state]="step.icon"
+                [primaryAction]="step.primaryAction"
+                [secondaryActions]="step.secondaryActions"
+                (stepAction)="onConfirmStep(step)"
+                (activeStateChange)="onActiveStateChange($event, step)">
+                <ng-container *ngIf="(step.isCompleted === false || step.repeatable === true) || (step.managedType === 'OPStepDocumentViewer' || step.managedType === 'OPStepVideo' || step.managedType === 'OPStepGraphics')">
+                  <div [style.height]="step.managedType === 'OPStepReport' || step.managedType === 'OPStepAlarmPrintout' || step.managedType === 'OPStepTreatmentForm' ? '100vh' : ''" *ngIf="getNodesValues().length === steps.length">
+                    <gms-document-viewer
+                      *ngIf="step.managedType === 'OPStepDocumentViewer'"
+                      [snapInId]="fullSnapinID"
+                      [browserMsg]="opNodes.get(step.id)"
+                      style="height: 100%"
+                      id="viewer"
+                      [resolveObs]="resolveObsMap?.get(step.id)"
+                      (resolveExecutionResult)="onStepResolveExecutionResult($event, step)"
+                      />
+
+                    <div *ngIf="activeStep?.id === step.id">
+                    <gms-report-view *ngIf="step.managedType === 'OPStepReport' || step.managedType === 'OPStepAlarmPrintout' || step.managedType === 'OPStepTreatmentForm'"
+                      class = h-100
+                      [fullId]="fullSnapinID"
+                      [selectedObjectsData]="opNodes.get(step.id)"
+                      [fromEvents]="fromEvents"
+                      [stepId]="step.id"
+                      [step]="step"
+                      [selectedEvent]="eventToSend"
+                      [selectedEventOPId]="selectedEventOPId"
+                      [selectedEventDesignation]="eventToSendDesignation"
+                      [storeObject]="storeObject"
+                      [manageType]="step.managedType"
+                      (saveTreatmentFormEvent)="handleSaveEvent($event)"
+                      (storeObjectEmitter)="handleStoreObjectData($event)"
+                      (sendToOutputEmitter)="handleSendToOutput($event, step)"
+                      [resolveObs]="resolveObsMap?.get(step.id)"
+                      (resolveExecutionResult)="onStepResolveExecutionResult($event, step)"
+                      />
+                    </div>
+                    <ng-container *ngIf="step.managedType === 'OPStepGraphics'">
+                      <ng-container *ngTemplateOutlet="graphicsCommonTemplateServiceBase.GraphicsCommonTemplate; context: { browserObject: opNodes.get(step.id), resolveObs: resolveObsMap?.get(step.id), resolveExecutionResult: onStepGraphicExecuted, assistedTreatmentStep: step }" />
+                    </ng-container>
+                    <gms-video-control  *ngIf="step.managedType === 'OPStepVideo'"
+                        [selectedControlObject]="opNodes.get(step.id)"
+                        [messageBroker] = "messageBroker"
+                        [location] = "fullPaneID"
+                        [snapInId] = "fullSnapinID"
+                        [isInAssistedMode] = "isInAssistedMode"
+                        [resolveObs]="resolveObsMap?.get(step.id)"
+                        (resolveExecutionResult)="onStepResolveExecutionResult($event, step)" />
+                    
+                    <!-- Not supported step -->
+                    <div *ngIf="!isSupportedManagedType(step.managedType)">
+                      <si-empty-state
+                        class="empty-list"
+                        icon="element-out-of-service"
+                        [heading]="atNotSupportedStepTitleLabel"
+                        [content]="atNotSupportedStepBodyLabel"
+                        display="none"
+                      />
+                    </div>
+                  </div>
+                </ng-container>
+                <si-empty-state
+                *ngIf="step.isCompleted === true && step.repeatable === false && !(step.managedType === 'OPStepDocumentViewer' || step.managedType === 'OPStepVideo' || step.managedType === 'OPStepGraphics')"
+                        class="empty-list"
+                        icon="element-ok"
+                        [heading]="atStepCompletedAndUnrepeatableLabel"
+                        display="none"
+                      />
+              </si-stepper-step>
+          </si-stepper>
+        </div>
+      </div>
+    </si-main-detail-container>
+  </div>
+  <div class="event-popover-row-fix" *ngIf="!showAllEvents">
+    <button type="button"
+      *ngIf="eventsCounter > 0"
+      class="btn btn-secondary me-6 event-popover-btn"
+      (click)="goToEvents(eventFilter)"
+    >
+    {{ goToEventsTxt }}
+    </button>
+  </div>
+</div>

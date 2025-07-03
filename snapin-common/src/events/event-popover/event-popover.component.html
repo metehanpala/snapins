@@ -1,0 +1,20 @@
+<!-- Events list popover -->
+<gms-button-popover *ngIf="(nodes  || designations)"
+  [alertsNum]="eventsCounter"
+  icon="element-alarm-filled"
+  iconActivated="element-alarm"
+  [hideButton]="hideButton"
+  [color]="eventsCounter > 0? '#D92B48': 'black'"
+  [disableButton]="eventsCounter > 0? false: true"
+  >
+  <gms-event-content
+  [hideButton]="hideButton"
+  [fullSnapinID]="fullSnapinID"
+  [nodes]="nodes"
+  [designations]="designations"
+  (closePopover)="close()"
+  (togglePopover)="toggle()"
+  (eventsCounterChange)="eventsCounter = $event"
+  />
+
+</gms-button-popover>

@@ -1,0 +1,87 @@
+<ng-template #request let-modalRef="modalRef">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ translationStrings.get('ownership-request-title') }}</h4>
+    <button
+      type="button"
+      class="btn btn-circle btn-sm btn-ghost element-cancel"
+      aria-label="Close modal"
+      (click)="onDialogConfirmation(0)"
+    > </button>
+  </div>
+  <div class="modal-body" style="margin-top: -20px">
+    <div style="display:flex">
+      <div style="width: 100%"><b>{{ translationStrings.get('from') }}: </b> {{ from }}</div>
+      <div style="width: 100%"><b>{{ translationStrings.get('to') }}: </b> {{ to }}</div>
+    </div>
+    <div class="p-5 d-flex flex-column si-layout-fixed-height" style="height: 400px;">
+      <ngx-datatable
+        #table
+        class="table-element elevation-1 si-layout-fixed-height"
+        [cssClasses]="tableConfig.cssClasses"
+        [rows]="rows"
+        [columns]="columns"
+        [reorderable]="true"
+        [headerHeight]="tableConfig.headerHeight"
+        [footerHeight]="0"
+        [rowHeight]="tableConfig.rowHeight"
+        [selectionType]="selectionType"
+        [count]="rows.length"
+        [scrollbarV]="true"
+        [virtualization]="false"
+        columnMode="force"
+        (select)=onSelect($event)
+        siDatatableInteraction />
+    </div>
+    <div>{{ translationStrings.get('timeout-request') }}</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onDialogConfirmation(1)" [disabled]="selectedNodes.length === 0">{{ translationStrings.get('accept-selection') }}</button>
+    <button type="button" class="btn btn-secondary" (click)="onDialogConfirmation(0)">{{ translationStrings.get('deny-all') }}</button>
+  </div>
+</ng-template>
+
+<ng-template #transfer let-modalRef="modalRef">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ translationStrings.get('ownership-transfer-title') }}</h4>
+    <button
+      type="button"
+      class="btn btn-circle btn-sm btn-ghost element-cancel"
+      aria-label="Close modal"
+      (click)="onDialogConfirmation(0)"
+    > </button>
+  </div>
+  <div class="modal-body" style="margin-top: -20px">
+    <div style="display:flex">
+      <div style="width: 100%"><b>{{ translationStrings.get('from') }}: </b> {{ from }}</div>
+      <div style="width: 100%"><b>{{ translationStrings.get('to') }}: </b> {{ to }}</div>
+    </div>
+    <div class="p-5 d-flex flex-column si-layout-fixed-height" style="height: 400px;">
+      <ngx-datatable
+        #table
+        class="table-element elevation-1 si-layout-fixed-height"
+        [cssClasses]="tableConfig.cssClasses"
+        [rows]="rows"
+        [columns]="columns"
+        [reorderable]="true"
+        [headerHeight]="tableConfig.headerHeight"
+        [footerHeight]="0"
+        [rowHeight]="tableConfig.rowHeight"
+        [selectionType]="selectionType"
+        [count]="rows.length"
+        [scrollbarV]="true"
+        [virtualization]="false"
+        columnMode="force"
+        (select)=onSelect($event)
+        siDatatableInteraction />
+    </div>
+    <div>{{ translationStrings.get('timeout-transfer') }}</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onDialogConfirmation(1)" [disabled]="selectedNodes.length === 0">{{ translationStrings.get('ok') }}</button>
+    <button type="button" class="btn btn-secondary" (click)="onDialogConfirmation(0)">{{ translationStrings.get('cancel') }}</button>
+  </div>
+</ng-template>
+
+<ng-template #statusCellTempl let-value="value" let-row="row" ngx-datatable-cell-template>
+  <si-circle-status [status]="row.status" [icon]="row.icon" />
+</ng-template>

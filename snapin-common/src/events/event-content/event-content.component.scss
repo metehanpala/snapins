@@ -1,0 +1,200 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+
+$event-popover-grey-text-color: rgb(128, 128, 128);
+
+.modal-scroll {
+  // max-height: 42vh;
+  // overflow-y: auto;
+}
+
+:host {
+  min-width: 276px;
+  max-width: 276px;
+}
+
+:host ::ng-deep .main-container {
+  padding: 0px !important;
+}
+
+:host ::ng-deep .event-popover {
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .main-detail-layout {
+    overflow-y: hidden !important;
+
+    .master-search-actions,
+    .detail-heading-actions {
+      // display: none !important;
+    }
+
+    .detail-container {
+      height: 100%;
+      overflow-y: hidden !important;
+      padding-bottom: 0px !important;
+    }
+
+    // Safari has weird behavior with padding, without it can scroll to the bottom fine.
+    // If the browser is not Safari padding is added.
+    @supports not ((selector(:nth-child(1 of x))) or (-webkit-touch-callout: none)) {
+      .detail-container {
+        height: 100%;
+        overflow-y: hidden !important;
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.events-modal {
+  &-head {
+    text-align: left;
+
+    .node-icon {
+      img {
+        width: 30px;
+      }
+    }
+  }
+
+  &-content {}
+}
+
+.middle {
+  width: auto;
+  height: 32px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  border-top: 1px solid rgb(233, 236, 239);
+}
+
+.temporary-background {
+  background-color: $element-base-0;
+}
+
+.event-popover {
+  height: 70vh;
+  max-height: 365px;
+  min-height: 220px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+
+  &-full {
+    max-height: none;
+    height: 100%;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  &-btn {
+    width: 100%;
+  }
+
+  &-header {
+    flex: 1 1 auto;
+  }
+
+  &-wrapper {
+    text-align: left;
+    margin: -4px;
+    min-width: 224px;
+    max-width: 224px;
+  }
+
+  &-hr {
+    margin-top: 0px;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &-icon-wrapper {
+    align-self: center;
+    font-size: 18px;
+    min-width: 22px;
+    min-height: 22px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    .icon {
+      flex: 0 0 auto;
+    }
+  }
+
+  &-node-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-icon {
+    padding: 2px 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    flex: 0 0 auto;
+  }
+
+  &-secondary-label {
+    margin: 0px;
+    font-weight: 400;
+  }
+
+  &-primary-label {
+    margin: 0px;
+  }
+
+  &-row {
+    &-fixed {
+      flex: 0 0 auto;
+    }
+
+    &-fill {
+      overflow-y: auto;
+      flex: 1 1 auto;
+      display: flex;
+      align-items: stretch;
+    }
+  }
+
+  &-event-list {
+    height: 100vh !important;
+    max-height: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+}
+
+.events-modal-head {
+  //  overflow-y: scroll;
+  //  height: 100%;
+}
+
+.events-modal-head::-webkit-scrollbar {
+  overflow: hidden;
+}
+
+si-stepper {
+  overflow: hidden;
+}
+
+:host ::ng-deep div.step div div {
+  cursor: default !important;
+}

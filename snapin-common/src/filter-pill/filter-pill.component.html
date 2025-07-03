@@ -1,0 +1,19 @@
+<div class="filter-pill">
+  <div class="btn-close" (click)="onDeleteClick()">
+    <i class="icon element-cancel"></i>
+  </div>
+  <div class="name">
+    <span>{{filterTitle}}</span>
+  </div>
+  <div class="value">
+    <div *ngIf="!displayIcons" style="display: flex">
+      <span class="pill-ellipsis" [ngClass]="filterValuesCount > 1 ? 'multiple' : ''">{{filterValuesString}}</span>
+      <span class="pill-ellipsis" [ngClass]="filterValuesCount > 1 ? 'multiple' : ''">{{this.filterValuesCount === 0 ? FilterPillComponent.emptyValueLabel : 'MULTIPLE-FILTER-PILL-LABEL' | translate: { filterCount: filterValuesString } }}
+    </div>
+    <div *ngIf="displayIcons && filterValuesCount < 7">
+      <i *ngFor="let value of getPillDataValues();  trackBy: trackByIndex" class="icon element-record" [ngStyle]="{'color': value}" style="size: 10px"></i>
+    </div>
+    <div *ngIf="displayIcons && filterValuesCount >= 7">
+        <span class="pill-ellipsis" [ngClass]="'multiple'">{{this.filterValuesCount === 0 ? FilterPillComponent.emptyValueLabel : 'MULTIPLE-FILTER-PILL-LABEL' | translate: { filterCount: filterValuesString } }}</span>
+    </div>
+  </div>
