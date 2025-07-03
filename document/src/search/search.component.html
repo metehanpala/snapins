@@ -1,0 +1,34 @@
+<hfw-tiles-view
+    [isVirtual]="true"
+    [data]="view"
+    [loading]="loading"
+    [pageSize]="pageSize"
+    [skip]="skip"
+    [tileSize]="sizeModel"
+    (scrollPageChange)="handlePageChange($event)"
+    #documentTilesView
+    >
+    <ng-template hfwTilesViewHeaderTemplate>
+        <div class="py-4">
+                <si-search-bar
+                    #searchBar
+                    class="w-100"
+                    [placeholder]="placeholder"
+                    (searchChange)="searchChange($event)"
+                    [debounceTime]="400"
+                    [showIcon]="true"
+                    prohibitedCharacters="*?"
+                />
+        </div>
+    </ng-template>
+
+    <ng-template
+        hfwTilesItemTemplate
+        let-dataItem="dataItem"
+        let-isFirst="isFirst">
+        <gms-tile-body class="hfw-flex-item-grow d-flex" [cnsLabel]="cnsLabelObject"
+            [selectedObject]="selectedObject"
+            (clickBody)="onClickBody($event)" [dataItem]="dataItem"
+            [actionBarViewType]="actionBarType" />
+    </ng-template>
+</hfw-tiles-view>
