@@ -1,0 +1,133 @@
+<!-- <video-control> -->
+<!-- <div style="text-align:center; font-weight: bold; font-size: xx-large;"><br><br><br>gms video control (control - ciao)</div> -->
+<!-- <div *ngIf="showVideoControl"> -->
+  <!-- <div style="text-align:center; font-weight: bold; font-size: xx-large;"><br><br><br>gms-video-control (control)</div> -->
+<hfw-tiles-view
+#documentTilesView
+name="videoTilesViewControl"
+[data]="view"
+[tileSize]="sizeModel"
+>
+
+<ng-template hfwTilesViewHeaderTemplate>
+    <!-- <div *ngIf="showSnapshot && isInAssistedMode"><strong>{{titleForOpStep}}</strong></div> -->
+    <div *ngIf="showSnapshot && isInAssistedMode" style="height: 20px;">
+        <si-select name="cameraSelectionCombo"
+            class="form-control"
+            style="height: 24; visibility: hidden; max-width: max-content;"
+            [options]="optionsList"
+            [formControl]="formControl"
+            (valueChange)="selectionChanged($event)"
+        />
+        <span class="badge bg-success" style="position: absolute; right: 0;">{{templateStrings.live}}</span>
+    </div>
+    <div *ngIf="!showSnapshot" class="ng-star-inserted" style="display: flex; place-content: center space-between;">
+        <si-search-bar
+            #documentSiSearchBar
+            class="search-field mb-4 mt-6"
+            style="width: 100%;"
+            [debounceTime]="400"
+            [showIcon]="true"
+            prohibitedCharacters="*?"
+            [placeholder]="templateStrings.searchFilterWatermark"
+            (searchChange)="searchChange($event)"
+        />
+    </div>
+
+    <div name="content-vid-view" [id]="contentVidViewClient"></div>
+
+    <hfw-panel-navigation class="hfw-flex-container-column hfw-flex-item-grow" name="hfw-panel-navigation"
+        [hideBtns]="!showButtons" (rightBtnClicked)="incrementCamera()"
+        (leftBtnClicked)="decrementCamera()">
+    <!-- style="height: 404;" -->
+
+    <div *ngIf="showErrorMessage" id="ErrorMessage">
+        <si-empty-state
+            content=""
+            [icon]="errorIcon"
+            [heading]="errorMessage"
+        />
+    </div>
+
+    <div *ngIf="showSnapshot && !showErrorMessage" style="display: flex; justify-content: center; align-items: center;">
+        <div name="SnapshotDiv" style="overflow: auto; justify-content: center; align-items: center; position: relative;">
+            <img id="Snapshot" name="Snapshot" src="" style="image-rendering: smooth;" alt="" (load)="onSnapshotLoad($event)">
+        </div>
+    </div>
+
+    <div *ngIf="showSnapshot && !showErrorMessage" class="hfw-flex-container-column hfw-flex-item-grow" style="transform: translateZ(0);">
+        <div id="SnapshotButtons" name="SnapshotButtons"
+             style="position: fixed; right: -30px; bottom: 8px; width: 40px; height: 150px; touch-action: manipulation; visibility: collapse;">
+            <div *ngIf="graphic !== undefined && graphic.hasCoverageArea">
+                <xhtml:button class="btn btn-circle btn-lg btn-secondary element-video me-6"
+                    style="position: absolute; bottom: 135px; right: 10px;"
+                    [ngClass]="graphic !== undefined && graphic.coverageAreaMode ? 'pressed-button-background' : 'default-button-background' "
+                    (click)="onCoverageAreaHighlight($event)" />
+            </div>
+            <xhtml:button style="position: absolute; bottom: 90px; right: 60px;" class="btn btn-circle btn-lg btn-secondary element-show me-6"
+                [ngClass]="graphic !== undefined && graphic.isPermScaleToFit ? 'pressed-button-background' : 'default-button-background' "
+                (click)="onScaleToFit($event)" />
+            <xhtml:button style="position: absolute; bottom: 45px; right: 60px;" class="btn btn-circle btn-lg btn-secondary element-plus me-6 default-button-background"
+                (click)="onZoomIn($event)" />
+            <xhtml:button style="position: absolute; bottom: 0px; right: 60px;" class="btn btn-circle btn-lg btn-secondary element-minus me-6 default-button-background"
+                (click)="onZoomOut($event)" />
+        </div>
+    </div>
+
+    </hfw-panel-navigation>
+
+</ng-template>
+
+<ng-template let-dataItem="dataItem" hfwTilesItemTemplate *ngIf="!showSnapshot">
+    <si-card class="hfw-flex-item-grow d-flex" [heading]="dataItem.title" [primaryActions]="dataItem.actions">
+      <div class="hfw-flex-container-column hfw-flex-item-grow" body style="align-items: center;">
+        <div class="hfw-flex-container-row">
+          <div *ngIf="dataItem.color !== 'black'" class="tile-footer-container ellipsis-forward px-6 camera-div">
+            <i class="{{dataItem.cameraIcon}} icon"></i>
+            <span class="camera-span">{{dataItem.source}}</span>
+          </div>
+          <div *ngIf="dataItem.color === 'black'" class="tile-footer-container ellipsis-forward px-6 nothing-to-show-div">
+            <i class="element-multimedia icon nothing-to-show-icon"></i>
+            <br>
+            <span class="badge bg-secondary">{{templateStrings.nothingToShow}}</span>
+          </div>
+        </div>
+        <div class="hfw-flex-container-row">
+          <div *ngIf="dataItem.color === 'black'" class="tile-footer-container ellipsis-forward px-6 message-div">
+            <span class="badge bg-success"></span>
+          </div>
+          <div *ngIf="dataItem.color === 'yellow'" class="tile-footer-container ellipsis-forward px-6 message-div">
+            <span class="badge bg-danger bg-margin">{{templateStrings.faulty}}</span>
+          </div>
+          <div *ngIf="dataItem.color === 'green'" class="tile-footer-container ellipsis-forward px-6 message-div">
+            <span class="badge bg-success bg-margin">{{templateStrings.connected}}</span>
+          </div>
+          <div *ngIf="dataItem.color === 'grey'" class="tile-footer-container ellipsis-forward px-6 message-div">
+            <span class="badge bg-warning bg-margin">{{templateStrings.disabled}}</span>
+          </div>
+        </div>
+        <div class="hfw-flex-container-row">
+          <div *ngIf="dataItem.colorS1N !== dataItem.color && dataItem.colorS1 !== dataItem.color"
+               class="tile-footer-container ellipsis-forward px-6 div-text">
+            <i class="{{dataItem.sequenceIcon}} icon sequence-color-first-monitor"></i>
+            <span class="span-text sequence-color-first-monitor">{{templateStrings.sequenceFirstMonitor}}</span>
+          </div>
+          <div *ngIf="dataItem.colorS1N !== dataItem.color && dataItem.colorS1 === dataItem.color"
+               class="tile-footer-container ellipsis-forward px-6 div-text">
+            <i class="{{dataItem.sequenceIcon}} icon sequence-color-subsequent-monitor"></i>
+            <span class="span-text sequence-color-subsequent-monitor">{{templateStrings.sequenceSubsequentMonitor}}</span>
+          </div>
+          <div *ngIf="dataItem.colorPB !== dataItem.color"
+               class="tile-footer-container ellipsis-forward px-6 div-text">
+            <i class="element-play icon"></i>
+            <span class="span-text">{{templateStrings.playback}}</span>
+          </div>
+        </div>
+      </div>
+    </si-card>
+</ng-template>
+
+</hfw-tiles-view>
+
+<!-- </div> -->
+<!-- </video-control> -->

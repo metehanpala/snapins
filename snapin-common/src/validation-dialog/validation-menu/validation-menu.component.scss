@@ -1,0 +1,20 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.wrong-user-message {
+  color: $element-action-danger;
+}
+
+.disabled-ok-button {
+  color: $element-ui-3;
+}
+
+.validation-exit-button {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+::ng-deep modal-container {
+  z-index: 9999 !important;
+}
+

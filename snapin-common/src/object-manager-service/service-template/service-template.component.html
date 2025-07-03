@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <span class="modal-title si-title-1">{{ title || 'Title' }}</span>
+  <button type="button" class="btn-close" aria-label="Close" (click)="onCancel()">
+  </button>
+</div>
+<div class="d-flex flex-column modal-body" [ngClass]="isMobileDevice ? 'container-size-mobile' : 'container-size'">
+  <gms-object-manager class="flex-grow-1 h-100 d-flex flex-column" style="min-height: 0;"
+    [dialogContainer]="true"
+    [reset]="true"
+    [config]="objectManagerConfig"
+    [singleSelection]="singleSelection"
+    [creatableTypes]="creatableTypes"
+    [showValue]="false"
+    [showStatus]="false"
+    [saveCallback]="saveCallback"
+    [enableUserFilter]="enableUserFilter"
+    (selectedItemsChanged)="onSelection($event)"
+    (dialogBtnClicked)="onDialogClosed($event)"
+    (saveBrowserObj)="onSavedBO($event)" />
+  <!--
+    [clientId]="myId"
+    [initialSelection]="variable of type string | AggregateViewId"
+  -->
+</div>
+<!--
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="onConfirm()">{{ confirmBtnName | translate }}</button>
+</div>
+-->

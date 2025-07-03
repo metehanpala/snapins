@@ -1,0 +1,9 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+// Allow a flex-item to shrink beyond the size of its content along vertical (column) axis.
+// By default, flex will set min-height: auto
+// For a good explanation, see: https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+.flex-column-item-shrink {
+  flex: 1 1 auto;
+  min-height: 0;
+}

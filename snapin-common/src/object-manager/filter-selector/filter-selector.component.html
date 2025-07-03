@@ -1,0 +1,183 @@
+<div class="flex-column-item-shrink d-flex flex-column h-100" style="overflow: hidden;">
+
+  <!-- Filter Criteria-->
+  <div class="flex-column-item-shrink d-flex flex-column h-100" style="overflow-x: hidden; overflow-y: auto;">
+
+    <form class="flex-column-item-shrink pt-2">
+
+      <!-- Presets dropdown -->
+      <ng-container *ngIf="enablePresets">
+        <div siDropdown #dropdown="si-dropdown" dropdownContainer="body" class="btn-group w-100">
+          <button siDropdownToggle type="button" class="btn btn-secondary dropdown-toggle mx-5 mb-5" [disabled]="filterView.recentFilters.length === 0 && filterView.savedFilters.length === 0">
+            {{ presetFilterSelectionText }}
+          </button>
+          <ul siDropdownMenu id="dropdown-triggers-manual" role="menu" class="dropdown-menu"> <!-- style="max-height: 50vh; overflow-y: auto;" -->
+            <ng-container *ngIf="filterView.recentFilters.length > 0">
+              <li class="dropdown-header">{{ recentFiltersLabel }}</li>
+              <ng-container *ngFor="let recentFilter of filterView.recentFilters; let ridx=index;  trackBy: trackByIndex">
+                <li role="menuitem" (click)="onSelectRecentFilter($event, ridx)">
+                  <div class="dropdown-item">
+                    <label class="flex-grow-1 me-6" [htmlFor]="recentFilterDescription(recentFilter)" >{{ recentFilterDescription(recentFilter) }}</label>
+                    <button type="button" class="btn btn-sm btn-circle element-delete" (click)="onDeleteRecentFilter($event, ridx)"> </button>
+                  </div>
+                </li>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="filterView.savedFilters.length > 0">
+              <li class="divider dropdown-divider" *ngIf="filterView.recentFilters.length > 0"></li>
+              <li class="dropdown-header">{{ savedFiltersLabel }}</li>
+              <ng-container *ngFor="let savedFilter of filterView.savedFilters; let sidx=index;  trackBy: trackByIndex">
+                <li role="menuitem" (click)="onSelectSavedFilter($event, sidx)">
+                  <div class="dropdown-item">
+                    <label class="flex-grow-1 me-6" [htmlFor]="savedFilter.name">{{ savedFilter.name }}</label>
+                    <button type="button" class="btn btn-sm btn-circle element-delete" (click)="onDeleteSavedFilter($event, savedFilter.name)"> </button>
+                  </div>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ul>
+        </div>
+      </ng-container>
+
+      <div class="form-group px-5 mb-5">
+        <si-search-bar [attr.aria-label]="filterSearchAriaLabel"
+          [placeholder]="searchPatternWatermark"
+          colorVariant="base-0"
+          [value]="filterView.settings.pattern"
+          [showIcon]="true"
+          [debounceTime]="10"
+          (searchChange)="onFilterPatternChange($event)" />
+        <div class="ms-4 mt-3">
+          <div class="form-check">
+            <input type="radio" class="form-check-input" name="namespaceRadios" id="descriptionRadio" [value]="nsDescriptionValue" [(ngModel)]="patternNamespaceSelection">
+            <label class="form-check-label" for="descriptionRadio">
+              {{ nsCnsDescriptionLabel }}
+            </label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" name="namespaceRadios" id="nameRadio" [value]="nsNameValue" [(ngModel)]="patternNamespaceSelection">
+            <label class="form-check-label" for="nameRadio">
+              {{ nsCnsNameLabel }}
+            </label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" name="namespaceRadios" id="aliasRadio" [value]="nsAliasValue" [(ngModel)]="patternNamespaceSelection">
+            <label class="form-check-label" for="aliasRadio">
+              {{ nsAliasLabel }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group label-container px-5 mb-5">
+        <div class="form-check">
+          <label>
+            <input type="checkbox" class="form-check-input" name="filterSelect_inputSelectionScopeEnabled"
+              [disabled]="!filterView.selectionPath"
+              [(ngModel)]="filterView.settings.isWithinSelection">
+            <span class="form-check-label">{{ searchWithinLabel }}</span>
+          </label>
+        </div>
+        <div class="input-group">
+          <input disabled type="text" id="searchWithinFolderName" class="form-control" [class.text-muted]="!filterView.settings.isWithinSelection" style="border: unset;"
+            [value]="filterView.selectionPath">
+          <i class="icon element-folder-open align-self-center" [class.text-muted]="!filterView.settings.isWithinSelection"></i>
+        </div>
+      </div>
+
+      <si-accordion [expandFirstPanel]="false">
+        <si-collapsible-panel [heading]="disciplineLabel" (toggle)="this.isDisciplineOpen = !this.isDisciplineOpen"> <!-- [opened]="isDisciplineOpen"  -->
+          <div class="p-5">
+            <hfw-tree-selector
+              inputElementName="disciplineSelector"
+              [excludeAccordion]="true"
+              [enableItemFilter]="true"
+              [itemFilterPlaceholder]="disciplineFilterWatermark"
+              [selectionTree]="filterView.disciplineTree"
+              [reset]="resetDisciplineSelector"
+              [isSelectorOpen]="isDisciplineOpen"
+              [destroyTreeOnCollapse]="false"
+              [enableLog]="false"
+              (selectionChanged)="filterView.updateDisciplines()" />
+          </div>
+        </si-collapsible-panel>
+
+        <si-collapsible-panel [heading]="objectTypeLabel" (toggle)="isObjectTypeOpen = !isObjectTypeOpen"> <!-- [opened]="isObjectTypeOpen" -->
+          <div class="p-5">
+            <hfw-tree-selector
+              inputElementName="objectTypeSelector"
+              [excludeAccordion]="true"
+              [enableItemFilter]="true"
+              [itemFilterPlaceholder]="objectTypeFilterWatermark"
+              [selectionTree]="filterView.objectTypeTree"
+              [reset]="resetObjectTypeSelector"
+              [isSelectorOpen]="isObjectTypeOpen"
+              [destroyTreeOnCollapse]="false"
+              [enableLog]="false"
+              (selectionChanged)="filterView.updateObjectTypes()" />
+          </div>
+        </si-collapsible-panel>
+
+        <si-collapsible-panel [heading]="stateLabel" (toggle)="isObjectStateOpen = !isObjectStateOpen"> <!-- [opened]="isObjectStateOpen" -->
+          <div class="p-5">
+            <hfw-tree-selector
+              inputElementName="objectStateSelector"
+              [excludeAccordion]="true"
+              [enableItemFilter]="false"
+              [selectionTree]="filterView.settings.isAlarmSuppression | alarmSuppressionXlator:objectStateTree"
+              [reset]="resetObjectStateSelector"
+              [isSelectorOpen]="isObjectStateOpen"
+              [destroyTreeOnCollapse]="false"
+              [enableLog]="false"
+              (selectionChanged)="onObjectStateChanged()" />
+          </div>
+        </si-collapsible-panel>
+      </si-accordion>
+
+    </form>
+
+  </div>
+
+  <!-- Footer command buttons and save filter popover -->
+  <div class="p-5 w-100" style="position: relative;">
+    <ng-container *ngIf="enablePresets">
+      <si-prompt-dialog-buttons
+        (confirm)="onSet($event)"
+        (cancel)="onCancel()"
+        (save)="showSave(true)"
+        [saveLabel]="filterSaveAriaLabel"
+        [cancelLabel]="filterExitAriaLabel"
+        [confirmLabel]="filterApplyAriaLabel"
+        [confirmDisabled]="isSaveOpen || filterView.settings.isClear || filterView.isSearchInProgress"
+        [cancelDisabled]="isSaveOpen"
+        [saveDisabled]="filterView.settings.isClear" />
+    </ng-container>
+    <ng-container *ngIf="!enablePresets">
+      <si-prompt-dialog-buttons
+        (confirm)="onSet($event)"
+        (cancel)="onCancel()"
+        [confirmDisabled]="isSaveOpen || filterView.settings.isClear || filterView.isSearchInProgress"
+        [cancelDisabled]="isSaveOpen" />
+    </ng-container>
+
+    <ng-container *ngIf="isSaveOpen">
+      <si-card class="w-100" style="position: absolute; bottom: -6px; left: 0; z-index: 10;"
+        [heading]="saveFilterLabel">
+        <div class="card-body" body>
+          <si-inline-notification *ngIf="isSaveError" [message]="saveErrorMessage" [severity]="saveErrorSeverity" />
+          <form>
+            <div style="position: relative;">
+              <input type="text" class="form-control" name="filterName" [(ngModel)]="saveFilterName" (input)="checkFilterName()" required autocomplete="off">
+              <i class="icon icon-spin element-busy waiting-icon" [class.is-waiting]="isSaveFilterInProgress"></i>
+            </div>
+          </form>
+          <div class="d-flex flex-row justify-content-end">
+            <button type="button" class="form-control btn btn-circle btn-sm btn-secondary element-cancel" (click)="showSave(false)"> </button>
+            <button type="button" class="form-control btn btn-circle btn-sm btn-secondary element-save ms-4" (click)="saveFilter()" [disabled]="!saveFilterNameValid"> </button>
+          </div>
+        </div>
+      </si-card>
+    </ng-container>
+  </div>
+
+</div>

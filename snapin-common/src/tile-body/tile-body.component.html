@@ -1,0 +1,14 @@
+<si-card [heading]="title" class="hfw-flex-item-grow d-flex" (expandChange)="expanded($event)"
+    [actionBarViewType]="actionBarViewType"
+    [primaryActions]="primaryActions"
+    [secondaryActions]="secondaryActions">
+    <div class="hfw-flex-container-column hfw-flex-item-grow body-element" body>
+        <div (click)="onBody(dataItem)" class="hfw-flex-container-row icon-align pb-5" style="cursor: pointer;">
+            <i [ngClass]="dataItem.iconClass !== null ? dataItem.iconClass : 'element-document-filled'"
+            class="display-1 float-center text-primary secondary-color"></i>
+        </div>
+        <div class="footer-align my-2" >
+            <gms-tile-footer [cnsLabel]="cnsLabel" [tileItem]="dataItem" [selectedObject]="selectedObject" />
+        </div>
+    </div>
+</si-card>

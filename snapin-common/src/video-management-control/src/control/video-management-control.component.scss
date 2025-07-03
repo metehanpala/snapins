@@ -1,0 +1,187 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+// .video-tooltip {
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     margin-bottom: 0px;
+//     font-size: .75rem;
+//     font-weight: 400;
+//     margin-top: 2px;
+//     text-align: center;
+// }
+
+//-------------------------------------------------------------------------------------------------
+
+// .example-tiles-view-header {
+//     display: flex;
+//     place-content: center space-between;
+// }
+
+// .example-search-bar {
+//     width: 600px;
+// }
+
+// .example-action-bar {
+//     // flex: 0 1 auto;
+//     min-width: 130px;
+// }
+
+// .example-card-body-text {
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+// }
+
+// .example-stretch {
+//     place-content: stretch flex-start;
+//     align-items: stretch;
+//     margin-left: 10px;
+// }
+
+// .example-designation {
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     margin-bottom: 0px;
+//     font-size: .75rem;
+//     font-weight: 400;
+//     margin-top: 2px;
+// }
+
+// .example-name {
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+// }
+
+// .hfw-test-list-settings {
+//     padding: 0 20px;
+//     // align-self: stretch;
+//     max-width: 600px;
+//     flex-basis: 30%;
+//     overflow-y: auto;
+
+//     hr {
+//       margin-top: 10px;
+//       margin-bottom: 10px;
+//     }
+// }
+
+//-------------------------------------------------------------------------------------------------
+
+.footer-align {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.ellipsis-backward {
+  overflow: hidden;
+  direction: rtl;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ellipsis-forward {
+  overflow: hidden;
+  direction: ltr;
+  white-space: nowrap;
+  // white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.span-text {
+  margin-left: 0.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.div-text {
+  margin-top: 0.7rem;
+  width: 278; // 318
+  margin-left: 0rem;
+}
+
+.bg-margin {
+  margin-left: 0.9rem;
+}
+
+.nothing-to-show-icon {
+  font-size: 450%;
+  margin-bottom: 0.2rem;
+  margin-top: -0.6rem;
+  color: $element-ui-2;
+}
+
+.nothing-to-show-div {
+  margin-top: 0.7rem;
+  width: 278; // 318
+  text-align: center;
+}
+
+.message-div {
+  margin-top: 0.7rem;
+  margin-left: 1.3rem;
+  width: 278; // 318
+}
+
+.camera-div {
+  margin-top: 0.7rem;
+  width: 278; // 318
+}
+
+.camera-span {
+  margin-left: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.sequence-color-first-monitor {
+  color: $element-ui-1;
+}
+
+.sequence-color-subsequent-monitor {
+  color: $element-ui-2;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+.gms-menu-item-title {
+  padding: 8px 8px 0px !important;
+  font-weight: 600;
+}
+
+.show-all-option {
+  color: $element-action-primary;
+}
+
+.graphics-menu-item:hover {
+  color: $element-ui-0-hover;
+  text-decoration: none;
+  background-color: $element-base-1-hover;
+}
+
+.graphics-menu-item {
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+.graphics-menu-item label {
+  margin: 0px 8px 0px 8px !important;
+  font-weight: 200;
+}
+
+.top-level-list {
+  list-style-type: none;
+  padding: 8px 0px 0px 0px;
+}
+
+.pressed-button-background {
+  background: $element-base-0 !important;
+}
+
+.default-button-background {
+  background: white;
+}

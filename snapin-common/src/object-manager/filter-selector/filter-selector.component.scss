@@ -1,0 +1,33 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.label-container {
+  min-width: 0;
+
+  label {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    // text-overflow: ellipsis;
+  }
+}
+
+.waiting-icon {
+  display: none !important;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+
+  &.is-waiting {
+    display: block !important;
+  }
+}
+
+.icon-spin {
+  animation: spinner-animation 1.5s infinite linear;
+}
+
+@keyframes spinner-animation {
+  to {
+    transform: rotate(360deg);
+  }
+}

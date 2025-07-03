@@ -1,0 +1,76 @@
+<div #treeContainer class="flex-column-item-shrink d-flex flex-column h-100">
+  <div *ngIf="isLoading" class="d-flex flex-column justify-content-center h-100 pb-10">
+    <si-loading-spinner *ngIf="isLoadingSpinnerEnabled" />
+  </div>
+
+  <si-tree-view #siTreeViewComponent *ngIf="!isLoading" class="h-100" style="flex: 1 1 auto;"
+    [items]="view.roots"
+
+    [singleSelectMode]="singleSelection"
+    [selectedItem]="selectedItem"
+    [inFocus]="inFocusItem"
+    (loadChildren)="onLoadChildren($event)"
+    (treeItemsSelected)="onSelectedItemsChanged($event)"
+
+    [enableContextMenuButton]="enableMenu && commandItemsProvider && commandItemsProvider.length > 0"
+    [contextMenuItems]="commandItemsProvider"
+
+    [isVirtualized]="true"
+    [pageSize]="20"
+    [pagesVirtualized]="10"
+    (itemsVirtualizedChanged)="onItemsVirtualizedChanged($event)"
+
+    [flatTree]="flatTree"
+    [folderStateStart]="true"
+    [groupedList]="false"
+    [deleteChildrenOnCollapse]="false"
+    [enableDataField1]="false"
+    [enableDataField2]="false"
+    [enableStatePipe]="true"
+    [enableSelection]="true"
+    [enableCheckbox]="false"
+    [enableOptionbox]="false"
+    [enableFocus]="true"
+    [enableLog]="false">
+
+    <ng-template let-node siTreeViewItemTemplate="default">
+      <div class="object-label-container">
+        <div class="object-label si-body-2" [class.text-selected]="node.selected">
+          <span>{{ node.label }}</span>
+        </div>
+        <div class="object-label si-body-2 text-secondary" *ngIf="view.isSecondaryLabelEnabled">
+          <span>{{ node.dataField1 }}</span>
+        </div>
+        <div class="object-label si-body-2 text-active" *ngIf="showDefaultPropertyValue">
+          <span><strong>{{ node.dataField2 }}</strong></span>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template let-node siTreeViewItemTemplate="saving">
+      <div class="d-flex flex-row align-items-center">
+        <div class="object-label-container w-100 flex-grow-1">
+          <div class="object-label si-body-2 text-disabled">
+            <span>{{ view.transientItemDescription }}</span>
+          </div>
+          <div class="object-label si-body-2" *ngIf="view.isSecondaryLabelEnabled">
+            <!-- Empty; just used for spacing in case secondary label is enabled -->
+          </div>
+          <div class="object-label si-body-2" *ngIf="showDefaultPropertyValue">
+            <!-- Empty; just used for spacing in case value field is enabled -->
+          </div>
+        </div>
+        <i class="icon element-busy hfw-spin flex-grow-0"></i>
+      </div>
+    </ng-template>
+
+    <ng-template let-node siTreeViewItemTemplate="new">
+      <input #transientItemInput  type="text" class="form-control w-100" spellcheck="false"
+        [ngClass]="isTransientItemDescriptionInvalid ? 'is-invalid' : 'is-valid'"
+        [(ngModel)]="view.transientItemDescription">
+      <!--
+        (keydown.enter)="onSaveOpClick($event)"
+      -->
+    </ng-template>
+  </si-tree-view>
+</div>

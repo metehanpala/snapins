@@ -1,0 +1,31 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.icon-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &:hover {
+    background-color: $element-base-0;
+
+    &:active {
+      background-color: $element-ui-4;
+    }
+  }
+}
+
+.footer-align {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  cursor: default;
+}
+
+.secondary-color {
+  color: $element-ui-3 !important;
+}
+
+.body-element {
+  margin-bottom: 26px;
+}

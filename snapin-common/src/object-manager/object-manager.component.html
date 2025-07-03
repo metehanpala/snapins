@@ -1,0 +1,184 @@
+<ng-container *ngIf="!dialogContainer">
+  <ng-container *ngTemplateOutlet="objectLocationSelector" />
+</ng-container>
+
+<ng-container *ngIf="dialogContainer">
+  <si-inline-notification *ngIf="dialogErrorMessage" class="mb-4"
+    severity="danger"
+    [message]="dialogErrorMessage" />
+
+  <form class="flex-column-item-shrink d-flex flex-column h-100" style="overflow: hidden;">
+
+    <!-- Object name (optional: new object creation only) -->
+    <div class="form-group mx-1 mb-4" style="flex: 0 0 auto;" *ngIf="isSaveDialog">
+      <label class="form-label" for="objName">{{ nameLabel }}</label>
+      <div class="form-control-has-icon">
+        <input type="text" class="form-control" [maxlength]="nameMaxLength" name="objName"
+          [(ngModel)]="objectName" (input)="onNameChange($event)" [disabled]="isGenericCreateActive || isSavePending" required autocomplete="off" spellcheck="false">
+          <div class="invalid-feedback">{{this.nameLabelError}}</div>
+      </div>
+    </div>
+
+    <!-- Object description (optional: new object creation only) -->
+    <div class="form-group mx-1 mb-4" style="flex: 0 0 auto;" *ngIf="isSaveDialog">
+      <label class="form-label" for="objDesc">{{ descriptionLabel }}</label>
+      <div class="form-control-has-icon">
+        <input type="text" class="form-control" name="objDesc"
+          [(ngModel)]="objectDescription" (input)="onDescriptionChange($event)" [disabled]="isGenericCreateActive || isSavePending" required autocomplete="off" spellcheck="false">        
+        <div class="invalid-feedback">{{this.desciptionLabelError}}</div>
+      </div>
+    </div>
+
+    <!-- Object location -->
+    <div class="form-group flex-column-item-shrink d-flex flex-column h-100 mx-1" style="min-height: 140px;">
+      <label class="form-label" for="objLoc">{{ locationLabel }}</label>
+      <div name="objLoc" class="flex-column-item-shrink d-flex flex-column h-100 elevation-1">
+        <ng-container *ngTemplateOutlet="objectLocationSelector" name="objectLocation" />
+      </div>
+    </div>
+
+  </form>
+
+  <!-- Dialog buttons -->
+  <div class="d-flex flex-row mx-1 mb-1" *ngIf="showDialogButtons">
+    <div class="flex-grow-1">
+      <!-- Generic create (new item) button -->
+      <ng-container *ngIf="isGenericCreateEnabled && !isGenericCreateActive">
+        <div *ngIf="genericCreateTypes.length > 1; then newItemMultiple else newItemSingleOrNone"></div>
+        <!-- dropdown button for multiple new items -->
+        <ng-template #newItemMultiple>
+          <div siDropdown #dropdown="si-dropdown" class="btn-group" dropdownContainer="modal-container">
+            <button siDropdownToggle type="button" class="btn btn-secondary dropdown-toggle" [disabled]="isSavePending">
+              {{ genericCreateButtonLabel }}
+            </button>
+            <ul siDropdownMenu id="dropdown-triggers-manual" role="menu" class="dropdown-menu">
+              <ng-container *ngFor="let item of genericCreateTypes; let i=index;  trackBy: trackByIndex">
+                <li role="menuitem" (click)="onGenericCreate(i)">
+                  <div class="dropdown-item">
+                    <label [htmlFor]="item.description">{{ item.description }}</label>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </ng-template>
+        <!-- normal button for a single new item -->
+        <ng-template #newItemSingleOrNone>
+          <button type="button" class="btn btn-secondary" (click)="onGenericCreate()" [disabled]="genericCreateTypes.length === 0 || isSavePending">
+            {{ genericCreateButtonLabel }}
+          </button>
+        </ng-template>
+      </ng-container>
+    </div>
+
+    <!-- Generic create cancel/save buttons -->
+    <ng-container *ngIf="isGenericCreateActive">
+      <button type="button" class="btn btn-secondary me-4" (click)="onGenericCreateCancel()">{{ genericCreateCancelLabel }}</button>
+      <button type="button" class="btn btn-secondary" (click)="onGenericCreateSave()" [disabled]="!isGenericItemDefined">{{ genericCreateSaveLabel }}</button>
+    </ng-container>
+
+    <!-- Dialog cancel/select/save buttons -->
+    <ng-container *ngIf="!isGenericCreateActive">
+      <button type="button" class="btn btn-secondary me-4" (click)="onCancelDialog()" [disabled]="isSavePending">{{ dialogCancelLabel }}</button>
+      <button type="button" *ngIf="!isSaveDialog" class="btn btn-primary" (click)="onSelectObject()" [disabled]="!isItemSelected">{{ dialogSelectLabel }}</button>
+      <button type="button" *ngIf="isSaveDialog" class="btn btn-primary" (click)="onSaveObject()" [disabled]="!(isItemSelected && objectDescription.length > 0 && objectName.length > 0) || isSavePending">{{ dialogSaveLabel }}</button>
+    </ng-container>
+  </div>
+</ng-container>
+
+<!-- Template for Object Location browser/selector (System Browser) -->
+<ng-template #objectLocationSelector>
+  <div class="flex-column-item-shrink d-flex flex-column h-100 bg-base-1">
+
+    <!-- Filter toolbar -->
+    <div class="d-flex flex-row align-items-center w-100 p-5" style="flex: 0 0 auto;" *ngIf="showToolbar">
+      <button [attr.aria-label]="filterShowAriaLabel" class="btn btn-circle btn-sm btn-secondary element-filter-filled flex-grow-0 flex-shrink-0" type="button"
+        [disabled]="disableToolbarFilterControls"
+        (click)="onFilterSelectorClicked()">
+      </button>
+
+      <!-- Pills -->
+      <div class="w-100 px-3" style="overflow-x: hidden;">
+        <ng-container *ngIf="!vm.filter.isIdle">
+          <span *ngIf="!filterPills || filterPills.length === 0" class="text-muted px-2">{{ filterClearMessage }}</span>
+          <div *ngIf="filterPills && filterPills.length !== 0" class="d-flex flex-row flex-wrap">
+            <ng-container *ngFor="let pillData of filterPills; trackBy:trackByIndex">
+              <gms-om-filter-pill
+                [pillData]="pillData"
+                (deleteClick)="onDeletePill($event)" />
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Reset/Cancel search button -->
+      <button [attr.aria-label]="filterCancelAriaLabel" type="button" class="btn btn-circle btn-sm btn-secondary element-cancel flex-grow-0 flex-shrink-0"
+        [style.display]="(vm.filter.isIdle || vm.filter.settings.isClear) ? 'none' : null"
+        (click)="vm.filter.isSearchInProgress ? vm.filter.abort() : vm.filter.reset()">
+      </button>
+    </div>
+
+    <div class="flex-column-item-shrink d-flex flex-column h-100 pb-3">
+
+      <!-- Browser display (shown only when filter is inactive) -->
+      <div #browserViewsContainer [ngClass]="vm.filter.isIdle ? 'd-flex' : 'd-none'" class="flex-column-item-shrink flex-column h-100">
+        <div class="pb-5" [class.pt-5]="!showToolbar" style="flex: 0 0 auto;" *ngIf="!vm.isCustomized">
+          <!-- NOTE: line-height "normal" overrides value of "1" from form-control class, which cuts off letters below the baseline!  -->
+          <select class="form-control" style="line-height: normal;" (change)="onSelectedViewChanged($event.target.selectedIndex)">
+            <ng-container *ngFor="let view of vm.views;  trackBy: trackByIndex">
+              <option [selected]="view === vm.selectedView">
+                {{ view.description }}
+              </option>
+            </ng-container>
+          </select>
+        </div>
+        <ng-container *ngFor="let view of vm.views;  trackBy: trackByIndex">
+          <div *ngIf="isSelectedView(view)" class="flex-column-item-shrink d-flex flex-column" style="overflow: hidden;">
+            <gms-browser-view #currentBrowserView class="flex-column-item-shrink d-flex flex-column h-100"
+              [isFilterActive]="isFilterActive"
+              [view]="view"
+              [treeStyle]="treeStyle"
+              [showDefaultPropertyValue]="showValue"
+              [singleSelection]="singleSelection"
+              [enableMenu]="enableSelectionMenu"
+              [menuItems]="menuItems"
+              (selectedItemsChanged)="onSelectedItemsChanged($event)" />
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Filter views (shown only when filter is active) -->
+      <div *ngIf="!vm.filter.isIdle" class="flex-column-item-shrink d-flex flex-column" style="overflow: hidden;">
+        <ng-container [ngSwitch]="displayState">
+
+          <!-- Filter selector -->
+          <ng-container *ngSwitchCase="eDisplayState.FilterSelector">
+            <gms-filter-selector class="flex-column-item-shrink d-flex flex-column h-100"
+              [filterView]="vm.filter"
+              [enablePresets]="!vm.isCustomized" />
+          </ng-container>
+
+          <!-- Filter results -->
+          <ng-container *ngSwitchCase="eDisplayState.FilterResults">
+            <gms-filter-results class="flex-column-item-shrink d-flex flex-column h-100"
+              [filterView]="vm.filter"
+              [singleSelection]="singleSelection"
+              [enableMenu]="enableSelectionMenu"
+              [menuItems]="selectionMenuItems"
+              (selectedItemsChanged)="onSelectedItemsChanged($event)" />
+          </ng-container>
+
+          <!-- Filter search in progress -->
+          <ng-container *ngSwitchCase="eDisplayState.SearchInProgress">
+            <div class="flex-column-item-shrink d-flex flex-column justify-content-center h-100 pb-10">
+              <si-loading-spinner />
+            </div>
+          </ng-container>
+
+        </ng-container>
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>

@@ -1,0 +1,38 @@
+<div class="flex-column-item-shrink d-flex flex-column h-100">
+
+  <si-inline-notification class="p-5" *ngIf="filterView.isResultsError"
+    severity="danger"
+    [message]="filterView.resultsErrorMessage" />
+
+  <!-- Non-empty results -->
+  <si-tree-view #treeComponent class="h-100" style="flex: 1 1 auto;" *ngIf="!filterView.isResultsError && !filterView.isResultsEmptySet"
+    [items]="filterView.results" 
+
+    [singleSelectMode]="singleSelection" 
+    (treeItemsSelected)="onSelectedItemsChanged($event)"
+
+    [enableContextMenuButton]="enableMenu && commandItems && commandItems.length > 0" 
+    [contextMenuItems]="commandItems"
+
+    [isVirtualized]="true" 
+    [updateTreeDisplay]="updateVirtualizationInd" 
+    [pageSize]="20" 
+    [pagesVirtualized]="10"
+    (itemsVirtualizedChanged)="onItemsVirtualizedChanged($event)"
+
+    [groupedList]="true" 
+    [folderStateStart]="true" 
+    [deleteChildrenOnCollapse]="false"
+    [enableDataField1]="filterView.isSecondaryLabelEnabled" 
+    [enableSelection]="true"
+    [enableFocus]="true"
+    [enableLog]="false" />
+
+  <!-- Empty results -->
+  <div class="flex-column-item-shrink d-flex flex-column justify-content-center h-100" *ngIf="!filterView.isResultsError && filterView.isResultsEmptySet">
+    <si-empty-state class="flex-column-item-shrink d-flex flex-column justify-content-center pb-10"
+      icon="element-filter"
+      [heading]="noObjectsFoundMessage" />
+  </div>
+
+</div>

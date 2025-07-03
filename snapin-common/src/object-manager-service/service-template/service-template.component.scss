@@ -1,0 +1,57 @@
+.container-size {
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+.container-size-mobile {
+  min-height: 70vh;
+  max-height: 70vh;
+}
+
+.om-service-template-wrapper {
+  // max-height: 90vh;
+  overflow: hidden;
+  padding: 15px;
+
+  .serv-temp-title {
+    font-size: larger;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: 1px solid rgb(200, 200, 210);
+    padding: 5px 0px;
+  }
+
+  .om-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+  }
+
+  .om-btn-container {
+    display: inline-flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 5px;
+  }
+}
+
+hfw-combobox>.form-control.hfw-default-border {
+  background-color: rgb(234, 234, 238) !important;
+  color: rgb(45, 60, 75);
+}
+
+.modal-content {
+  padding: 0px;
+  ;
+}
+
+.control-container {
+  display: flex;
+}
+
+// .objmgr-view-select > .form-control {
+//   background-color: #EAEAEE !important;
+//   color: #2D3C4B;
+// }
