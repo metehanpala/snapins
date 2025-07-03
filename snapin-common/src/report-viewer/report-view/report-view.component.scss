@@ -1,0 +1,12 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.report-manager-unavailable {
+  flex-grow: 1;
+}
+
+.spinner-centered-child {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

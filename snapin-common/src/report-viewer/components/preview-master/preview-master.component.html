@@ -1,0 +1,83 @@
+<div [id]="originSnapInId" class="report-rows">
+  <div  *ngIf="!fromEvents || canHistoryLoaded" class="left-column-wrapper position-relative" #leftColumnWrapper>
+      <gms-history-view 
+        class="h-100"
+        [originSnapInId]="originSnapInId"
+        [selectedObject]="selectedObject"
+        [historyLoaded]="historyLoaded"
+        [isReportDefault]="isReportDefault"
+        [multipleBrowserObjects]="multipleBrowserObjects"
+        [isHistoryVisible]="isHistoryVisible"
+        [reportHistoryData]="reportHistoryData"
+        [isParent]="isParent"
+        [fromEvents] = "fromEvents"
+        [execId]="execId"
+        [displayName]="displayName"
+        [executionIdMap]="executionIdMap"
+        [applicationRules]="relatedItems"
+        [selectedReportName]="selectedReportName" 
+        [selectedDocuments]="selectedDocuments"           
+        (startExecutionCommand)="handleStartExecutionCommand($event)"
+        (downloadReportEvent)="handleDownloadReportEvent($event)"
+        (showRelatedReportEvent)="handleShowRelatedReportEvent($event)"
+        (deleteReportDocumentsEvent)="handleDeleteReportDocumentsEvent($event)"
+        (showReportEvent)="handleShowReportEvent($event)"
+        (setActiveEvent)="handleSetActiveEvent($event)"   
+        (childToParent)="handleChildToParent($event)" 
+        [stateDataObject]="stateDataObject"
+        (scrollHandlerEvent)="scrollHandlerEvent.emit($event)"
+        (savedSelectedRule)="savedSelectedRule.emit($event)"
+        (expandRowEvent)="expandRowEvent($event)"
+      />
+  </div>
+  <div class="report-separator" #reportSeperator></div>
+  <div class="right-column-wrapper pos-relative" #rightColumnWrapper>
+      <div *ngIf="isParameterOpen else parameterOpen" class="pos-absolute">
+        <gms-advance-report-parameters 
+        [responsiveParameter]= "responsiveParameter" 
+        [selectedRule]="selectedRule" 
+        [parametersMetaData] = "parameterMetaData" 
+        [systemId] = "selectedObject.SystemId" 
+        [selectedObject]="selectedObject"
+        [fileNameData]= "fileName" 
+        [fileTypeData]="fileType"
+        [ruleObjectIdData]="ruleObjectId"
+        (showHideReportEvent)="handleShowHideReportEvent()" />
+      </div>
+      <ng-template #parameterOpen>
+        <div>
+          <si-loading-spinner class="spinner-centered-child" *ngIf="this.isLoading else documentPreview" />
+        </div>
+        <ng-template #documentPreview>
+        <gms-document-render 
+            [selectedObject]="selectedObject"
+            [fileUrl]="fileUrl"
+            [selectedDocuments]="selectedDocuments"
+            [lastShownDocumentData]="lastShownDocumentData"
+            [isPreviewed]="isPreviewed"
+            [stateDataObject]="stateDataObject"
+            [docName]="docName"
+            [pdf]="pdf"
+            [backBtnText]="backBtnText"
+            [reportPreviewText]="reportPreviewText"
+            [isEmpty]="isEmpty"
+            [fromEvents]="fromEvents"
+            [rptDesign]="rptDesign"
+            [selectedEventOPId]="selectedEventOPId"
+            [stepId]="stepId"
+            [procedureStepType]="procedureStepType"
+            [isControlEditable]="isControlEditable"
+            (downloadReportEvent)="handlePreviewDownloadReportEvent()"
+            (emptyDownloadReportEvent)="handleDownloadReportMultiDownloadButton()"
+            (showHideReportEvent)="handleShowHideReportEvent()"
+            (storeObjectEmitter)="storeObjectEmitter.emit($event)"
+            (sendToOutputEvent)="sendToOutputEvent.emit()"
+            (saveTreatmentFormEvent)="handleSaveClick($event)"
+          />
+          
+        </ng-template>
+      </ng-template>
+  </div>
+
+
+</div>

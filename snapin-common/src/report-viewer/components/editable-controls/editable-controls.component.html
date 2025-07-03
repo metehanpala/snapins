@@ -1,0 +1,122 @@
+<div class="my-6 ">
+    <hr  class="event-popover-hr mb-0 mt-2" />
+    <div class="container-fluid container-fluid-control">
+        <div class="h-100 w-100 main-form">
+            <div *ngFor="let control of editableControlData;" class="w-100">
+                <!-- Editable field control -->
+                <div *ngIf="control.ControlName === 'ElementEditableTextField'">
+                        <div class="w-100 mb-6 control">
+                            <label for="current-value" class="form-label">{{editableFieldlLabel}}</label>
+                            <input type="text" id="text" class="form-control editable-field" placeholder="Placeholder for watermark text"
+                                minlength="1" [(ngModel)]="control?.List.Name" (ngModelChange)="validateTreatmentForm()"
+                            />
+                        </div>
+                </div>
+
+                <!-- Comments table control -->
+                <div *ngIf="control.ControlName === 'ElementCommentTable'" class="w-100 control">
+
+                    <div *ngFor="let tableData of fetchedTableData | keyvalue" class="w-100 mb-6">
+
+                        <div *ngIf="control.ControlId == tableData.key">
+                            <label for="current-value" class="form-label">{{commentTablelabel}}</label>
+                            <!-- eslint-disable-next-line -->
+                            <ngx-datatable #table class="table-element elevation-2" [headerHeight]="40" [rowHeight]="64"  columnMode="force" rowHeight="auto"
+                                [rows]="tableData.value" [columns]="columns">
+
+                                <ng-container *ngFor="let col of updatedColumns trackBy: trackByIndex">
+                                    <ng-container
+                                        [ngTemplateOutlet]="col.id ==='CreationDate' ? creationDateTemplate : col.id==='User' ? userTemplate : col.id === 'ManagementStation' ? managementStationTemplate : commentsTemplate" />
+
+                                    <ng-template #creationDateTemplate>
+                                        <ngx-datatable-column  [width]="210" [minWidth]="80" [canAutoResize]="false" [draggable]="true" [resizeable]="true" [prop]="col.id" [id]="col.id" [name]="col.title"
+                                            >
+                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                <div class="si-body-2 ellipsis">
+                                                    {{row?.CreationDate }}
+                                                </div>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ng-template>
+
+                                    <ng-template #userTemplate>
+                                        <ngx-datatable-column [width]="180" [minWidth]="80" [canAutoResize]="false" [draggable]="true" [resizeable]="true" [prop]="col.id" [id]="col.id" [name]="col.title"
+                                           >
+                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                <div class="si-body-2 ellipsis">
+                                                    {{ row?.User}}
+                                                </div>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ng-template>
+
+                                    <ng-template #managementStationTemplate>
+                                        <ngx-datatable-column [width]="210" [minWidth]="80" [canAutoResize]="false" [draggable]="true" [resizeable]="true" [prop]="col.id" [id]="col.id" [name]="col.title"
+                                            >
+                                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                                <div class="si-body-2 ellipsis">
+                                                    {{row?.MamnagementStation }}
+                                                </div>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ng-template>
+
+                                    <ng-template #commentsTemplate>
+                                        <ngx-datatable-column [draggable]="true" [resizeable]="true" [prop]="col.id" [id]="col.id" [name]="col.title"
+                                            >
+                                            <!-- editable text field -->
+                                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex"
+                                                let-value="value" let-row="row">
+
+                                                <input #input class="comment-field form-control editable-field" type="text" [(ngModel)]="row.Comment"
+                                                    [value]="row.Comment"
+                                                    [attr.id]="'Cmnt_' + control.ControlId + rowIndex"
+                                                    [attr.name]="'Cmnt_' + control.ControlId + rowIndex"
+                                                    (input)="addCommentWithDebounce(control.ControlId, rowIndex)" (ngModelChange)="validateTreatmentForm()" />
+                                                <!-- Add , Edit and delete buttons -->
+                                                <div *ngIf="row.Comment!==''"
+                                                    class="icon-box">
+                                                    <span><si-icon icon="element-delete" color="text-primary"
+                                                            (click)="deleteComment(control.ControlId, row)" /></span>
+                                                    <span><si-icon icon="element-plus" color="text-primary"
+                                                        (click)="addNewRow(control.ControlId)" /></span>
+                                                </div>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                    </ng-template>
+                                </ng-container>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Text selection control and combo box selection -->
+                <div *ngIf="control.ControlName === 'ElementTextGroup'">
+                        <div class="w-100 mb-6 control">
+                            <label for="current-value" class="form-label">{{textGroupLabel}}</label>
+                            <select aria-label="number" class="form-select" 
+                            [ngModel]="control?.List.Name"
+                            (ngModelChange)="onSelectionChange($event, control.ControlId)">
+                                <option *ngFor="let textGroupList of control?.TextGroupList;" [ngValue]="textGroupList?.LangText[langArrayIndexValue]">
+                                    {{textGroupList?.LangText[langArrayIndexValue] }}
+                                </option>
+                            </select>
+                        </div>              
+                </div>
+                  <!-- Combobox selection control-->
+                  <div *ngIf="control.ControlName === 'ElementComboBox'">
+                        <div class="w-100 mb-6 control">
+                            <label for="current-value" class="form-label">{{customSelectionLabel}}</label>
+                            <select aria-label="number" class="form-select"
+                            [ngModel]="control?.List.Name"
+                             (ngModelChange)="onSelectionChange($event, control.ControlId)">
+                                <option *ngFor="let content of control?.Contents;" [ngValue]="content[defaultLanguage?.Code]">
+                                    {{content[defaultLanguage?.Code]}}
+                                </option>
+                            </select>
+                        </div>                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

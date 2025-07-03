@@ -1,0 +1,10 @@
+<div *ngIf = "applicationRules.length" class="p-4">
+    <h3 class="pb-2">{{'REPORT-VIEWER.ADVANCE_REPORTING.REPORTS' | translate}}</h3>
+    <select id="ruleSelectDropDown" name="ruleSelectDropDown" #rules class="form-select" (change)="viewRuleselectionChanged($event)" >
+      <option *ngFor="let relatedItem of applicationRules; trackBy: trackByFn" [value]="relatedItem" 
+       [selected]="relatedItem?.Nodes[0].ObjectId === this.selectedRuleInfo?.Nodes[0].ObjectId">
+         {{relatedItem?.ItemDescriptor}}
+      </option>
+    </select> 
+  </div> 
+  

@@ -1,0 +1,158 @@
+<!-- Conditional rendering based on 'isEmpty' flag -->
+<div *ngIf="isEmpty" class="empty-content-container">
+
+  <!-- Container for empty content when 'docName' is not present -->
+  <div *ngIf="!docName" class="empty-content h-100">
+
+    <!-- Back button and text when a document is previewed -->
+    <div *ngIf="isPreviewed" class="back-btn" (click)="onBackButton()">
+      <div type="button" class="icon element-back mx-4 my-4"></div>
+      <span class="si-body-2">{{ backBtnText }}</span>
+    </div>
+
+    <!-- Empty state for no preview available or web app not supported -->
+    <si-empty-state *ngIf="selectedDocuments?.length < 2 && rptDesign?.length !== 0" class="flex-grow-1"
+      icon="element-report" heading="{{ 'REPORT-VIEWER.NO_PREVIEW_AVAILABLE' | translate }}" />
+
+    <!-- Empty state for no report design or when on iOS -->
+    <si-empty-state *ngIf="rptDesign?.length === 0 && isMobileDevice" class="flex-grow-1" icon="element-report"
+    [heading]="webAppNotSupportedLabel" />
+
+    <!-- Empty state for multi-selection with download button -->
+    <si-empty-state *ngIf="selectedDocuments?.length >= 2 && rptDesign?.length !== 0" class="flex-grow-1"
+      icon="element-report" heading="{{ 'REPORT-VIEWER.MULTI_SELECTION' | translate }}">
+      <button type="button" class="btn btn-secondary" (click)="emptyDownloadButton()">{{ 'REPORT-VIEWER.BTN.DOWNLOAD' |
+        translate
+        }}</button>
+    </si-empty-state>
+
+  </div>
+
+  <!-- Container for empty content when 'docName' is present -->
+  <div *ngIf="docName" class="empty-content h-100">
+
+    <!-- Back button and text when a document is previewed -->
+    <div class="report-preview-toolbar mx-5">
+      <div *ngIf="isPreviewed" class="back-btn" (click)="onBackButton()">
+        <div type="button" class="icon element-back mx-4 my-4"></div>
+        <span class="si-body-2">{{ backBtnText }}</span>
+      </div>
+
+      <!-- Content action bar for primary actions -->
+      <si-content-action-bar [primaryActions]="toolbarPrimaryItems" viewType="expanded" />
+
+    </div>
+
+    <!-- Empty state for a report that does not exist (e.g. If a report is deleted on Instance B, on Instance A this error shall be shown) -->
+    <!-- Since WSI does not return a notification on report deletion in instance B still URL path of the file is shown as valid, so this approach
+    won't work, the discussion needs to be done to how to overcome this, refresh is required to update the URL path of the file -->
+    <si-empty-state *ngIf="selectedDocuments?.length < 2 && pdf" class="flex-grow-1" icon="element-report"
+      heading="{{ 'REPORT-VIEWER.NOT_AVAILABLE' | translate: {reportPreviewText: reportPreviewText} }}" />
+
+    <!-- Empty state for single document without preview -->
+    <si-empty-state *ngIf="selectedDocuments?.length < 2 && !pdf" class="flex-grow-1" icon="element-report"
+      heading="{{ 'REPORT-VIEWER.NO_PREVIEW_AVAILABLE_FOR' | translate: {reportPreviewText: reportPreviewText} }}">
+      <button type="button" class="btn btn-primary" (click)="downloadReportClick()">{{ 'REPORT-VIEWER.BTN.DOWNLOAD' |
+        translate
+        }}</button>
+    </si-empty-state>
+
+    <!-- Empty state for multi-selection without preview -->
+    <si-empty-state *ngIf="selectedDocuments?.length >= 2" class="flex-grow-1" icon="element-report"
+      heading="{{ 'REPORT-VIEWER.MULTI_SELECTION' | translate }}">
+      <button type="button" class="btn btn-primary" (click)="emptyDownloadButton()">{{ 'REPORT-VIEWER.BTN.DOWNLOAD' |
+        translate
+        }}</button>
+    </si-empty-state>
+
+  </div>
+</div>
+
+<!-- Container for content when 'isEmpty' is false -->
+<div *ngIf="!isEmpty" class="report-column-right rounded-bottom">
+
+  <!-- Loading spinner for undefined 'fileUrl' -->
+  <si-loading-spinner *ngIf="fileUrl === undefined" />
+
+  <!-- Empty state for web app not supported on iOS devices (iPhone/iPad) -->
+  <div *ngIf="isMobileDevice">
+
+    <!-- Back button and text when a document is previewed -->
+    <div class="report-preview-toolbar mx-5">
+      <div *ngIf="isPreviewed" class="back-btn" (click)="onBackButton()">
+        <div type="button" class="icon element-back mx-4 my-4"></div>
+        <span class="si-body-2">{{ backBtnText }}</span>
+      </div>
+
+      <!-- Content action bar for primary actions -->
+      <si-content-action-bar [primaryActions]="toolbarPrimaryItems" viewType="expanded" />
+    </div>
+
+    <!-- Web App not supported block for report preview -->
+    <si-empty-state class="flex-grow-1" icon="element-report"
+      heading="{{ 'REPORT-VIEWER.WEBAPP-NOT-SUPPORTED' | translate }}">
+
+      <!-- New tab button for the report depending If application is electron or web client -->
+      <a [href]="fileUrl" target="_blank">
+        <button type="button" class="btn btn-primary">
+          <span class="element-export" style="font-size: 20px"></span>
+          <ng-container *ngIf="isElectron; else normalLabel">
+            {{ 'REPORT-VIEWER.NEW-TAB-BUTTON-ELECTRON' | translate }}
+          </ng-container>
+          <ng-template #normalLabel>
+            {{ 'REPORT-VIEWER.NEW-TAB-BUTTON' | translate }}
+          </ng-template>
+        </button>
+      </a>
+    </si-empty-state>
+  </div>
+
+  <!-- Container for preview content when 'fileUrl' is defined -->
+  <div class="preview-container" *ngIf="fileUrl !== undefined && !isMobileDevice">
+
+    <!-- Toolbar for previewed document with back button and content action bar -->
+    <div class="report-preview-toolbar mx-5">
+      <div *ngIf="isPreviewed" class="back-btn" (click)="onBackButton()">
+        <div type="button" class="icon element-back mx-4 my-4"></div>
+        <span class="si-body-2">{{ backBtnText }}</span>
+      </div>
+
+      <!-- Content action bar for primary actions -->
+      <si-content-action-bar [primaryActions]="toolbarPrimaryItems" viewType="expanded" />
+
+    </div>
+
+    <!-- Empty state for multi-selection with download button -->
+    <div *ngIf="selectedDocuments?.length >= 2" class="empty-content h-100">
+      <div *ngIf="isPreviewed" class="back-btn" (click)="onBackButton()">
+        <div type="button" class="icon element-back mx-4 my-4"></div>
+        <span class="si-body-2">{{ 'REPORT-VIEWER.MULTI_SELECTION' | translate }}</span>
+      </div>
+
+      <si-empty-state class="flex-grow-1" icon="element-report" heading="{{ 'REPORT-VIEWER.MULTI_SELECTION' }}">
+        <button type="button" class="btn btn-primary" (click)="emptyDownloadButton()">{{ 'REPORT-VIEWER.BTN.DOWNLOAD'
+          | translate
+          }}</button>
+      </si-empty-state>
+
+    </div>
+
+    <!-- Viewer for single document with 'sourceUrl' -->
+    <div *ngIf="!isFormOpen && fileUrl && selectedDocuments?.length < 2" class="viewer"
+      [ngStyle]="{ 'height': '100%' }">
+      <iframe width="100%" height="100%" *ngIf="sourceUrl !== undefined" [src]="sourceUrl" id="doc"></iframe>
+    </div>
+
+    <!-- Editable controls when form is open and controls are editable -->
+    <div *ngIf="isFormOpen && isControlEditable  && procedureStepType === 'OPStepTreatmentForm'">
+      <gms-editable-controls [editableControlData]="editableControlData"
+      [selectedEventOPId]="selectedEventOPId" [reportDefinitionId]="reportDefinitionId"
+      [procedureStepType]="procedureStepType"
+      [updatedStepData]="updatedStepData"
+      [fetchedTableData]="fetchedTableData"
+      [isEditable]="isEditable"
+      [selectedObjectSystemId]="systemId"  (saveTreatmentFormEvent)="handleSaveEvent($event)" />
+    </div>
+
+  </div>
+</div>

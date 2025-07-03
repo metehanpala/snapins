@@ -1,0 +1,78 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.report-rows {
+  display: flex;
+  height: 100%;
+  background-color: $element-base-1;
+  min-width: 100%;
+  width: 100%;
+}
+
+.left-column-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.report-column-left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  background-color: $element-ui-5;
+  border-bottom-left-radius: 8px;
+}
+
+.report-column-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.right-column-wrapper {
+  width: 100%;
+}
+
+.report-separator {
+  width: 2px;
+}
+
+.hide-sector {
+  display: none;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.report-manager-unavailable {
+  flex-grow: 1;
+}
+
+.rotate {
+  transform: rotateZ(180deg);
+}
+
+.spinner-centered-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pos-relative {
+  width: 100%;
+  position: relative;
+}
+
+.pos-absolute {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}

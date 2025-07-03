@@ -1,0 +1,179 @@
+@import '@simpl/element-theme/src/styles/variables';
+
+.report-column-left {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: scroll;
+  background-color: $element-ui-5;
+  border-bottom-left-radius: 8px;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: flexbox;
+  /* IE 10 */
+  display: flex;
+  /* Chrome */
+  display: flex;
+}
+
+.context-item {
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  justify-content: space-between;
+}
+
+.dropdown-container {
+  max-width: 100%;
+  display: flex;
+  display: flex;
+  justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.history-row {
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
+
+  td {
+    border: none;
+    background: border-box;
+  }
+
+  &:hover {
+    background-color: $element-base-1-hover !important;
+  }
+
+  &.item-active {
+    background-color: $element-base-1-selected !important;
+
+    .si-body-2:not(.text-secondary) {
+      font-weight: 700;
+    }
+  }
+}
+
+.history-container {
+  flex-grow: 1;
+}
+
+span.up {
+  font-weight: bolder;
+}
+
+.overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container-fluid {
+  height: 100%;
+}
+
+.table {
+  height: 100%;
+}
+
+tbody {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+}
+
+tr.hidden {
+  display: none;
+}
+
+.text-center {
+  height: 100%;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: center;
+  text-align: left !important;
+}
+
+.date-time {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.align-start {
+  align-items: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+.align-center {
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+}
+
+:host ::ng-deep {
+  .menu-nav si-menu-legacy-item {
+    border: 0 !important;
+    background-color: transparent;
+
+    a:hover {
+      background-color: transparent !important;
+    }
+  }
+}
+
+tr.history-row.child {
+  border-style: none !important;
+  align-items: center;
+  align-items: center;
+  height: 100%;
+  max-width: 100%;
+
+  td {
+    border: none;
+    background: border-box;
+  }
+}
+
+td {
+  border-bottom: 0;
+}
+
+.rotate {
+  transform: rotateZ(180deg);
+}
+
+/* Clear floats after the columns */
+.report-row::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.execution-name {
+  height: 100%;
+  vertical-align: middle;
+  vertical-align: -webkit-baseline-middle;
+  flex-grow: 1;
+  width: 110px;
+}
+
+.treat-elevation {
+  box-shadow: 0px 0px 1px;
+  height: 40px;
+}

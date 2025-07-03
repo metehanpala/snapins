@@ -1,0 +1,27 @@
+<div #ReportParameter class="my-6 parameters-scrollbar">
+  <div *ngIf="responsiveParameter" class="back-btn" (click)="onBackButton()">
+    <div type="button" class="icon element-back mx-4 my-4"></div>
+    <span class="si-body-2">{{ selectedRule }}</span>
+    </div>
+    <div class="container-fluid"  [ngClass]="{'responsive-container': containerWidth < 800 }">
+      <form [formGroup]="formGroup" (ngSubmit)="executeReport()">
+        <si-form-container
+          [form]="formGroup"
+        >
+          <div si-form-container-content>
+            <si-formly
+              [labelWidth]="100"
+              [fields]="fields"
+              [form]="formGroup"
+          />
+          </div>
+        </si-form-container>
+        <div class="execute-btn">
+          <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid" >{{ 'REPORT-VIEWER.BTN.EXECUTE' | translate
+          }}</button>
+        </div>
+      </form>
+      </div>
+
+</div>
+

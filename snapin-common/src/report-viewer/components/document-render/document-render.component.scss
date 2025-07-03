@@ -1,0 +1,29 @@
+.report-preview-toolbar si-content-action-bar>div {
+  margin-top: 8px;
+}
+
+.empty-content-container {
+  flex: 1;
+  overflow: auto;
+}
+
+span.up {
+  font-weight: bolder;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.empty-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.back-btn {
+  display: inline;
+  cursor: pointer;
+}

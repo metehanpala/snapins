@@ -1,0 +1,44 @@
+
+<div *ngIf="fromEvents" class="spinner-centered-child">
+    <si-loading-spinner *ngIf="!historyLoaded" />
+</div>
+ 
+<si-empty-state 
+    *ngIf="(isEmpty || (isReportManagerPresent != undefined && !isReportManagerPresent))"
+    class="report-manager-unavailable"
+    icon="element-technical-operator"
+    [heading]=" isApprightNotAvailableForAssistedTreatment? 'REPORT-VIEWER.INSUFFICIENT_ACCESS_RIGHTS':
+    (isReportManagerPresent? 'REPORT-VIEWER.EMPTY_TITLE' : 'REPORT-VIEWER.ERROR_MESSAGES.REPORT_MANAGER_NOT_AVAILABLE') | translate"/>
+
+<gms-preview-master *ngIf="!isEmpty && isReportManagerPresent" style="display:block"
+    [originSnapInId]="originSnapInId"
+    [historyLoaded] = 'historyLoaded'
+    [isHistoryVisible]="isHistoryVisible"
+    [selectedObject]="selectedObject"
+    [reportHistoryData]="reportHistoryData"
+    [createDocumentData]="createDocumentData"
+    [stateDataObject] = "storeObject"
+    [stepId]="stepId"
+    [reportDefinitionId] = "reportDefinitionId"
+    [executionIdMap] = "executionIdMap"
+    [isReportDefault]="isReportDefault"
+    [fromEvents]="fromEvents"
+    [canHistoryLoaded]="canHistoryLoaded"
+    [selectedReportName]="selectedReportName"
+    [relatedItems] = "relatedItem"
+    [selectedEventOPId]="selectedEventOPId"
+    [procedureStepType]="manageType"
+    (storeObjectEmitter)="storeObjectEmitter.emit($event)"
+    (startExecutionCommand)="startReportExecution($event)"
+    (reporthistoryData)="handlereportHistoryData($event)"
+    (sendToOutputEvent)="handleSendToOutput()"
+    (setActiveEvent)="setActiveEvent.emit($event)"
+    (showReportEvent)="showReportEvent.emit($event)"
+    (scrollHandlerEvent)="scrollHandlerEvent.emit($event)"
+    (savedSelectedRule)="savedSelectedRule.emit($event)"
+    (saveTreatmentFormEvent)="handleSaveTreatmentForm($event)" 
+    (keydownEventFormultipleHistoryRowSelectionEmitter)="keydownEventFormultipleHistoryRowSelectionEmitter.emit($event)" 
+    (selectiondocumentMapEmitter)="selectiondocumentMapEmitter.emit($event)"
+    (expandRowEventData)="expandRowEventData.emit($event)"/>
+
+

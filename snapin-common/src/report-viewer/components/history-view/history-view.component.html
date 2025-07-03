@@ -1,0 +1,161 @@
+<div #historyPanel *ngIf="historyLoaded" class="report-column-left" [ngClass]="{ 'elevation-1': !fromEvents }" (scroll)="scrollHandler($event)">
+  <div *ngIf = "applicationRules.length" class="p-4">
+    <gms-application-rules  
+    [applicationRules]="applicationRules"
+    [systemId] ="this.selectedObject.SystemId"
+    [selectedObject] = "selectedObject"
+    (childToParent) = emitChildToparent($event)
+    (savedSelectedRule)="savedSelectedRule.emit($event)"
+    [stateDataObject]="stateDataObject" />
+  </div>
+  <div class="context mx-9 my-6">
+    <div *ngIf = "!applicationRules.length && !fromEvents" class="run-context mb-2">
+      <span>{{ 'REPORT-VIEWER.RUN_IN_CONTEXT_OF' | translate }}</span>
+    </div>
+    <div *ngIf = "!applicationRules.length && !fromEvents" class="context-item">
+      <div class="context-info overflow-ellipsis">
+        <i class="icon element-report"></i>
+        <span *ngIf="!isReportDefault && !multipleBrowserObjects">{{ selectedReportName
+          }}</span>
+        <span *ngIf="!isReportDefault && multipleBrowserObjects">{{ 'REPORT-VIEWER.MULTI_SELECTION' | translate
+          }}</span>
+        <span *ngIf="isReportDefault">{{ 'REPORT-VIEWER.REPORT_DEFAULT' | translate }}</span>
+      </div>
+    
+    </div>
+  </div>
+  <div *ngIf="!fromEvents" class="dropdown-container ms-auto me-0 my-5">
+    <div siDropdown #dropdown="si-dropdown" class="btn-group me-5" dropdownAlign="end">
+      <button #generatebtn siDropdownToggle [disabled] = "!!this.rptDesign === false && applicationRules.length > 0" type="button" class="btn btn-primary dropdown-toggle">
+        {{ 'REPORT-VIEWER.BTN.GENERATE' | translate }} <i class="icon element-down-2"></i>
+      </button>
+      <ul id="dropdown-triggers-manual" role="menu" class="dropdown-menu" siDropdownMenu
+        aria-labelledby="button-triggers-manual">
+        <li role="menuitem">
+          <a (click)="startReportExecution(0)" class="dropdown-item">{{
+            'REPORT-VIEWER.REPORT_GENERATE.PDF' | translate }}</a>
+        </li>
+        <li role="separator">
+          <hr class="dropdown-divider" />
+        </li>
+        <li role="menuitem">
+          <a (click)="startReportExecution(1)" class="dropdown-item">{{
+            'REPORT-VIEWER.REPORT_GENERATE.EXCEL' | translate }}</a>
+        </li>
+        <li role="separator">
+          <hr class="dropdown-divider" />
+        </li>
+        <li role="menuitem">
+          <a (click)="startReportExecution(2)" class="dropdown-item">{{
+            'REPORT-VIEWER.REPORT_GENERATE.BOTH' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h4 *ngIf="isHistoryVisible" class="si-h3" 
+  [ngClass]="{'mx-1 ps-7 mb-auto treat-elevation': fromEvents, 'ms-5': !fromEvents }">{{ 'REPORT-VIEWER.HISTORY_TITLE' | translate }}</h4>
+  <div *ngIf="isHistoryVisible" class="history-container">
+    <div class="container-fluid px-0">
+      <table class="table elevation-1" [class.table-sm]="true" [class.table-hover]="true">
+        <tbody>
+          <ng-container *ngFor="let exec of reportHistoryData; index as i;  trackBy: trackByReportExecutionId">
+            <hr *ngIf="exec.ReportDocumentData.length > 0" class="mx-0 my-0" />
+            <tr *ngIf="
+            exec.ReportDocumentData.length > 0 ||
+            exec.ReportExecutionStatus === status['Pending'] ||
+            (!isHistoryFirstLoad && exec.ReportExecutionStatus === status['Cancelled']) ||
+            exec.ReportExecutionStatus === status['Failed']"
+            id="{{ originSnapInId + exec.ReportExecutionId + exec.ReportExecutionDisplayName }}"
+            [ngClass]="{'item-active': i === 0 && this.selectedDocuments.includes(this.reportHistoryData[0].ReportDocumentData[0]?.DocumentDisplayName)}" class="history-row rounded-0"
+            (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)" (click)="
+              setActive(exec.ReportExecutionId, exec.ReportExecutionDisplayName, true);
+              showReport(exec.ReportDocumentData[0], true);">
+              <td class="text-center">
+                <i class="icon element-report"></i>
+              </td>
+              <td class="execution-name overflow-ellipsis"
+                [ngStyle]="{'width': exec.ReportExecutionStatus !== status['Succeeded'] || status['PartiallySucceeded'] ? '110px' : '150px'}">
+                <span class="si-body-2">{{ exec.ReportExecutionDisplayName }}</span>
+                <br />
+                <span *ngIf="exec.ReportExecutionStatus !== status['Pending'] && exec.ReportDocumentData.length > 0"
+                  class="si-body-2 text-secondary date-time">{{ exec.ReportExecutionDateTime
+                  }}</span>
+              </td>
+              <td class="text-center" (click)="$event.stopPropagation()">
+                <span *ngIf="exec.ReportExecutionStatus === status['Pending']" class="badge bg-info">{{
+                  'REPORT-VIEWER.BADGE.GENERATING' | translate }}</span>
+                <span *ngIf="exec.ReportExecutionStatus === status['Failed']" class="badge bg-danger">{{
+                  'REPORT-VIEWER.BADGE.FAILED' | translate }}</span>
+                <span *ngIf="exec.ReportExecutionStatus === status['Cancelling']" class="badge bg-warning">{{
+                  'REPORT-VIEWER.BADGE.CANCELLING' | translate }}</span>
+                <span *ngIf="exec.ReportExecutionStatus === status['Cancelled']" class="badge bg-warning">{{
+                  'REPORT-VIEWER.BADGE.DISCARDED' | translate }}</span>
+                <span
+                  *ngIf="exec.ReportDocumentData.length <= 1 &&
+                  (exec.ReportExecutionStatus === status['Succeeded'] || exec.ReportExecutionStatus === status['PartiallySucceeded'])"
+                  class="si-body-2 text-center">
+                  {{
+                    exec.ReportDocumentData[0]?.DocumentDisplayName.split(".")[exec.ReportDocumentData[0]?.DocumentDisplayName.split(".").length
+                    - 1].toLowerCase()
+                  }}
+                </span>
+                <span
+                  *ngIf="exec.ReportDocumentData.length > 1 && (exec.ReportExecutionStatus === status['Succeeded'] || exec.ReportExecutionStatus === status['PartiallySucceeded'])"
+                  id="expandBtn{{ i }}" class="icon element-down-2" aria-expanded="false" (click)="onExpandRow(i)">
+                </span>
+              </td>
+              <td *ngIf="!fromEvents" class="text-center">
+                <div class="content-bar-container"
+                  (click)="onContentBarClick($event, exec.ReportExecutionId, exec.ReportExecutionDisplayName, true)">
+                  <si-content-action-bar
+                    *ngIf="exec.ReportExecutionStatus === status['Succeeded'] || exec.ReportExecutionStatus === status['PartiallySucceeded']"
+                    [primaryActions]="primaryItems" [secondaryActions]="secondaryItems" viewType="mobile" />
+                  <si-content-action-bar *ngIf="exec.ReportExecutionStatus === status['Pending'] && !applicationRules.length" [primaryActions]="cancelItem"
+                    viewType="mobile" />
+                </div>
+              </td>
+            </tr>
+            <ng-container *ngIf="exec.ReportDocumentData.length > 1">
+              <ng-container *ngFor="let child of exec.ReportDocumentData; index as j;  trackBy: trackByReportExecutionId">
+                <hr
+                  *ngIf="child.DocumentType === 'Xlsx' && getElementById('expandBtn' + i).getAttribute('aria-expanded') === 'true'"
+                  class="mx-6 my-0" />
+                <tr id="{{ originSnapInId + exec.ReportExecutionId + child.DocumentDisplayName }}"
+                  class="history-row rounded-0 child hidden" (mouseenter)="onMouseEnter($event)"
+                  (mouseleave)="onMouseLeave($event)" (click)="
+                                                    setActive(exec.ReportExecutionId, child.DocumentDisplayName, false);
+                                                    showReport(child, true);">
+                  <td class="text-center ps-9">
+                    <i class="icon element-report"></i>
+                  </td>
+                  <td class="align-start flex-grow-1 text-center">
+                    <span *ngIf="child.DocumentType === 'Pdf'" class="si-body-2 align-center">
+                      {{
+                      executionIdMap.get(exec.ReportExecutionId)?.get(child.DocumentDisplayName)
+                      }}
+                    </span>
+                    <div *ngIf="child.DocumentType === 'Xlsx'">
+                      <span class="si-body-2 align-center">{{ 'REPORT-VIEWER.EXCEL_FILE' | translate }}</span>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span class="si-body-2">{{
+                      child.DocumentDisplayName.split(".")[child.DocumentDisplayName.split(".").length - 1].toLowerCase()
+                      }}</span>
+                  </td>
+                  <td *ngIf="!fromEvents" class="text-center">
+                    <div class="content-bar-container"
+                      (click)="onContentBarClick($event, exec.ReportExecutionId, child.DocumentDisplayName, false)">
+                      <si-content-action-bar [primaryActions]="primaryItems" [secondaryActions]="secondaryItems"
+                        viewType="mobile" />
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+
+si-form-container ::ng-deep si-form-item label.col-form-label {
+    display: none;
+}
+
+::ng-deep si-form-item div.form-item-content{
+    flex: auto!important;
+    max-width: 100%!important;
+}
+
+::ng-deep si-form-item .hide-border{
+    padding-top: 7px;
+}
+
+.ngx-datatable {
+    width: -webkit-fill-available !important;
+}
+
+.form-control{
+    border: 2px solid #cfcfd7 !important;
+}
+
+.form-control:disabled {
+    border: 2px solid lightgray ! important;
+}
+
+.flex_row{
+    display: flex;
+    width: 100%;
+}
+
+.comment-field{
+    max-width: calc(100% - 55px);
+    text-wrap: wrap;
+}
+
+.icon-box{
+    display: flex;
+    justify-content: space-evenly;;
+    width: auto;
+    align-items: center;
+    padding-left: 1%;
+}
+
+::ng-deep div.datatable-body-cell-label, .ngx-datatable.table-element .datatable-body .datatable-body-row .datatable-body-cell-label{
+    display: flex !important;
+    width: 100%;
+}
+
+::ng-deep div.stepper-content-wrap {
+    overflow-y: hidden;
+}
+
+::ng-deep .ngx-datatable.table-element.elevation-2.fixed-header.fixed-row.virtualized div.visible {
+    display: inline;
+ }
+
+.border-box{
+    border: 2px solid lightgray;
+    box-shadow: 1px 2px 15px 2px lightgray;
+}
+
+.container-fluid-control {
+    height: 94vh; overflow: auto;
+}
+
+form .d-flex{
+    width: 100%!important;
+}
+
+si-form-container{
+    padding: 8px!important;
+    width: 100%!important;
+}
+
+.w-100{
+    width: 100%;
+}
+.form-control-has-icon{
+    padding: 2px!important;
+}
+
+.control {
+    padding: 5px 0.5rem;
+}
+
+.main-form  {
+    padding: 10px;
+}
+
+.editable-field {
+    border: 1px #66667e solid ! important;
+}
