@@ -1,0 +1,197 @@
+<div #textualViewerContainer style="height: 100%;">
+  <div style="position: relative;"
+       class="textual-viewer textual-viewer-full"
+       [ngClass]="{'compactMode': compactMode }">
+    <ngx-datatable #table
+                   class="table-element"
+                   [cssClasses]="tableConfig.cssClasses"
+
+                   width="100%"
+                   [rows]="managedTextTable"
+                   columnMode="force"
+                   [headerHeight]="compactMode ? 0 : 50"
+                   [footerHeight]="0"
+                   [rowHeight]="getRowHeight.bind(this)"
+                   [rowClass]="getRowClass"
+                   [scrollbarV]="true"
+                   selectionType="multi"
+
+                   [reorderable]="false"
+                   [externalSorting]="true"
+                   [selected]="selected"
+                   (select)="onSelect($event)">
+      <ng-container #smallScreenImpl *ngIf="compactMode; else largeScreenImpl">
+        <ngx-datatable-column
+          [resizeable]="true">
+          <ng-template ngFor ngx-datatable-cell-template let-row="row">
+            <ng-template ngFor let-headerContent [ngForOf]="headerData">
+              <div *ngIf="getPipeIconType(row.cellData, headerContent.id) === enumIconType.GLYPHICON
+                          && headerContent.columnType === colPipe"
+                   class="hfw-auto-bottom-margin hfw-auto-top-margin"
+                   style="min-width: 50px;">
+                <div
+                  *ngIf="headerContent.columnType === colPipe && headerContent.columnVisible && row.groupHeaderTitle === undefined"
+                  class="vertical-center si-circle-container"
+                  [ngClass]="getColumnCellClass(headerContent, row.cellStyle.get(headerContent.id))">
+                  <si-circle-status
+                    class="textual-circle-status"
+                    [icon]="getPipeIconData(row.cellData, headerContent.id)"
+                    [color]="getRowColor(row)" />
+                </div>
+              </div>
+            </ng-template>
+            <div class="hfw-grid-body-cell-with-text" style="width: inherit;">
+              <ng-template ngFor let-headerContent [ngForOf]="managedHeaderData">
+                <div *ngIf="row.groupHeaderTitle !== undefined && headerContent.id === firstColumnVisibleId()"
+                     class="hfw-grid-body-cell-nowrap-text" style="width: inherit;">
+                  <div style="position: absolute; left: 10px;" class="row-data-paragraph text-container">
+                      <div class="text-ellipsis">
+                        {{ row.groupHeaderTitle }}
+                      </div>
+                  </div>
+                </div>
+                <div
+                  *ngIf="headerContent.id === nameColumn && headerContent.smallScreenOrder === 2 && row.groupHeaderTitle === undefined"
+                  class="si-body-2 text-selected row-data-paragraph content-paragraph small-screen-2 name text-container"
+                  [style.display]="headerContent.size.includes('hidden') ? 'none' : null">
+                  <div class="text-ellipsis">
+                    {{ row.cellData.get(headerContent.id) }}
+                  </div>
+                </div>
+                <div
+                  *ngIf="headerContent.id === nameColumn && headerContent.smallScreenOrder === 3 && row.groupHeaderTitle === undefined"
+                  class="si-body-2 row-data-paragraph text-secondary content-paragraph small-screen-3 name text-container"
+                  [style.display]="headerContent.size.includes('hidden') ? 'none' : null">
+                  <div class="text-ellipsis">
+                    {{ row.cellData.get(headerContent.id) }}
+                  </div>
+                </div>
+                <div
+                  *ngIf="headerContent.id === descColumn && headerContent.smallScreenOrder === 2 && row.groupHeaderTitle === undefined"
+                  class="si-body-2 text-selected row-data-paragraph content-paragraph small-screen-2 desc text-container"
+                  [style.display]="headerContent.size.includes('hidden') ? 'none' : null">
+                  <div class="text-ellipsis">
+                    {{ row.cellData.get(headerContent.id) }}
+                  </div>
+                </div>
+                <div
+                  *ngIf="headerContent.id === descColumn && headerContent.smallScreenOrder === 3 && row.groupHeaderTitle === undefined"
+                  class="si-body-2 row-data-paragraph text-secondary content-paragraph small-screen-3 desc text-container"
+                  [style.display]="headerContent.size.includes('hidden') ? 'none' : null">
+                  <div class="text-ellipsis">
+                    {{ row.cellData.get(headerContent.id) }}
+                  </div>
+                </div>
+                <div *ngIf="headerContent.id === valueColumn && row.groupHeaderTitle === undefined"
+                     class="si-body-2 row-data-paragraph content-paragraph text-container"
+                     [style.display]="headerContent.size.includes('hidden') ? 'none' : null">
+                  <div class="text-ellipsis">
+                    {{ row.cellData.get(headerContent.id) }}
+                  </div>
+                </div>
+                <!--
+                  <p *ngIf="headerContent.id !== nameColumn && headerContent.id !== valueColumn && headerContent.id !== descColumn && headerContent.id !== infoText && row.groupHeaderTitle === undefined"
+                  class="hfw-grid-cell-style2">
+                  {{ row.cellData.get(headerContent.id) }}
+                  </p>
+                -->
+              </ng-template>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ng-container>
+
+      <ng-template #largeScreenImpl>
+        <ng-template ngFor let-headerContent [ngForOf]="headerData">
+          <ngx-datatable-column
+            name={{headerContent.label}}
+            prop={{headerContent.id}}
+            [canAutoResize]="!headerContent.isFixedSize"
+            [draggable]="!headerContent.isFixedSize"
+            [resizeable]="!headerContent.isFixedSize"
+            [width]="iconColWidth"
+            *ngIf="headerContent.columnVisible && headerContent.columnType !== 2">
+
+            <ng-template ngx-datatable-header-template>
+              <div class="textual-viewer__hdr-cell-title">
+                <strong *ngIf="headerContent.id !== statusColumn"> {{ headerContent.label }} </strong>
+              </div>
+            </ng-template>
+
+            <ng-template ngFor ngx-datatable-cell-template let-row="row">
+                <div
+                  *ngIf="headerContent.columnType === colPipe && headerContent.columnVisible && row.groupHeaderTitle === undefined"
+                  class="vertical-center text-ellipsis si-circle-container"
+                  [ngClass]="getColumnCellClass(headerContent, row.cellStyle.get(headerContent.id))">
+                  <si-circle-status
+                    *ngIf="getPipeIconType(row.cellData, headerContent.id) === enumIconType.GLYPHICON"
+                    [icon]="getPipeIconData(row.cellData, headerContent.id)"
+                    [color]="getRowColor(row)" />
+                </div>
+              <div *ngIf="row.groupHeaderTitle !== undefined && headerContent.id === firstColumnVisibleId()">
+                <div style="position: absolute; left: 10px;" class="text-container">
+                  <div class="text-ellipsis">
+                    {{ row.groupHeaderTitle }}
+                  </div>
+                </div>
+              </div>
+              <!-- NOTE: PAY ATTENTION TO SCREEN IMPL -->
+              <div
+                *ngIf="headerContent.id === nameColumn && headerContent.smallScreenOrder === 2 && row.groupHeaderTitle === undefined"
+                class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div
+                *ngIf="headerContent.id === nameColumn && headerContent.smallScreenOrder === 3 && row.groupHeaderTitle === undefined"
+                class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div
+                *ngIf="headerContent.id === descColumn && headerContent.smallScreenOrder === 2 && row.groupHeaderTitle === undefined"
+                class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div
+                *ngIf="headerContent.id === descColumn && headerContent.smallScreenOrder === 3 && row.groupHeaderTitle === undefined"
+                class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div *ngIf="headerContent.id === valueColumn && row.groupHeaderTitle === undefined"
+                   class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div *ngIf="headerContent.id === infoText && row.groupHeaderTitle === undefined"
+                   class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+              <div
+                *ngIf="headerContent.id !== nameColumn
+                       && headerContent.id !== statusColumn
+                       && headerContent.id !== valueColumn
+                       && headerContent.id !== descColumn
+                       && headerContent.id !== infoText
+                       && row.groupHeaderTitle === undefined"
+                class="textual-viewer__text text-container">
+                <div class="text-ellipsis">
+                  {{ row.cellData.get(headerContent.id) }}
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ng-template>
+      </ng-template>
+    </ngx-datatable>
+  </div>
+</div>

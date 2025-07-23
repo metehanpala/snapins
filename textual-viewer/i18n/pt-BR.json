@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Visualizador textual",
+  "GRID": {
+    "STATUS": "Estado",
+    "DESCRIPTION": "Descrição",
+    "NAME": "Nome",
+    "ALIAS": "Nome alternativo",
+    "VALUE": "Valor",
+    "TYPE": "Tipo"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Personalizar colunas",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Configure a visualização selecionando o conteúdo ou pedindo",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "Cancelar",
+    "GRID_COL_DIALOG_VISIBLE": "Visível",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

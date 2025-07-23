@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "원문 뷰어",
+  "GRID": {
+    "STATUS": "상태",
+    "DESCRIPTION": "설명",
+    "NAME": "Name",
+    "ALIAS": "가명",
+    "VALUE": "값",
+    "TYPE": "타입"
+  },
+  "COM-ERROR-TEXT": "# COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "열 사용자 정의",
+  "GRID-CUSTOMIZE-DESCRIPTION": "내용 또는 명령 선택 사용자 뷰",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "취소",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "declarationMap": true,
+    "declaration": true,
+    "inlineSources": true,
+    "types": ["node", "signalr"],
+    "lib": [
+      "dom",
+      "es2022"
+    ]
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true,
+    "preserveSymlinks": true,
+    "compilationMode": "partial"
+  },
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}

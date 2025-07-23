@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Kommunikasjonsfeil",
+  "GRID": {
+    "ALIAS": "Kortnavn",
+    "DESCRIPTION": "Beskrivelse",
+    "NAME": "Navn",
+    "STATUS": "Status",
+    "TYPE": "Type",
+    "VALUE": "Verdi"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Velg eller sorter for å tilpasse tabellen",
+  "GRID-CUSTOMIZE-TITLE": "Tilpass Kolonner",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Avbryt",
+    "GRID_COL_DIALOG_HIDDEN": "Skjult",
+    "GRID_COL_DIALOG_VISIBLE": "Synlig",
+    "GRID_COL_DIALOG_YESBTN": "Bruk"
+  },
+  "PROPERTY-ABSENT-TEXT": "Ikke tilgjengelig",
+  "SNAPIN-TITLE": "Listevisning"
+}

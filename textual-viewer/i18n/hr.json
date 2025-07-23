@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Tekstualni preglednik",
+  "GRID": {
+    "STATUS": "Status",
+    "DESCRIPTION": "Opis",
+    "NAME": "Ime",
+    "ALIAS": "Alias",
+    "VALUE": "Vrijednost",
+    "TYPE": "Tip"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Prilagodite stupce",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Prilagodite prikaz odabirom sadržaja ili reda",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "Odustani",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

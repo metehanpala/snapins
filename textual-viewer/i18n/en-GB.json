@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Textual Viewer",
+  "GRID": {
+    "STATUS": "Status",
+    "DESCRIPTION": "Description",
+    "NAME": "Name",
+    "ALIAS": "Alias",
+    "VALUE": "Value",
+    "TYPE": "Type"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Customize Columns",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Customize view by selecting content or ordering",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "Cancel",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

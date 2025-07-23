@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Textový prohlížeč",
+  "GRID": {
+    "STATUS": "Stav",
+    "DESCRIPTION": "Popis",
+    "NAME": "Jméno",
+    "ALIAS": "Alias",
+    "VALUE": "Hodnota",
+    "TYPE": "Typ"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N / A",
+  "GRID-CUSTOMIZE-TITLE": "Přizpůsobit sloupce",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Upravit zobrazení podle obsahu výběru nebo objednání",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Aplikovat",
+    "GRID_COL_DIALOG_CANCELBTN": "Zrušit",
+    "GRID_COL_DIALOG_VISIBLE": "Viditelný",
+    "GRID_COL_DIALOG_HIDDEN": "Skrytý"
+  }
+}

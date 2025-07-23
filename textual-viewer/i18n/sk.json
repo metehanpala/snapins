@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Textový prehliadač",
+  "GRID": {
+    "STATUS": "Stav",
+    "DESCRIPTION": "Popis",
+    "NAME": "Názov",
+    "ALIAS": "Alias",
+    "VALUE": "Hodnota",
+    "TYPE": "Typ"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Prispôsobiť stĺpce",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Upraviť zobrazenie zvolením obsahu alebo poradia",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Použiť",
+    "GRID_COL_DIALOG_CANCELBTN": "Zrušiť",
+    "GRID_COL_DIALOG_VISIBLE": "Viditeľné",
+    "GRID_COL_DIALOG_HIDDEN": "Skrytý"
+  }
+}

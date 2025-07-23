@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Kommunikationsfehler",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Beschreibung",
+    "NAME": "Name",
+    "STATUS": "Zustand",
+    "TYPE": "Typ",
+    "VALUE": "Wert"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Auswählen oder sortieren, um Tabelle anzupassen",
+  "GRID-CUSTOMIZE-TITLE": "Spalten anpassen",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Abbrechen",
+    "GRID_COL_DIALOG_HIDDEN": "Verborgen",
+    "GRID_COL_DIALOG_VISIBLE": "Sichtbar",
+    "GRID_COL_DIALOG_YESBTN": "Anwenden"
+  },
+  "PROPERTY-ABSENT-TEXT": "Nicht verfügbar",
+  "SNAPIN-TITLE": "Listenansicht"
+}

@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "#COM",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Descrizione",
+    "NAME": "Nome",
+    "STATUS": "Stato",
+    "TYPE": "Tipo",
+    "VALUE": "Valore"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Seleziona o ordina per personalizzare la tabella",
+  "GRID-CUSTOMIZE-TITLE": "Personalizza colonne",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Annulla",
+    "GRID_COL_DIALOG_HIDDEN": "Nascosto",
+    "GRID_COL_DIALOG_VISIBLE": "Visibile",
+    "GRID_COL_DIALOG_YESBTN": "Applica"
+  },
+  "PROPERTY-ABSENT-TEXT": "Non disponibile",
+  "SNAPIN-TITLE": "Vista lista"
+}

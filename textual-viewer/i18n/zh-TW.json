@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "文字檢視器",
+  "GRID": {
+    "STATUS": "狀態",
+    "DESCRIPTION": "敘述",
+    "NAME": "名稱",
+    "ALIAS": "别名",
+    "VALUE": "值",
+    "TYPE": "類型"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "自定義列",
+  "GRID-CUSTOMIZE-DESCRIPTION": "透過選擇內容或排序來自定義瀏覽",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "套用",
+    "GRID_COL_DIALOG_CANCELBTN": "取消",
+    "GRID_COL_DIALOG_VISIBLE": "可見",
+    "GRID_COL_DIALOG_HIDDEN": "隱藏"
+  }
+}

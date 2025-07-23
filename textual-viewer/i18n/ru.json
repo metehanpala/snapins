@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Текстовый вид",
+  "GRID": {
+    "STATUS": "Состояние",
+    "DESCRIPTION": "Описание",
+    "NAME": "Имя",
+    "ALIAS": "Псевдоним",
+    "VALUE": "Значение",
+    "TYPE": "Тип"
+  },
+  "COM-ERROR-TEXT": "#Ошибка",
+  "PROPERTY-ABSENT-TEXT": "Не применимо",
+  "GRID-CUSTOMIZE-TITLE": "Настройка отображения столбцов",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Настройка вида выбором содержимого или порядка",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Применить",
+    "GRID_COL_DIALOG_CANCELBTN": "Отмена",
+    "GRID_COL_DIALOG_VISIBLE": "Видимо",
+    "GRID_COL_DIALOG_HIDDEN": "Скрытый"
+  }
+}

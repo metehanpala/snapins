@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Błąd komunikacji",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Opis",
+    "NAME": "Nazwa",
+    "STATUS": "Stan",
+    "TYPE": "Typ",
+    "VALUE": "Wartość"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Wybierz lub posortuj, aby dostosować tabelę",
+  "GRID-CUSTOMIZE-TITLE": "Dostosuj kolumny",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Anuluj",
+    "GRID_COL_DIALOG_HIDDEN": "Ukryte",
+    "GRID_COL_DIALOG_VISIBLE": "Widoczny",
+    "GRID_COL_DIALOG_YESBTN": "Zastosuj"
+  },
+  "PROPERTY-ABSENT-TEXT": "Niedostępne",
+  "SNAPIN-TITLE": "Widok listy"
+}

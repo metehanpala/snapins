@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Communication error",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Description",
+    "NAME": "Name",
+    "STATUS": "State",
+    "TYPE": "Type",
+    "VALUE": "Value"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Select or sort to customize table",
+  "GRID-CUSTOMIZE-TITLE": "Customize columns",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Cancel",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_YESBTN": "Apply"
+  },
+  "PROPERTY-ABSENT-TEXT": "Not available",
+  "SNAPIN-TITLE": "List view"
+}

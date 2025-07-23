@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Erreur de communication",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Description",
+    "NAME": "Nom",
+    "STATUS": "État",
+    "TYPE": "Type",
+    "VALUE": "Valeur"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Sélectionnez ou triez pour personnaliser le tableau",
+  "GRID-CUSTOMIZE-TITLE": "Personnaliser colonnes",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Annuler",
+    "GRID_COL_DIALOG_HIDDEN": "Masqué",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_YESBTN": "Appliquer"
+  },
+  "PROPERTY-ABSENT-TEXT": "S/O",
+  "SNAPIN-TITLE": "Vue liste"
+}

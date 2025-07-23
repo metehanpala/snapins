@@ -1,0 +1,24 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+        "@angular-eslint/use-injectable-provided-in": "off",
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/sort-ngmodule-metadata-arrays": "off",
+        "@angular-eslint/prefer-output-readonly": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "prefer-arrow/prefer-arrow-functions": "off",
+    "directive-selector": [
+      true,
+      "attribute",
+      "gms",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "gms",
+      "kebab-case"
+    ]
+  }
+}

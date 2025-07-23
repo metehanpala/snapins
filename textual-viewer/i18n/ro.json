@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Eroare de comunicare",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Descriere",
+    "NAME": "Nume",
+    "STATUS": "Stare",
+    "TYPE": "Tip",
+    "VALUE": "Valoare"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Selectați sau sortați pentru a personaliza tabelul",
+  "GRID-CUSTOMIZE-TITLE": "Personalizați coloanele",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Anulare",
+    "GRID_COL_DIALOG_HIDDEN": "Ascuns",
+    "GRID_COL_DIALOG_VISIBLE": "Vizibil",
+    "GRID_COL_DIALOG_YESBTN": "Aplica"
+  },
+  "PROPERTY-ABSENT-TEXT": "Nu este disponibil",
+  "SNAPIN-TITLE": "Vizualizare listă"
+}

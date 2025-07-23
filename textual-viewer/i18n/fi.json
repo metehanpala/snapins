@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Kommunikointivirhe",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Kuvaus",
+    "NAME": "Nimi",
+    "STATUS": "Tila",
+    "TYPE": "Tyyppi",
+    "VALUE": "Arvo"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Valitse tai lajittele mukauttaaksesi taulukon",
+  "GRID-CUSTOMIZE-TITLE": "Mukauta sarakkeet",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Peruuta",
+    "GRID_COL_DIALOG_HIDDEN": "Piilotettu",
+    "GRID_COL_DIALOG_VISIBLE": "Näkyvä",
+    "GRID_COL_DIALOG_YESBTN": "Käytä"
+  },
+  "PROPERTY-ABSENT-TEXT": "Ei saatavilla",
+  "SNAPIN-TITLE": "Listanäkymä"
+}

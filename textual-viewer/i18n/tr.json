@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Metin Görüntüleyici",
+  "GRID": {
+    "STATUS": "Durum",
+    "DESCRIPTION": "Tanım",
+    "NAME": "Ad ",
+    "ALIAS": "Rumuz ",
+    "VALUE": "Değer",
+    "TYPE": "Tip"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Sütunları özelleştir",
+  "GRID-CUSTOMIZE-DESCRIPTION": "İçerik ya da sıralamayı seçerek görünümü kişiselleştir",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "İptal",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

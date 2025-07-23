@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Szöveges megjelenítő",
+  "GRID": {
+    "STATUS": "Állapot",
+    "DESCRIPTION": "Leírás",
+    "NAME": "Név",
+    "ALIAS": "Alias",
+    "VALUE": "Érték",
+    "TYPE": "Típus"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Oszlopok testreszabása",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Nézet testreszabása a tartalom vagy sorrend kiválasztásával",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "Mégse",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

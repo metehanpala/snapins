@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Kommunikationsfel",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Beskrivning",
+    "NAME": "Namn",
+    "STATUS": "Tillstånd",
+    "TYPE": "Typ",
+    "VALUE": "Värde"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Anpassa innehåll eller ordning",
+  "GRID-CUSTOMIZE-TITLE": "Anpassa kolumner",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Avbryt",
+    "GRID_COL_DIALOG_HIDDEN": "Dold",
+    "GRID_COL_DIALOG_VISIBLE": "Synlig",
+    "GRID_COL_DIALOG_YESBTN": "Verkställ"
+  },
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "SNAPIN-TITLE": "Listvy"
+}

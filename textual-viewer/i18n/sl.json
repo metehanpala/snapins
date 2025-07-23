@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Besedilni pregledovalnik",
+  "GRID": {
+    "STATUS": "Stanje",
+    "DESCRIPTION": "Opis",
+    "NAME": "Ime",
+    "ALIAS": "Alias",
+    "VALUE": "Vrednost",
+    "TYPE": "Tip"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "Prilagodite stolpce",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Prilagodite pogled tako, da izberete vsebino ali vrstni red",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Potrdi",
+    "GRID_COL_DIALOG_CANCELBTN": "Prekliči",
+    "GRID_COL_DIALOG_VISIBLE": "Vidno",
+    "GRID_COL_DIALOG_HIDDEN": "Skrito"
+  }
+}

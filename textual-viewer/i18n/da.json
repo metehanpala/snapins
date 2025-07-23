@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Kommunikationsfejl",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Beskrivelse",
+    "NAME": "Navn",
+    "STATUS": "Tilstand",
+    "TYPE": "Type",
+    "VALUE": "Værdi"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Vælg eller sorter for at brugerdefiner tabel",
+  "GRID-CUSTOMIZE-TITLE": "Tilpas kolonner",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Afbryd",
+    "GRID_COL_DIALOG_HIDDEN": "Skjult",
+    "GRID_COL_DIALOG_VISIBLE": "Synlig",
+    "GRID_COL_DIALOG_YESBTN": "Anvend"
+  },
+  "PROPERTY-ABSENT-TEXT": "Ikke tilgængelig",
+  "SNAPIN-TITLE": "Listevisning"
+}

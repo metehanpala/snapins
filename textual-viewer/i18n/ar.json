@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "العارض النصي",
+  "GRID": {
+    "STATUS": "الحالة",
+    "DESCRIPTION": "الوصف",
+    "NAME": "الاسم",
+    "ALIAS": "الاسم المستعار",
+    "VALUE": "قيمة",
+    "TYPE": "Type"
+  },
+  "COM-ERROR-TEXT": "COM",
+  "PROPERTY-ABSENT-TEXT": "لا يوجد",
+  "GRID-CUSTOMIZE-TITLE": "تخصيص أعمدة",
+  "GRID-CUSTOMIZE-DESCRIPTION": "تخصيص المظهر باختيار المحتوى أو الترتيب",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "تطبيق",
+    "GRID_COL_DIALOG_CANCELBTN": "إلغاء",
+    "GRID_COL_DIALOG_VISIBLE": "مرئي",
+    "GRID_COL_DIALOG_HIDDEN": "مخفي"
+  }
+}

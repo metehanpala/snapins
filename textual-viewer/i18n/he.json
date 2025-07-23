@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "מראה טקסטואלי",
+  "GRID": {
+    "STATUS": "מצב",
+    "DESCRIPTION": "תיאור",
+    "NAME": "שם",
+    "ALIAS": "כינוי",
+    "VALUE": "ערך",
+    "TYPE": "סוג"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "לא זמין",
+  "GRID-CUSTOMIZE-TITLE": "התאמה אישית של עמודות",
+  "GRID-CUSTOMIZE-DESCRIPTION": "התאם אישית את התצוגה על ידי בחירה בתוכן או בהזמנה",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Apply",
+    "GRID_COL_DIALOG_CANCELBTN": "בטל",
+    "GRID_COL_DIALOG_VISIBLE": "נראה",
+    "GRID_COL_DIALOG_HIDDEN": "Hidden"
+  }
+}

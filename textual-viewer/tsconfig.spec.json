@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/spec",
+    "types": [
+      "jasmine",
+      "node", "signalr"
+    ],
+    "paths": {
+      "@gms-flex/snapin-common": [
+        "dist/@gms-flex/snapin-common"
+      ],
+      "@gms-flex/textual-viewer-root-services": [
+        "dist/@gms-flex/textual-viewer-root-services"
+      ]
+    }
+  },
+  "files": [
+    "src/test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "Visionneur de texte",
+  "GRID": {
+    "STATUS": "État",
+    "DESCRIPTION": "Description",
+    "NAME": "Nom",
+    "ALIAS": "Alias",
+    "VALUE": "Valeur",
+    "TYPE": "Type"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "S/O",
+  "GRID-CUSTOMIZE-TITLE": "Personnaliser colonnes",
+  "GRID-CUSTOMIZE-DESCRIPTION": "Personnaliser la vue par sélection de contenu ou classement",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "Appliquer",
+    "GRID_COL_DIALOG_CANCELBTN": "Annuler",
+    "GRID_COL_DIALOG_VISIBLE": "Visible",
+    "GRID_COL_DIALOG_HIDDEN": "Masqué"
+  }
+}

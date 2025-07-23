@@ -1,0 +1,21 @@
+{
+  "COM-ERROR-TEXT": "Communicatiefout",
+  "GRID": {
+    "ALIAS": "Alias",
+    "DESCRIPTION": "Beschrijving",
+    "NAME": "Naam",
+    "STATUS": "Status",
+    "TYPE": "Type",
+    "VALUE": "Waarde"
+  },
+  "GRID-CUSTOMIZE-DESCRIPTION": "Selecteer of sorteer om tabel aan te passen",
+  "GRID-CUSTOMIZE-TITLE": "Aanpassen kolommen",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_CANCELBTN": "Afbreken",
+    "GRID_COL_DIALOG_HIDDEN": "Verborgen",
+    "GRID_COL_DIALOG_VISIBLE": "Zichtbaar",
+    "GRID_COL_DIALOG_YESBTN": "Toepassen"
+  },
+  "PROPERTY-ABSENT-TEXT": "Niet beschikbaar",
+  "SNAPIN-TITLE": "Lijst weergave"
+}

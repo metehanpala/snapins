@@ -1,0 +1,21 @@
+{
+  "SNAPIN-TITLE": "ﾃｷｽﾄ表示",
+  "GRID": {
+    "STATUS": "状態",
+    "DESCRIPTION": "摘要",
+    "NAME": "名称",
+    "ALIAS": "別名",
+    "VALUE": "値",
+    "TYPE": "ﾀｲﾌﾟ"
+  },
+  "COM-ERROR-TEXT": "#COM",
+  "PROPERTY-ABSENT-TEXT": "N/A",
+  "GRID-CUSTOMIZE-TITLE": "項目のｶｽﾀﾏｲｽﾞ",
+  "GRID-CUSTOMIZE-DESCRIPTION": "ｺﾝﾃﾝﾂを選択するかｵｰﾀﾞﾘﾝｸﾞすることで表示をｶｽﾀﾏｲｽﾞする",
+  "HFW_CONTROLS": {
+    "GRID_COL_DIALOG_YESBTN": "適用",
+    "GRID_COL_DIALOG_CANCELBTN": "ｷｬﾝｾﾙ",
+    "GRID_COL_DIALOG_VISIBLE": "表示",
+    "GRID_COL_DIALOG_HIDDEN": "非表示"
+  }
+}

@@ -1,0 +1,9 @@
+{
+"$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "assets": ["i18n", "assets"],
+  "dest": "../../dist/@gms-flex/textual-viewer",
+
+  "lib": {
+    "entryFile": "./src/public-api.ts"
+  }
+}

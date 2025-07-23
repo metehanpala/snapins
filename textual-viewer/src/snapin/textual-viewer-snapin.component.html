@@ -1,0 +1,22 @@
+<div *ngIf="isLoading" class="d-flex flex-column justify-content-center h-100 pb-10">
+  <si-loading-spinner *ngIf="isLoadingSpinnerEnabled" />
+</div>
+<gms-textual-viewer
+  *ngIf="!isLoading"
+  style="height: 100%"
+  isVirtualized="true"
+  [gridSettings]="gridSettings"
+  pageSize="25"
+  pagesVirtualized="6"
+  [headerDataInput]="headerData"
+  [textTable]="gridData"
+  [scrollIntoView]="scrollIntoView"
+  [updateGridDisplay]="updateGridVirtualization"
+  [updateHeaderInitialization]="updateHeaderInit"
+  [reattachIndication]="reattachInd"
+  [deattachIndication]="deattachInd"
+  (configurationChanged)=onConfigurationChanged($event)
+  (selectionChanged)=onSelectionChanged($event)
+  (gridVirtualizedChanged)="onGridVirtualizedChanged($event)"
+  (showContentActionBarChanged)="showContentActionBarChanged($event)" />
+

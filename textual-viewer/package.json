@@ -1,0 +1,30 @@
+{
+  "name": "@gms-flex/textual-viewer",
+  "version": "9.0.0-alpha.82",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://code.siemens.com/gms-flex/gms-snapins.git"
+  },
+  "author": {
+    "name": "Siemens AG",
+    "email": "info@siemens.com"
+  },
+  "homepage": "https://code.siemens.com/gms-flex/gms-snapins",
+  "bugs": "https://code.siemens.com/gms-flex/gms-snapins/issues",
+
+  "peerDependencies": {
+    "@angular/common": "19",
+    "@angular/core": "19",
+    "@angular/forms": "19",
+    "@angular/router": "19",
+    "@gms-flex/services": "~9.0.0-alpha",
+    "@gms-flex/services-common": "~9.0.0-alpha",
+    "@gms-flex/controls": "~9.0.0-alpha",
+    "@gms-flex/core": "~9.0.0-alpha",
+    "@ngx-translate/core": "15",
+    "@ngx-translate/http-loader": "8",
+    "ngx-bootstrap": "19",
+    "rxjs": "7"
+  }
+}
